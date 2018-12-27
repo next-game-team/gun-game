@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using UnityEngine;
 
@@ -11,10 +12,34 @@ public class Platform : MonoBehaviour
     [SerializeField]
     private List<Transform> _sidePointList;
 
-    private bool _isEnabled = false;
+    [SerializeField] 
+    private Transform _centerOfTopBound;
+
+    [SerializeField, ReadOnly]
+    private PlatformObject _platformObject;
+
+    public PlatformObject PlatformObject
+    {
+        get { return _platformObject; }
+        private set
+        {
+            if (PlatformObject == null) throw new NoNullAllowedException();
+            
+            _platformObject = PlatformObject;
+            IsFree = false;
+        }
+    }
+
+    public bool IsFree { get; private set; } = true;
+
+    public void EmptyPlatform()
+    {
+        _platformObject = null;
+        IsFree = true;
+    }
 
     public List<Transform> SidePointList => _sidePointList;
-
+    
     public void SetNeighbors(List<Platform> neighborsList)
     {
         if (neighborsList.Count > SidePointList.Count)
@@ -24,30 +49,29 @@ public class Platform : MonoBehaviour
         
         _neighborsList = neighborsList;
     }
+    
+    public bool IsEnabled { get; private set; } = false;
+
+    public Transform CenterOfTopBound => _centerOfTopBound;
 
     public void Enable()
     {
-        _isEnabled = true;
+        IsEnabled = true;
     }
     
     public void Disable()
     {
-        _isEnabled = false;
-    }
-
-    public bool IsEnabled()
-    {
-        return _isEnabled;
+        IsEnabled = false;
     }
 
     public bool HasDisabledNeighbor()
     {
-        return _neighborsList.Any(neighbor => neighbor.IsEnabled() == false);
+        return _neighborsList.Any(neighbor => neighbor.IsEnabled == false);
     }
 
     public Platform GetRandomDisabledPlatform()
     {
-        var disabledNeighbors = _neighborsList.FindAll(neighbor => neighbor.IsEnabled() == false);
+        var disabledNeighbors = _neighborsList.FindAll(neighbor => neighbor.IsEnabled == false);
 
         if (disabledNeighbors.Count == 0)
         {
@@ -57,7 +81,12 @@ public class Platform : MonoBehaviour
 
         return disabledNeighbors[Random.Range(0, disabledNeighbors.Count)];
     }
-    
+
+    private void Awake()
+    {
+        _centerOfTopBound = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformTopCenter).transform;
+    }
+
     protected void OnValidate()
     {
         _sidePointList = GetComponentsInChildren<Transform>().ToList();
