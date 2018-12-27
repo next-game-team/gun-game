@@ -1,5 +1,10 @@
 ﻿public enum TagEnum
 {
+    // Player
     Player,
-    Platform
+    
+    // Platform
+    Platform,
+    PlatformTopCenter,
+    PlatformObjectBottom
 }
