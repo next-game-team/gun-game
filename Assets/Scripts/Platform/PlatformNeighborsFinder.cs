@@ -1,36 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.WSA;
 
+[RequireComponent(typeof(Platform))]
 public class PlatformNeighborsFinder : MonoBehaviour
 {
 
 	[SerializeField]
 	private float _raycastLength;
 
-	[SerializeField] 
-	private bool _allowChecking; // Flag that shows if script can check neighbors
-
 	private readonly IEnumerable<TagEnum> _neighborTags = new List<TagEnum>() 
 		{TagEnum.Platform};
 	
-	private void OnValidate ()
+	public void FindNeighbors()
 	{
-		if (!_allowChecking)
-		{
-			return;
-		}
-		
 		var thisPlatform = GetComponent<Platform>();
-		var sidePointList = thisPlatform.SidePointList;
 
-		var neighbors = sidePointList
-			.Select(sidePoint => sidePoint.position - transform.position) // Calculate direction
-			.Select(FindNeighborByDirection) // Find all neighbors
-			.Where(neighborPlatform => neighborPlatform != null) // Filter not null neighbors
-			.ToList();
+		var neighbors = new PlatformNeighbors(
+			FindNeighborByDirection(Vector2.left), 
+			FindNeighborByDirection(Vector2.right), 
+			FindNeighborByDirection(Vector2.up), 
+			FindNeighborByDirection(Vector2.down)
+			);
 		
-		thisPlatform.SetNeighbors(neighbors);
+		thisPlatform.Neighbors = neighbors;
 	}
 
 	private Platform FindNeighborByDirection(Vector3 direction)
