@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlatformObject : MonoBehaviour
 {
@@ -10,14 +8,22 @@ public class PlatformObject : MonoBehaviour
 
     [SerializeField] 
     private Transform _objectBottomPosition;
-
-    public Transform ObjectBottomPosition => _objectBottomPosition;
-
-    public Platform CurrentPlatform => _currentPlatform;
-
-    private void Awake()
+    
+    public Transform ObjectBottomPosition
     {
-        _objectBottomPosition = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformObjectBottom).transform;
+        get { return _objectBottomPosition; }
+        set { _objectBottomPosition = value; }
+    }
+
+    public Platform CurrentPlatform
+    {
+        get { return _currentPlatform; }
+        set { _currentPlatform = value; }
+    }
+
+    private void OnValidate()
+    {
+        ObjectBottomPosition = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformObjectBottom).transform;
     }
 
 }
