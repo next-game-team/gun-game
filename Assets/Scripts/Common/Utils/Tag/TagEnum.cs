@@ -6,5 +6,6 @@
     // Platform
     Platform,
     PlatformTopCenter,
-    PlatformObjectBottom
+    PlatformObjectBottom,
+    FirstPlatform
 }
