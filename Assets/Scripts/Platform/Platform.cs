@@ -26,11 +26,16 @@ public class Platform : MonoBehaviour
     public PlatformObject PlatformObject
     {
         get { return _platformObject; }
-        private set
+        set
         {
-            if (PlatformObject == null) throw new NoNullAllowedException();
+            if (PlatformObject == null)
+            {
+                _platformObject = null;
+                IsFree = true;
+            }
             
             _platformObject = PlatformObject;
+            _platformObject.CurrentPlatform = this;
             IsFree = false;
         }
     }
