@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    
-    [SerializeField]
-    private List<Platform> _neighborsList;
 
-    [SerializeField]
-    private List<Transform> _sidePointList;
+    [SerializeField, ReadOnly] 
+    private PlatformNeighbors _neighbors;
+
+    public PlatformNeighbors Neighbors
+    {
+        get { return _neighbors; }
+        set { _neighbors = value; }
+    }
 
     [SerializeField] 
     private Transform _centerOfTopBound;
+    
+    public Transform CenterOfTopBound => _centerOfTopBound;
 
     [SerializeField, ReadOnly]
     private PlatformObject _platformObject;
@@ -37,22 +42,8 @@ public class Platform : MonoBehaviour
         _platformObject = null;
         IsFree = true;
     }
-
-    public List<Transform> SidePointList => _sidePointList;
-    
-    public void SetNeighbors(List<Platform> neighborsList)
-    {
-        if (neighborsList.Count > SidePointList.Count)
-        {
-            Debug.LogError("Platform has more neighbors than sides");
-        }
-        
-        _neighborsList = neighborsList;
-    }
     
     public bool IsEnabled { get; private set; } = false;
-
-    public Transform CenterOfTopBound => _centerOfTopBound;
 
     public void Enable()
     {
@@ -64,32 +55,28 @@ public class Platform : MonoBehaviour
         IsEnabled = false;
     }
 
-    public bool HasDisabledNeighbor()
+    public bool HasFreeEnabledNeighbor()
     {
-        return _neighborsList.Any(neighbor => neighbor.IsEnabled == false);
+        return _neighbors.List.Any(neighbor => neighbor.IsEnabled && neighbor.IsFree);
     }
 
-    public Platform GetRandomDisabledPlatform()
+    public Platform GetRandomFreePlatform()
     {
-        var disabledNeighbors = _neighborsList.FindAll(neighbor => neighbor.IsEnabled == false);
-
-        if (disabledNeighbors.Count == 0)
-        {
-            Debug.LogWarning("Tries to get disabled platform from platform without disabled neighbor");
-            return null;
-        }
-
-        return disabledNeighbors[Random.Range(0, disabledNeighbors.Count)];
+        // Find all free neighbors
+        var freeNeighbors = _neighbors.List.FindAll(neighbor => neighbor.IsEnabled && neighbor.IsFree);
+        
+        // Return null if there is no any free neighbors or return random free neighbor
+        return freeNeighbors.Count == 0 ? null : freeNeighbors[Random.Range(0, freeNeighbors.Count)];
     }
 
-    private void Awake()
+    private void OnValidate()
     {
+        // Find CenterOfTopBound in children
         _centerOfTopBound = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformTopCenter).transform;
+        if (_centerOfTopBound == null)
+        {
+            Debug.LogError("Platform doesn't have CenterOfTopBound");
+        }
     }
 
-    protected void OnValidate()
-    {
-        _sidePointList = GetComponentsInChildren<Transform>().ToList();
-        SidePointList.Remove(transform);
-    }
 }
