@@ -10,8 +10,10 @@ public class BetweenPlatformMover
         {
             Debug.LogError("Move to wrong direction");
         }
-            
+        
         newPlatform.PlatformObject = platformObject;
+        platformObject.transform.position = newPlatform.CenterOfTopBound.position
+                                            + platformObject.VectorFromBottomToCenter;
     }
 
     public static Platform GetNeighborByDirection(Platform platform, DirectionEnum directionEnum)
