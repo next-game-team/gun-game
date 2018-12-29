@@ -14,6 +14,8 @@ public class PlatformObject : MonoBehaviour
         get { return _objectBottomPosition; }
         set { _objectBottomPosition = value; }
     }
+    
+    public Vector3 VectorFromBottomToCenter { get; set; }
 
     public Platform CurrentPlatform
     {
@@ -24,6 +26,7 @@ public class PlatformObject : MonoBehaviour
     private void OnValidate()
     {
         ObjectBottomPosition = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformObjectBottom).transform;
+        VectorFromBottomToCenter = transform.position - _objectBottomPosition.position;
     }
 
 }
