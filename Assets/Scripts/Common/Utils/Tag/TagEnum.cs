@@ -7,5 +7,8 @@
     Platform,
     PlatformTopCenter,
     PlatformObjectBottom,
-    FirstPlatform
+    FirstPlatform,
+    
+    // Gun
+    Gun
 }

@@ -10,6 +10,8 @@ public class CharacterController : MonoBehaviour
     private PlatformObject _platformObject;
     private MoveController _moveController;
     private AttackController _attackController;
+
+    private Gun _gun;
     
     // Start is called before the first frame update
     private void Awake()
@@ -21,6 +23,12 @@ public class CharacterController : MonoBehaviour
         
         _attackController = GetComponent<AttackController>();
         _attackController.AttackEvent.AddListener(OnAttackEvent);
+
+        _gun = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.Gun).GetComponent<Gun>();
+        if (_gun == null)
+        {
+            Debug.LogError("There is no gun on Character: " + gameObject.name);
+        }
     }
 
     private void OnMoveEvent(DirectionEnum directionEnum)
@@ -30,6 +38,6 @@ public class CharacterController : MonoBehaviour
 
     private void OnAttackEvent()
     {
-        
+        _gun.Shoot();
     }
 }
