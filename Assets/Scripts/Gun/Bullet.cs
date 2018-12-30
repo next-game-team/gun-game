@@ -16,9 +16,11 @@ public class Bullet : MonoBehaviour
         _dieble = GetComponent<Dieble>();
     }
 
-    public void Init(float bulletSpeed)
+    public void Init(float bulletSpeed, Quaternion rotation)
     {
         _speed = bulletSpeed;
+        transform.rotation = rotation;
+        
     }
 
     // Update is called once per frame
