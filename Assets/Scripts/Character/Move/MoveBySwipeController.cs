@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SwipeController : MoveController, IBeginDragHandler, IDragHandler
+public class MoveBySwipeController : MoveController, IBeginDragHandler, IDragHandler
 {
     public void OnBeginDrag(PointerEventData eventData)
     {

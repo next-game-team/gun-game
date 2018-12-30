@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyController : MoveController
+public class MoveByKeyController : MoveController
 {
     private void Update()
     {
