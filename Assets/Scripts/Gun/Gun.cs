@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [SerializeField] private GunConfig _gunConfig;
+    
     // Start is called before the first frame update
     void Start()
     {
