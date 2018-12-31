@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BetweenPlatformMover
+public static class BetweenPlatformMover
 {
     public static void MoveTo(PlatformObject platformObject, DirectionEnum directionEnum)
     {
@@ -8,7 +8,7 @@ public class BetweenPlatformMover
         var newPlatform = GetNeighborByDirection(platformObject.CurrentPlatform, directionEnum);
         if (newPlatform == null)
         {
-            Debug.LogError("Move to wrong direction");
+            return;
         }
         
         newPlatform.PlatformObject = platformObject;
