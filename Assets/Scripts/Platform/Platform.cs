@@ -32,13 +32,13 @@ public class Platform : MonoBehaviour
         get { return _platformObject; }
         set
         {
-            if (PlatformObject == null)
+            if (value == null)
             {
                 _platformObject = null;
                 IsFree = true;
             }
             
-            _platformObject = PlatformObject;
+            _platformObject = value;
             _platformObject.CurrentPlatform = this;
             IsFree = false;
         }
