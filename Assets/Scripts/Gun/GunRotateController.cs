@@ -6,20 +6,26 @@ public class GunRotateController : MonoBehaviour
 {
     [SerializeField]
     private float _rotationSpeed = 1;
-
+    [SerializeField, ReadOnly]
+    private bool _isLeftRotated = true;
+    
     private float _currentAngle = 0;
-    private const float ANGLE_SPEED_CONST = 1; 
+
+    public void ChangeRotation()
+    {
+        _isLeftRotated = !_isLeftRotated;
+    }
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         transform.rotation = Quaternion.AngleAxis(_currentAngle, Vector3.forward);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        _currentAngle++;
-        transform.rotation = Quaternion.AngleAxis(_currentAngle * ANGLE_SPEED_CONST * _rotationSpeed, Vector3.forward);
+        _currentAngle += (_isLeftRotated ? 1 : -1) * _rotationSpeed;
+        transform.rotation = Quaternion.AngleAxis(_currentAngle, Vector3.forward);
     }
 }
