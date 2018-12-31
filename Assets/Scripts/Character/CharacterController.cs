@@ -11,6 +11,7 @@ public class CharacterController : MonoBehaviour
     private MoveController _moveController;
     private AttackController _attackController;
 
+    [SerializeField]
     private Gun _gun;
     
     // Start is called before the first frame update
@@ -24,10 +25,9 @@ public class CharacterController : MonoBehaviour
         _attackController = GetComponent<AttackController>();
         _attackController.AttackEvent.AddListener(OnAttackEvent);
 
-        _gun = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.Gun).GetComponent<Gun>();
         if (_gun == null)
         {
-            Debug.LogError("There is no gun on Character: " + gameObject.name);
+            Debug.LogWarning("There is no gun on Character: " + gameObject.name);
         }
     }
 
