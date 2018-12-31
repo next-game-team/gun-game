@@ -6,7 +6,7 @@ public class PlatformObject : MonoBehaviour
     [SerializeField, ReadOnly]
     private Platform _currentPlatform;
 
-    [SerializeField] 
+    [SerializeField, ReadOnly] 
     private Transform _objectBottomPosition;
     
     public Transform ObjectBottomPosition
