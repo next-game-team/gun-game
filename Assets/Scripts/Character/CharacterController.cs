@@ -38,6 +38,8 @@ public class CharacterController : MonoBehaviour
 
     private void OnAttackEvent()
     {
+        if (_gun == null) return; 
+        
         _gun.Shoot();
     }
 }
