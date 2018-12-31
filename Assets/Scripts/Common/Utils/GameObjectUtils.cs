@@ -5,7 +5,14 @@ public class GameObjectUtils
 {
     public static GameObject GetChildrenWithTag(GameObject gameObject, TagEnum tag)
     {
-        return gameObject.GetComponentsInChildren<GameObject>()
-            .FirstOrDefault(children => TagUtils.CompareGameObjectTag(children, tag));
+        foreach (Transform child in gameObject.transform)
+        {
+            if (TagUtils.CompareGameObjectTag(child.gameObject, tag))
+            {
+                return child.gameObject;
+            }
+        }
+
+        return null;
     }  
 }
