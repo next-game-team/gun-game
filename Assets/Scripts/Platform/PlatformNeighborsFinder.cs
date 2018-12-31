@@ -3,43 +3,30 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.WSA;
 
-[RequireComponent(typeof(Platform))]
 public class PlatformNeighborsFinder : MonoBehaviour
 {
 
 	[SerializeField]
 	private float _raycastLength;
 
-	private readonly IEnumerable<TagEnum> _neighborTags = new List<TagEnum>() 
-		{TagEnum.Platform};
+	[SerializeField] private LayerMask _neighborLayerMask;
 	
-	public void FindNeighbors()
+	public void FindNeighbors(Platform platform)
 	{
-		var thisPlatform = GetComponent<Platform>();
-
 		var neighbors = new PlatformNeighbors(
-			FindNeighborByDirection(Vector2.left), 
-			FindNeighborByDirection(Vector2.right), 
-			FindNeighborByDirection(Vector2.up), 
-			FindNeighborByDirection(Vector2.down)
+			FindNeighborByDirection(platform.SidePoints.Left, Vector2.left), 
+			FindNeighborByDirection(platform.SidePoints.Right, Vector2.right), 
+			FindNeighborByDirection(platform.SidePoints.Top, Vector2.up), 
+			FindNeighborByDirection(platform.SidePoints.Bottom, Vector2.down)
 			);
 		
-		thisPlatform.Neighbors = neighbors;
+		platform.Neighbors = neighbors;
 	}
 
-	private Platform FindNeighborByDirection(Vector3 direction)
+	private Platform FindNeighborByDirection(Transform sidePoint, Vector3 direction)
 	{
-		RaycastHit hit;
-		if (Physics.Raycast(gameObject.transform.position, direction, out hit, _raycastLength)) 
-		{
-			// Check if intersected object is Platform
-			if (TagUtils.CompareTagWithTagsList(hit.transform.tag, _neighborTags))
-			{
-				return hit.transform.gameObject.GetComponent<Platform>();
-			}
-		}
-		
-		return null;
+		var hit = Physics2D.Raycast(sidePoint.position, direction, _raycastLength, _neighborLayerMask);
+		return hit.transform != null ? hit.transform.gameObject.GetComponent<Platform>() : null;
 	}
 	
 }
