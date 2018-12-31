@@ -15,6 +15,10 @@ public class Platform : MonoBehaviour
         set { _neighbors = value; }
     }
 
+    [SerializeField] private PlatformSidePoints _sidePoints = new PlatformSidePoints();
+
+    public PlatformSidePoints SidePoints => _sidePoints;
+
     [SerializeField] 
     private Transform _centerOfTopBound;
     
@@ -75,7 +79,7 @@ public class Platform : MonoBehaviour
     }
 
     private void OnValidate()
-    {
+    {   
         // Find CenterOfTopBound in children
         _centerOfTopBound = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformTopCenter).transform;
         if (_centerOfTopBound == null)
