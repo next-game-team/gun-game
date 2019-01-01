@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0c0066b6174d441618d62b3eb6eed789, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 0c0066b6174d441618d62b3eb6eed789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunConfig: {fileID: 0}
+  _shootPoint: {fileID: 0}
 --- !u!1 &2231516215256575780
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 2
+  _isLeftRotated: 1
 --- !u!1 &7483765033866189475
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +244,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 0c0066b6174d441618d62b3eb6eed789, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 0c0066b6174d441618d62b3eb6eed789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
