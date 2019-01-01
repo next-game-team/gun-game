@@ -9,6 +9,7 @@ TagManager:
   - PlatformObjectBottom
   - FirstPlatform
   - Gun
+  - BulletPool
   layers:
   - Default
   - TransparentFX
