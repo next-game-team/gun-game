@@ -5,6 +5,5 @@ public class GunConfig : ScriptableObject
 {
     public float RotationSpeed;
     public float CooldownTime;
-    public int DamageCount;
-    public float BulletSpeed;
+    public BulletConfig BulletConfig;
 }
