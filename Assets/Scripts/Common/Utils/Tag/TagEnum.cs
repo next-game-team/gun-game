@@ -10,5 +10,6 @@
     FirstPlatform,
     
     // Gun
-    Gun
+    Gun,
+    BulletPool
 }
