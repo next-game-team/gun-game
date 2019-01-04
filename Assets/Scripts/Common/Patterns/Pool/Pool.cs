@@ -12,7 +12,7 @@ public class Pool : MonoBehaviour
 
     public void Init()
     {
-        for(int i = 0; i < _objectsCount; i++)
+        for(var i = 0; i < _objectsCount; i++)
         {
             var newObject = Instantiate(_objectPrefab, gameObject.transform);
             newObject.SetActive(false);
@@ -21,9 +21,8 @@ public class Pool : MonoBehaviour
         }
     }
     
-    public GameObject GetObject(Vector2 position)
+    public GameObject GetObject()
     {
-
         GameObject objectFromPool;
         if (_objects.Count == 0)
         {
@@ -35,6 +34,12 @@ public class Pool : MonoBehaviour
             _objects.Remove(objectFromPool);
         }
         
+        return objectFromPool;
+    }
+
+    public GameObject GetObject(Vector2 position)
+    {
+        var objectFromPool = GetObject();
         objectFromPool.transform.position = position;
         return objectFromPool;
     }
