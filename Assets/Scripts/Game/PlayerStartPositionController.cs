@@ -16,8 +16,6 @@ public class PlayerStartPositionController : MonoBehaviour
             return;
         }
 
-        _startPlatform.PlatformObject = _player;
-        _player.transform.position = _startPlatform.CenterOfTopBound.position
-                                            + _player.VectorFromBottomToCenter;
+        _startPlatform.SetPlatformObject(_player);
     }
 }

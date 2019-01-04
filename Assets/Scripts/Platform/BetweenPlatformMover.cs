@@ -11,9 +11,7 @@ public static class BetweenPlatformMover
             return;
         }
         
-        newPlatform.PlatformObject = platformObject;
-        platformObject.transform.position = newPlatform.CenterOfTopBound.position
-                                            + platformObject.VectorFromBottomToCenter;
+        newPlatform.SetPlatformObject(platformObject);
     }
 
     public static Platform GetNeighborByDirection(Platform platform, DirectionEnum directionEnum)
