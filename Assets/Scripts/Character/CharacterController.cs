@@ -13,8 +13,12 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField]
     private Gun _gun;
+
+    [SerializeField] private MoveConfig _moveConfig;
+
+    private bool _isCantMove = false;
+    private float _currentCooldownTime;
     
-    // Start is called before the first frame update
     private void Awake()
     {
         _platformObject = GetComponent<PlatformObject>();
@@ -33,7 +37,13 @@ public class CharacterController : MonoBehaviour
 
     private void OnMoveEvent(DirectionEnum directionEnum)
     {
+        if(_isCantMove) return;
+
+        _isCantMove = true;
+        _currentCooldownTime = _moveConfig.CooldownTime;
+
         BetweenPlatformMover.MoveTo(_platformObject, directionEnum);
+            
     }
 
     private void OnAttackEvent()
@@ -41,5 +51,20 @@ public class CharacterController : MonoBehaviour
         if (_gun == null) return; 
         
         _gun.Shoot();
+    }
+
+    private void Update()
+    {
+        if (!_isCantMove) return;
+
+        if (_isCantMove && _currentCooldownTime > 0)
+        {
+            _currentCooldownTime -= Time.deltaTime;
+        }
+        else
+        {
+            _isCantMove = false;
+        }
+
     }
 }
