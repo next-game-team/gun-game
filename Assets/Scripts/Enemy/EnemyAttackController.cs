@@ -7,6 +7,7 @@ public class EnemyAttackController : AttackController
     [SerializeField] private Transform _shootPoint; //change
     [SerializeField] private float _raycastLength;
     [SerializeField] private LayerMask _player;
+    [SerializeField, Range(0, 1)] private float _shootProbability;
 
     void Update()
     {   
@@ -20,11 +21,7 @@ public class EnemyAttackController : AttackController
     {
         var direction = _shootPoint.position - transform.position;
 
-        if(Physics2D.Raycast(_shootPoint.position, direction, _raycastLength, _player))
-        {
-            return true;
-        } else {
-            return false;
-        }
+        return Physics2D.Raycast(_shootPoint.position, direction, _raycastLength, _player)
+            && RandomUtils.IsRandomSaysTrue(_shootProbability);
     }
 }

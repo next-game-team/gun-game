@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gun: {fileID: 2180995547893119576}
+  _moveConfig: {fileID: 0}
 --- !u!114 &661983304310967048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +142,7 @@ MonoBehaviour:
   _player:
     serializedVersion: 2
     m_Bits: 512
+  _shootProbability: 0.2
 --- !u!1 &1923727307783487596
 GameObject:
   m_ObjectHideFlags: 0
