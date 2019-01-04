@@ -11,5 +11,8 @@
     
     // Gun
     Gun,
-    BulletPool
+    BulletPool,
+    
+    // Enemy
+    EnemyPool
 }
