@@ -2,16 +2,17 @@ using UnityEngine;
 
 public static class BetweenPlatformMover
 {
-    public static void MoveTo(PlatformObject platformObject, DirectionEnum directionEnum)
+    public static bool MoveTo(PlatformObject platformObject, DirectionEnum directionEnum)
     {
         platformObject.CurrentPlatform.EmptyPlatform();
         var newPlatform = GetNeighborByDirection(platformObject.CurrentPlatform, directionEnum);
-        if (newPlatform == null)
+        if (newPlatform == null || !newPlatform.IsFree)
         {
-            return;
+            return false;
         }
         
         newPlatform.SetPlatformObject(platformObject);
+        return true;
     }
 
     public static Platform GetNeighborByDirection(Platform platform, DirectionEnum directionEnum)

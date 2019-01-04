@@ -39,11 +39,11 @@ public class CharacterController : MonoBehaviour
     {
         if(_isCantMove) return;
 
+        var moveResult = BetweenPlatformMover.MoveTo(_platformObject, directionEnum);
+        if (moveResult == false) return;
+        
         _isCantMove = true;
-        _currentCooldownTime = _moveConfig.CooldownTime;
-
-        BetweenPlatformMover.MoveTo(_platformObject, directionEnum);
-            
+        _currentCooldownTime = _moveConfig.CooldownTime;    
     }
 
     private void OnAttackEvent()
