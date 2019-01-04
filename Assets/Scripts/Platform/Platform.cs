@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -38,10 +36,22 @@ public class Platform : MonoBehaviour
             }
             
             _platformObject = value;
-            _platformObject.CurrentPlatform = this;
             IsFree = false;
-            PlatformMap.Instance.FreePlatforms.Remove(this);
         }
+    }
+
+    public void SetPlatformObject(PlatformObject platformObject)
+    {
+        // Set links on platform object and platform
+        PlatformObject = platformObject;
+        _platformObject.CurrentPlatform = this;
+        
+        // Remove this platform from list of free platforms
+        PlatformMap.Instance.FreePlatforms.Remove(this);
+        
+        // Set platform object on current position
+        platformObject.transform.position = CenterOfTopBound.position
+                                            + platformObject.VectorFromBottomToCenter;
     }
 
     public bool IsFree { get; private set; } = true;
@@ -70,13 +80,13 @@ public class Platform : MonoBehaviour
         return _neighbors.List.Any(neighbor => neighbor.IsEnabled && neighbor.IsFree);
     }
 
-    public Platform GetRandomFreePlatform()
+    public Platform GetRandomFreeNeighbor()
     {
         // Find all free neighbors
         var freeNeighbors = _neighbors.List.FindAll(neighbor => neighbor.IsEnabled && neighbor.IsFree);
         
         // Return null if there is no any free neighbors or return random free neighbor
-        return freeNeighbors.Count == 0 ? null : freeNeighbors[Random.Range(0, freeNeighbors.Count)];
+        return RandomUtils.GetRandomObjectFromList(freeNeighbors);
     }
 
     private void OnValidate()
