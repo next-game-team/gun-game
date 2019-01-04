@@ -4,13 +4,13 @@ public static class BetweenPlatformMover
 {
     public static bool MoveTo(PlatformObject platformObject, DirectionEnum directionEnum)
     {
-        platformObject.CurrentPlatform.EmptyPlatform();
         var newPlatform = GetNeighborByDirection(platformObject.CurrentPlatform, directionEnum);
         if (newPlatform == null || !newPlatform.IsFree)
         {
             return false;
         }
         
+        platformObject.CurrentPlatform.EmptyPlatform();
         newPlatform.SetPlatformObject(platformObject);
         return true;
     }
