@@ -34,13 +34,13 @@ public class Platform : MonoBehaviour
         {
             if (value == null)
             {
-                _platformObject = null;
-                IsFree = true;
+                EmptyPlatform();
             }
             
             _platformObject = value;
             _platformObject.CurrentPlatform = this;
             IsFree = false;
+            PlatformMap.Instance.FreePlatforms.Remove(this);
         }
     }
 
@@ -50,6 +50,7 @@ public class Platform : MonoBehaviour
     {
         _platformObject = null;
         IsFree = true;
+        PlatformMap.Instance.FreePlatforms.Add(this);
     }
     
     public bool IsEnabled { get; private set; } = false;
