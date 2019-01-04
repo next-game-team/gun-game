@@ -18,7 +18,9 @@ public class EnemyAttackController : AttackController
 
     private bool FindPlayer()
     {
-        if(Physics2D.Raycast(_shootPoint.position, Vector3.up, _raycastLength, _player))
+        var direction = _shootPoint.position - transform.position;
+
+        if(Physics2D.Raycast(_shootPoint.position, direction, _raycastLength, _player))
         {
             return true;
         } else {
