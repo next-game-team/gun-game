@@ -8,8 +8,11 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
         if (freePlatform == null)
         {
             Debug.LogWarning("There is no free platform");
-        } 
-        
-        freePlatform.SetPlatformObject(PoolManager.Instance.EnemyPool.GetObject().GetComponent<PlatformObject>());
+            return;
+        }
+
+        var enemy = PoolManager.Instance.EnemyPool.GetObject().GetComponent<PlatformObject>();
+        enemy.gameObject.SetActive(true);
+        freePlatform.SetPlatformObject(enemy);
     }
 }
