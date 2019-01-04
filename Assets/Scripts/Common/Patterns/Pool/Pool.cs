@@ -14,10 +14,7 @@ public class Pool : MonoBehaviour
     {
         for(var i = 0; i < _objectsCount; i++)
         {
-            var newObject = Instantiate(_objectPrefab, gameObject.transform);
-            newObject.SetActive(false);
-            _objects.Add(newObject);
-            newObject.transform.parent = gameObject.transform;
+            _objects.Add(InstantiateNewObject());
         }
     }
     
