@@ -45,6 +45,11 @@ public class PlatformMap : Singleton<PlatformMap>
 
     private void OnValidate()
     {
+        FindMap();
+    }
+
+    public void FindMap()
+    {
         _neighborsFinder = GetComponent<PlatformNeighborsFinder>();
         if (_neighborsFinder == null)
         {
