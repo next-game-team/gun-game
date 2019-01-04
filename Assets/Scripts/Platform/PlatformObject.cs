@@ -23,7 +23,17 @@ public class PlatformObject : MonoBehaviour
         set { _currentPlatform = value; }
     }
 
+    private void Awake()
+    {
+        Init();
+    }
+
     private void OnValidate()
+    {
+        Init();
+    }
+
+    private void Init()
     {
         ObjectBottomPosition = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformObjectBottom).transform;
         VectorFromBottomToCenter = transform.position - _objectBottomPosition.position;
