@@ -112,48 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &855932130 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 986721807723837892, guid: 0fd5ce71d76fd43efbc299d66278b599,
-    type: 3}
-  m_PrefabInstance: {fileID: 5515570363555535675}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1294950361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1728395091960872629, guid: 0fd5ce71d76fd43efbc299d66278b599,
     type: 3}
   m_PrefabInstance: {fileID: 5515570363555535675}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1377452919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1377452920}
-  m_Layer: 0
-  m_Name: ShootPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1377452920
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377452919}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.16, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 855932130}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1400082096
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,23 +495,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6698245780920573654, guid: 0fd5ce71d76fd43efbc299d66278b599,
-        type: 3}
-      propertyPath: _shootPoint
-      value: 
-      objectReference: {fileID: 1377452920}
-    - target: {fileID: 6698245780920573654, guid: 0fd5ce71d76fd43efbc299d66278b599,
-        type: 3}
-      propertyPath: _gunConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: e49c6cbbc2f1040749618d071ddd296a,
-        type: 2}
-    - target: {fileID: 6851512918488561020, guid: 0fd5ce71d76fd43efbc299d66278b599,
-        type: 3}
-      propertyPath: _moveConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: 1cb5bba881a4c45408b7e642a1ab1552,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fd5ce71d76fd43efbc299d66278b599, type: 3}
 --- !u!114 &7483765033866189476 stripped
