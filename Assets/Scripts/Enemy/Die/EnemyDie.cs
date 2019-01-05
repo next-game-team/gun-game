@@ -1,6 +1,6 @@
 public class EnemyDie : CommonDieInPool
 {
-    private void Awake()
+    private void Start()
     {
         Pool = PoolManager.Instance.EnemyPool;
     }

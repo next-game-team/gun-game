@@ -11,7 +11,15 @@ public class Liveble : MonoBehaviour
 		set { _hpConfig = value; }
 	}
 
-	public int CurrentHp { get; private set; }
+	[SerializeField, ReadOnly]
+	private int _currentHp;
+	
+	public int CurrentHp
+	{
+		get { return _currentHp; }
+		private set { _currentHp = value; }
+	}
+	
 	public HpUpdateEvent HpUpdateEvent { get; } = new HpUpdateEvent();
 	
 	private Dieble _dieble;
@@ -26,6 +34,7 @@ public class Liveble : MonoBehaviour
 	{
 		_dieble = GetComponent<Dieble>();
 		HpUpdateEvent.AddListener(OnHpUpdated);
+		InitHp();
 	}
 
 	public void InitHp()
