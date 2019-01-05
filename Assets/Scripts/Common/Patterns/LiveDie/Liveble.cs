@@ -3,10 +3,18 @@
 [RequireComponent(typeof(Dieble))]
 public class Liveble : MonoBehaviour
 {
-	public HpConfig HpConfig;
-	public int CurrentHp { get; private set; }
-	private Dieble _dieble;
+	[SerializeField] private HpConfig _hpConfig;
 
+	public HpConfig HpConfig
+	{
+		get { return _hpConfig; }
+		set { _hpConfig = value; }
+	}
+
+	public int CurrentHp { get; private set; }
+	public HpUpdateEvent HpUpdateEvent { get; } = new HpUpdateEvent();
+	
+	private Dieble _dieble;
 	private bool _isAlive = true;
 
 	public bool IsAlive()
@@ -17,28 +25,29 @@ public class Liveble : MonoBehaviour
 	private void Awake()
 	{
 		_dieble = GetComponent<Dieble>();
+		HpUpdateEvent.AddListener(OnHpUpdated);
 	}
 
 	public void InitHp()
 	{
-		CurrentHp = HpConfig.Hp;
+		CurrentHp = _hpConfig.Hp;
 		_isAlive = true;
 		Debug.Log(this + "Init HP: " + CurrentHp);
 	}
 
-	public void IncreaseHp(int hp)
+	public void IncreaseHp(int delta)
 	{
-		CurrentHp = Mathf.Clamp(CurrentHp + hp, 0, HpConfig.Hp);
-		OnHpUpdated();
+		CurrentHp = Mathf.Clamp(CurrentHp + delta, 0, _hpConfig.Hp);
+		HpUpdateEvent.Invoke(delta);
 	}
 		
-	public void DecreaseHp(int hp)
+	public void DecreaseHp(int delta)
 	{
-		CurrentHp = Mathf.Clamp(CurrentHp - hp, 0, HpConfig.Hp);
-		OnHpUpdated();
+		CurrentHp = Mathf.Clamp(CurrentHp - delta, 0, _hpConfig.Hp);
+		HpUpdateEvent.Invoke(-delta);
 	}
 
-	private void OnHpUpdated()
+	private void OnHpUpdated(int delta)
 	{
 		Debug.Log(this + "Current HP: " + CurrentHp);
 		CheckHp();
@@ -46,10 +55,9 @@ public class Liveble : MonoBehaviour
 
 	private void CheckHp()
 	{
-		if (CurrentHp <= 0)
-		{
-			_isAlive = false;
-			_dieble.Die();
-		}
+		if (CurrentHp > 0) return;
+		
+		_isAlive = false;
+		_dieble.Die();
 	}
 }
