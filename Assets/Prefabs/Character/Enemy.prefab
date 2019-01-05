@@ -14,7 +14,10 @@ GameObject:
   - component: {fileID: 2628133567090835260}
   - component: {fileID: 7725009520530214407}
   - component: {fileID: 661983304310967048}
-  m_Layer: 0
+  - component: {fileID: 7458497580342905645}
+  - component: {fileID: 3351049107435222411}
+  - component: {fileID: 7229045820876890503}
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -71,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1890975357
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300004, guid: 0c0066b6174d441618d62b3eb6eed789, type: 3}
   m_Color: {r: 0.5849056, g: 0, b: 0, a: 1}
@@ -124,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gun: {fileID: 2180995547893119576}
-  _moveConfig: {fileID: 0}
+  _moveConfig: {fileID: 11400000, guid: 1cb5bba881a4c45408b7e642a1ab1552, type: 2}
 --- !u!114 &661983304310967048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +146,43 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _shootProbability: 0.2
+--- !u!114 &7458497580342905645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931417178270224739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b59ca183760b34dcf80df465517653b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3351049107435222411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931417178270224739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a267ea8f08ac54347b630844fe76b9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hpConfig: {fileID: 11400000, guid: 8b5b22ff65c5b427993a8bcb2be8c99c, type: 2}
+--- !u!114 &7229045820876890503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931417178270224739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3d13b820f932645b2b8d9cfa8929eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1923727307783487596
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,8 +310,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 761223733
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 0c0066b6174d441618d62b3eb6eed789, type: 3}
   m_Color: {r: 0.8490566, g: 0.42052332, b: 0.42052332, a: 1}

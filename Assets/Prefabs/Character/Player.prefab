@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1377452919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1377452920}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1377452920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377452919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 986721807723837892}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &275986926375303767
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +41,7 @@ GameObject:
   - component: {fileID: 986721807723837892}
   - component: {fileID: 9219992474617718324}
   - component: {fileID: 6698245780920573654}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +58,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1377452920}
   m_Father: {fileID: 6538986931178990445}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,8 +97,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 761223733
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 0c0066b6174d441618d62b3eb6eed789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -92,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34346addb93d4a299e518d5215d6df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunConfig: {fileID: 0}
-  _shootPoint: {fileID: 0}
+  _gunConfig: {fileID: 11400000, guid: e49c6cbbc2f1040749618d071ddd296a, type: 2}
+  _shootPoint: {fileID: 1377452920}
 --- !u!1 &2231516215256575780
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1852208854110700079}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bottom
   m_TagString: PlatformObjectBottom
   m_Icon: {fileID: 0}
@@ -134,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6538986931178990445}
   - component: {fileID: 2999739096152485172}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GunContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +216,10 @@ GameObject:
   - component: {fileID: 4307218278771098511}
   - component: {fileID: 6851512918488561020}
   - component: {fileID: 3881316288480066534}
-  m_Layer: 9
+  - component: {fileID: 3952068449530934093}
+  - component: {fileID: 511607631888768392}
+  - component: {fileID: 3462574950231551170}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -307,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gun: {fileID: 6698245780920573654}
-  _moveConfig: {fileID: 0}
+  _moveConfig: {fileID: 11400000, guid: 1cb5bba881a4c45408b7e642a1ab1552, type: 2}
 --- !u!61 &3881316288480066534
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -334,3 +368,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.88}
   m_EdgeRadius: 0
+--- !u!114 &3952068449530934093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483765033866189475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c6fff26da804f2bb1fd9681262e6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &511607631888768392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483765033866189475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a267ea8f08ac54347b630844fe76b9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hpConfig: {fileID: 11400000, guid: 1a6170685476045a8b15821b20e598fd, type: 2}
+--- !u!114 &3462574950231551170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483765033866189475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3d13b820f932645b2b8d9cfa8929eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
