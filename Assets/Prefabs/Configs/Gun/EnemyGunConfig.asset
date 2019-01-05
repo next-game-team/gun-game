@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97412496b7b1403bacc56fd5f8b554cc, type: 3}
-  m_Name: BulletConfig
+  m_Script: {fileID: 11500000, guid: d21dc2d9dd6f4472aa42b0c457ff6804, type: 3}
+  m_Name: EnemyGunConfig
   m_EditorClassIdentifier: 
-  DamageCount: 1
-  Speed: 20
-  Lifetime: 5
+  RotationSpeed: 2
+  CooldownTime: 2
+  BulletConfig: {fileID: 11400000, guid: 444d668d2970a467e992e936c11abac2, type: 2}
