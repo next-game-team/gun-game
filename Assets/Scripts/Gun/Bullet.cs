@@ -6,10 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask _whatIsTarget;
-    
-    private BulletConfig _bulletConfig;
+    public BulletConfig BulletConfig { get; private set; }
 
     private bool _isAlive;
     private float _currentLifeTime;
@@ -24,7 +21,7 @@ public class Bullet : MonoBehaviour
     public void Init(BulletConfig bulletConfig, Vector2 velocity, Quaternion rotation)
     {
         gameObject.SetActive(true);
-        _bulletConfig = bulletConfig;
+        BulletConfig = bulletConfig;
         transform.rotation = rotation;
         _isAlive = true;
         _currentLifeTime = bulletConfig.Lifetime;
@@ -49,7 +46,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (((1 << other.gameObject.layer) & _whatIsTarget) != 0)
+        if (GameObjectUtils.CompareLayerWithMask(other.gameObject, BulletConfig.WhatIsTarget))
         {
             DestroyBullet();
         }
