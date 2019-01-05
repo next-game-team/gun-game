@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class PlatformMap : Singleton<PlatformMap>
@@ -50,22 +49,24 @@ public class PlatformMap : Singleton<PlatformMap>
 
     public void FindMap()
     {
+        // Get finder and check if exist
         _neighborsFinder = GetComponent<PlatformNeighborsFinder>();
         if (_neighborsFinder == null)
         {
             Debug.LogWarning("PlatformNeighborsFinder doesn't set on PlatformMap");
             return;
-        } 
-        
-        var firstPlatformInCurrentRow = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.FirstPlatform)
-            .GetComponent<Platform>();
-
-        if (firstPlatformInCurrentRow == null)
-        {
-            Debug.LogError("There is no first platform in map");
-            return;
         }
 
+        // Find First Platform and Check if exist
+        var gameObjectWithTag = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.FirstPlatform);
+        if (gameObjectWithTag == null)
+        {
+            Debug.LogWarning("There is no first platform in map");
+            return;
+        }
+        
+        // Get Map
+        var firstPlatformInCurrentRow = gameObjectWithTag.GetComponent<Platform>();
         _platforms = new List<List<Platform>>();
         while (firstPlatformInCurrentRow != null)
         {
@@ -73,6 +74,7 @@ public class PlatformMap : Singleton<PlatformMap>
            firstPlatformInCurrentRow = firstPlatformInCurrentRow.Neighbors.Bottom;
         }
 
+        // Save info about map size
         _rowCount = _platforms.Count;
         _columnCount = _platforms[0].Count;
     }

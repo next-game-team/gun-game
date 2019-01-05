@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlatformMapGenerator : MonoBehaviour
 {
@@ -31,6 +29,7 @@ public class PlatformMapGenerator : MonoBehaviour
                 _mapContainer.transform);
             platform.gameObject.name = "Platform-" + (rowInd + 1) + "-" + (columnInd + 1);
 
+            // Set FirstPlatform tag to first platform
             if (rowInd == 0 && columnInd == 0)
             {
                 platform.tag = TagUtils.GetTagNameByEnum(TagEnum.FirstPlatform);
