@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpConfig: {fileID: 11400000, guid: 8b5b22ff65c5b427993a8bcb2be8c99c, type: 2}
+  _currentHp: 0
 --- !u!114 &7229045820876890503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +211,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -379,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34346addb93d4a299e518d5215d6df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunConfig: {fileID: 11400000, guid: e49c6cbbc2f1040749618d071ddd296a, type: 2}
+  _gunConfig: {fileID: 11400000, guid: c6d3f6a3c32b64d51a6130ba9bc1e923, type: 2}
   _shootPoint: {fileID: 8598088588659116748}
 --- !u!1 &7915952198969460066
 GameObject:
