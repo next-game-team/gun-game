@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class GameObjectUtils
@@ -14,5 +13,10 @@ public class GameObjectUtils
         }
 
         return null;
-    }  
+    }
+
+    public static bool CompareLayerWithMask(GameObject gameObject, LayerMask mask)
+    {
+        return ((1 << gameObject.layer) & mask) != 0;
+    }
 }
