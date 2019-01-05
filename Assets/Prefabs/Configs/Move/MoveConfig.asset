@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c646c88b1ff0c4a9ba6926c21e4420da, type: 3}
   m_Name: MoveConfig
   m_EditorClassIdentifier: 
-  CooldownTime: 1
+  CooldownTime: 0.7
