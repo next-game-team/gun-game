@@ -25,7 +25,7 @@ public class GunRotateController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _currentAngle += (_isLeftRotated ? 1 : -1) * _rotationSpeed;
+        _currentAngle += (_isLeftRotated ? 1 : -1) * _rotationSpeed * Time.deltaTime;
         transform.rotation = Quaternion.AngleAxis(_currentAngle, Vector3.forward);
     }
 }
