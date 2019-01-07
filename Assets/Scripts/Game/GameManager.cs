@@ -43,5 +43,7 @@ public class GameManager : Singleton<GameManager>
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        _isPause = false;
+        _pausePanel.SetActive(false);
     }
 }
