@@ -22,6 +22,7 @@ public class PlatformMap : Singleton<PlatformMap>
 
     private void Awake()
     {
+        FindMap();
         FindFreeNeighbors();
     }
 
