@@ -1,49 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    private bool _isPause = false;
     [SerializeField] private GameObject _pausePanel;
+    
+    [SerializeField, ReadOnly]
+    private bool _isPause = false;
+    public bool IsPause => _isPause;
 
-    void Start()
+    private void Start()
     {
         Time.timeScale = 1;
     }
 
-    void Update()
+    public void PauseGame()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseGame();
-        }
+        _isPause = true;
+        Time.timeScale = 0;
+        _pausePanel.SetActive(true);
     }
 
-    private void PauseGame()
+    public void ResumeGame()
     {
-        _isPause = !_isPause;
-
-        if(_isPause)
-        {
-            Time.timeScale = 0;
-            _pausePanel.SetActive(_isPause);
-        } else {
-            Time.timeScale = 1;
-            _pausePanel.SetActive(_isPause);
-        }
+        _isPause = false;
+        Time.timeScale = 1;
+        _pausePanel.SetActive(false);
     }
 
     public void RestartGame(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        _isPause = false;
-        _pausePanel.SetActive(false);
     }
 }
