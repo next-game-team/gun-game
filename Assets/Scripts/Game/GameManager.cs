@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -32,5 +33,10 @@ public class GameManager : Singleton<GameManager>
             Time.timeScale = 1;
             _pausePanel.SetActive(_isPause);
         }
+    }
+
+    public void RestartGame(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
     }
 }
