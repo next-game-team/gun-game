@@ -7,7 +7,8 @@ public class PlatformMap : Singleton<PlatformMap>
     [SerializeField] 
     private List<List<Platform>> _platforms;
 
-    [SerializeField] private List<Platform> _freePlatforms;
+    [SerializeField, ReadOnly] 
+    private List<Platform> _freePlatforms;
 
     [SerializeField, ReadOnly] 
     private int _rowCount;
@@ -40,11 +41,6 @@ public class PlatformMap : Singleton<PlatformMap>
         }
 
         return _freePlatforms;
-    }
-
-    private void OnValidate()
-    {
-        FindMap();
     }
 
     public void FindMap()
