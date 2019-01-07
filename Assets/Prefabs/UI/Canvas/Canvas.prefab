@@ -776,7 +776,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1727357409677098868, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
+          type: 3}
         m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
