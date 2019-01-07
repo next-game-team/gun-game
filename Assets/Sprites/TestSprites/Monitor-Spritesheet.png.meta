@@ -1,11 +1,16 @@
 fileFormatVersion: 2
-guid: 0c0066b6174d441618d62b3eb6eed789
+guid: 35103a83b6afa4f1eb1a730d64af582d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: TestBulletSprite
-    21300002: TestGunSprite
-    21300004: TestPlayerSprite
-    21300006: TestPlatformSprite
+    21300000: Monitor-Spritesheet_0
+    21300002: Monitor-Spritesheet_1
+    21300004: Monitor-Spritesheet_2
+    21300006: Monitor-Spritesheet_3
+    21300008: Monitor-Spritesheet_4
+    21300010: Monitor-Spritesheet_5
+    21300012: Monitor-Spritesheet_6
+    21300014: Monitor-Spritesheet_7
+    21300016: Monitor-Spritesheet_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -99,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestBulletSprite
+      name: Monitor-Spritesheet_0
       rect:
         serializedVersion: 2
-        x: 128
-        y: 232
-        width: 8
-        height: 16
+        x: 1
+        y: 583
+        width: 256
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,19 +118,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3897285b065224227bc392c4a2c88402
+      spriteID: 18aef533a91034597808b59f0ce63444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestGunSprite
+      name: Monitor-Spritesheet_1
       rect:
         serializedVersion: 2
-        x: 112
-        y: 192
-        width: 40
-        height: 32
+        x: 259
+        y: 583
+        width: 256
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,19 +138,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8736403d056f24151bafd2ee6ab44906
+      spriteID: b79da7d76c579413ca7994ab01c4515f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestPlayerSprite
+      name: Monitor-Spritesheet_2
       rect:
         serializedVersion: 2
-        x: 88
-        y: 96
-        width: 80
-        height: 88
+        x: 517
+        y: 583
+        width: 256
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,19 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5eb05187394b64d87a902cad15ea8c36
+      spriteID: c4f06ca4b2e564f569e903ff8e8bc1b6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestPlatformSprite
+      name: Monitor-Spritesheet_3
       rect:
         serializedVersion: 2
-        x: 8
-        y: 40
-        width: 240
-        height: 40
+        x: 1
+        y: 293
+        width: 256
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,7 +178,107 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 387100f07a06b4ee0b626299cda3dcd1
+      spriteID: 39f1c4c7a38564378ac5dbb8dc55b1d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monitor-Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 293
+        width: 256
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f574660d751eb4f0387324e0ac1f82dc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monitor-Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 293
+        width: 256
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 956d775bb5ee240399b4264faacbc8b6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monitor-Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 3
+        width: 256
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a887c2a8d62d4a8291b78c2775ed62f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monitor-Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 3
+        width: 256
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bbc93dc5cd7446179ef7933e0375a48
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monitor-Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 3
+        width: 256
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 973bd5bb6bca34d668d13dce1d91e8bd
       vertices: []
       indices: 
       edges: []
@@ -181,7 +286,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e9bd406bf2a7d45f1a38b0ea628e6d01
+    spriteID: 19685c4c25d5648db967149d4d19839d
     vertices: []
     indices: 
     edges: []
