@@ -39,4 +39,9 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene(sceneNumber);
     }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
 }
