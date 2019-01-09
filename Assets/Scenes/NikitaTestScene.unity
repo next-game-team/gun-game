@@ -1412,6 +1412,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeGame
       objectReference: {fileID: 0}
+    - target: {fileID: 1436364366, guid: 1055af074320740d1a51ad7ee35a36eb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1158480260}
+    - target: {fileID: 1436364366, guid: 1055af074320740d1a51ad7ee35a36eb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnContinueButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697102275, guid: 1055af074320740d1a51ad7ee35a36eb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1158480260}
+    - target: {fileID: 1697102275, guid: 1055af074320740d1a51ad7ee35a36eb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697102275, guid: 1055af074320740d1a51ad7ee35a36eb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1055af074320740d1a51ad7ee35a36eb, type: 3}
 --- !u!1 &816006359 stripped
@@ -3013,6 +3033,12 @@ Transform:
   m_Father: {fileID: 241722340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1988234514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824814748, guid: 1055af074320740d1a51ad7ee35a36eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 816006358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1991677301
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,6 +3496,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1727357409677098868, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
+        type: 3}
+      propertyPath: _pausePanel
+      value: 
+      objectReference: {fileID: 816006359}
+    - target: {fileID: 1727357409677098868, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
+        type: 3}
+      propertyPath: _deathScreen
+      value: 
+      objectReference: {fileID: 1988234514}
     - target: {fileID: 2273476433277394646, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3535,11 +3571,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 7483765033866189476}
-    - target: {fileID: 1727357409677098868, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
-        type: 3}
-      propertyPath: _pausePanel
-      value: 
-      objectReference: {fileID: 816006359}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
 --- !u!1001 &5515570363555535675
