@@ -61,7 +61,7 @@ public class GameManager : Singleton<GameManager>
         _deathScreen.SetActive(true);
     }
 
-    public void AddHp() //Continue Btn
+    public void OnContinueButtonClicked() //Add HP
     {
         _playerLiveble.InitHp();
         Time.timeScale = 1;
