@@ -18,8 +18,10 @@ public class GameManager : Singleton<GameManager>
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerLiveble = _player.GetComponent<Liveble>();
+        
+        // Subscribe on death event
         _playerDieble = _player.GetComponent<Dieble>();
-        _playerDieble.OnDieEvent.AddListener(OnPlayerDeath);
+        _playerDieble.OnDieEvent += OnPlayerDeath;
     }
 
     private void Start()
