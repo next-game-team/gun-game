@@ -10,11 +10,16 @@ public class GameManager : Singleton<GameManager>
     private bool _isPause = false;
     public bool IsPause => _isPause;
 
+    private GameObject _player;
     private Liveble _playerLiveble;
+    private Dieble _playerDieble;
 
     private void Awake()
     {
-        _playerLiveble = GameObject.FindGameObjectWithTag("Player").GetComponent<Liveble>(); //How to find a player by another method?
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _playerLiveble = _player.GetComponent<Liveble>();
+        _playerDieble = _player.GetComponent<Dieble>();
+        _playerDieble.OnDieEvent.AddListener(OnPlayerDeath);
     }
 
     private void Start()
@@ -41,21 +46,7 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(sceneNumber);
     }
 
-    private void Update()
-    {
-        UpdateHealthPoint();
-    }
-
-    private void UpdateHealthPoint()
-    {
-        var hp = _playerLiveble.CurrentHp;
-        if(hp <= 0)
-        {
-            PlayerDies();
-        }
-    }
-
-    private void PlayerDies()
+    private void OnPlayerDeath(Dieble dieble)
     {
         Time.timeScale = 0;
         _deathScreen.SetActive(true);
