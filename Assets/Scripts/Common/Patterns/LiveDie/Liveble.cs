@@ -23,7 +23,7 @@ public class Liveble : MonoBehaviour
 	public HpUpdateEvent HpUpdateEvent { get; } = new HpUpdateEvent();
 	
 	private Dieble _dieble;
-	private bool _isAlive = true;
+	[HideInInspector] public bool _isAlive = true;
 
 	public bool IsAlive()
 	{
