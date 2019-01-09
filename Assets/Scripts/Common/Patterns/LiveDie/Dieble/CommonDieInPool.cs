@@ -5,5 +5,6 @@ public class CommonDieInPool : Dieble
     public override void Die()
     {
         Pool.ReturnObject(gameObject);
+        base.Die();
     }
 }

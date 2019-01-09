@@ -13,6 +13,7 @@ public class DisableElementDie : Dieble {
 	public override void Die()
 	{
 	    if (_alreadyDie) return;
+	    base.Die();
 	    
         GetComponent<Animator>().SetTrigger("Die");
         _timer = _animationTimer;
