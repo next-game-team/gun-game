@@ -19,8 +19,9 @@ public class Liveble : MonoBehaviour
 		get { return _currentHp; }
 		private set { _currentHp = value; }
 	}
-	
-	public HpUpdateEvent HpUpdateEvent { get; } = new HpUpdateEvent();
+
+	public delegate void HpUpdateEvent(Liveble liveble, int hpDelta);
+	public event HpUpdateEvent OnHpUpdateEvent;
 	
 	private Dieble _dieble;
 	private bool _isAlive = true;
@@ -33,7 +34,6 @@ public class Liveble : MonoBehaviour
 	private void Awake()
 	{
 		_dieble = GetComponent<Dieble>();
-		HpUpdateEvent.AddListener(OnHpUpdated);
 		InitHp();
 	}
 
@@ -47,19 +47,21 @@ public class Liveble : MonoBehaviour
 	public void IncreaseHp(int delta)
 	{
 		CurrentHp = Mathf.Clamp(CurrentHp + delta, 0, _hpConfig.Hp);
-		HpUpdateEvent.Invoke(delta);
+		OnHpUpdateEvent?.Invoke(this, delta);
 	}
 		
 	public void DecreaseHp(int delta)
 	{
+		delta = Mathf.Abs(delta);
 		CurrentHp = Mathf.Clamp(CurrentHp - delta, 0, _hpConfig.Hp);
-		HpUpdateEvent.Invoke(-delta);
+		OnHpUpdated(-delta);
 	}
 
 	private void OnHpUpdated(int delta)
 	{
 		Debug.Log(this + "Current HP: " + CurrentHp);
 		CheckHp();
+		OnHpUpdateEvent?.Invoke(this, delta);
 	}
 
 	private void CheckHp()
