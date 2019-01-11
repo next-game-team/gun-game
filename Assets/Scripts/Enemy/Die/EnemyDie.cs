@@ -5,13 +5,13 @@ public class EnemyDie : CommonDieInPool
         Pool = PoolManager.Instance.EnemyPool;
     }
 
-    public override void Die()
+    protected override void Die(Liveble liveble)
     {
         var platformObject = GetComponent<PlatformObject>();
         if (platformObject != null)
         {
             platformObject.CurrentPlatform.EmptyPlatform();
         }
-        base.Die();
+        base.Die(liveble);
     }
 }

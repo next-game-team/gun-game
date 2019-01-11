@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class Dieble : MonoBehaviour
 {
-    public delegate void DieEvent(Dieble dieble);
-    public event DieEvent OnDieEvent;
+    protected abstract void Die(Liveble liveble);
 
-    public virtual void Die()
+    private void Awake()
     {
-        OnDieEvent?.Invoke(this);
+        GetComponent<Liveble>().OnDieEvent += Die;
     }
 }

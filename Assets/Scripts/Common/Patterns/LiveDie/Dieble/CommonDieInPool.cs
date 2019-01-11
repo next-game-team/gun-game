@@ -1,10 +1,17 @@
+using UnityEngine;
+
 public class CommonDieInPool : Dieble
 {
-    public Pool Pool { get; set; }
+    protected Pool Pool { get; set; }
     
-    public override void Die()
+    protected override void Die(Liveble liveble)
     {
+        if (Pool == null)
+        {
+            Debug.LogError("Pool is not set for Dieble: " + this);
+            return;
+        }
+        
         Pool.ReturnObject(gameObject);
-        base.Die();
     }
 }

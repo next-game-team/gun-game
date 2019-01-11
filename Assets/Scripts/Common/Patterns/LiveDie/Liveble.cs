@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Dieble))]
 public class Liveble : MonoBehaviour
 {
 	[SerializeField] private HpConfig _hpConfig;
@@ -23,7 +22,9 @@ public class Liveble : MonoBehaviour
 	public delegate void HpUpdateEvent(Liveble liveble, int hpDelta);
 	public event HpUpdateEvent OnHpUpdateEvent;
 	
-	private Dieble _dieble;
+	public delegate void DieEvent(Liveble liveble);
+	public event DieEvent OnDieEvent;
+	
 	private bool _isAlive = true;
 
 	public bool IsAlive()
@@ -33,7 +34,6 @@ public class Liveble : MonoBehaviour
 
 	private void Awake()
 	{
-		_dieble = GetComponent<Dieble>();
 		InitHp();
 	}
 
@@ -57,6 +57,12 @@ public class Liveble : MonoBehaviour
 		OnHpUpdated(-delta);
 	}
 
+	public void Die()
+	{
+		_isAlive = false;
+		OnDieEvent?.Invoke(this);
+	}
+
 	private void OnHpUpdated(int delta)
 	{
 		Debug.Log(this + "Current HP: " + CurrentHp);
@@ -66,9 +72,10 @@ public class Liveble : MonoBehaviour
 
 	private void CheckHp()
 	{
-		if (CurrentHp > 0) return;
+		if (CurrentHp <= 0)
+		{
+			Die();
+		}
 		
-		_isAlive = false;
-		_dieble.Die();
 	}
 }

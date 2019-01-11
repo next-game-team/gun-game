@@ -18,10 +18,7 @@ public class GameManager : Singleton<GameManager>
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerLiveble = _player.GetComponent<Liveble>();
-        
-        // Subscribe on death event
-        _playerDieble = _player.GetComponent<Dieble>();
-        _playerDieble.OnDieEvent += OnPlayerDeath;
+        _playerLiveble.OnDieEvent += OnPlayerDeath; // Subscribe on player death event
     }
 
     private void Start()
@@ -48,7 +45,7 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(sceneNumber);
     }
 
-    private void OnPlayerDeath(Dieble dieble)
+    private void OnPlayerDeath(Liveble liveble)
     {
         Time.timeScale = 0;
         _deathScreen.SetActive(true);

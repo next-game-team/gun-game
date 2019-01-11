@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerDie : Dieble
 {
-    public override void Die()
+    protected override void Die(Liveble liveble)
     {
         Debug.Log("Player died. Init HP again");
-        base.Die();
     }
 }
