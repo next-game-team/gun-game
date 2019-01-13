@@ -2,6 +2,12 @@
 
 public class EnemyGenerator : Singleton<EnemyGenerator>
 {
+
+    public void GenerateEnemyWithConfig(EnemyGenerationConfig generationConfig)
+    {
+        GenerateRandomEnemyOnRandomPosition();
+    }
+    
     public void GenerateRandomEnemyOnRandomPosition()
     {
         var freePlatform = RandomUtils.GetRandomObjectFromList(PlatformMap.Instance.FreePlatforms);
