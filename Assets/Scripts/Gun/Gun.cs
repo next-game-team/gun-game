@@ -11,7 +11,15 @@ public class Gun : MonoBehaviour
     private bool _isInCooldown;
     private float _currentCooldownTime;
 
-    // Update is called once per frame
+    private Animator _anim;
+
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+    }
+
+
     private void Update()
     {
         if (!_isInCooldown) return;
@@ -35,6 +43,8 @@ public class Gun : MonoBehaviour
         
         var bullet = PoolManager.Instance.BulletPool.GetObject(_shootPoint.position).GetComponent<Bullet>();
         bullet.Init(_gunConfig.BulletConfig, GetCurrentVelocityVector(), transform.rotation);
+        
+        _anim.SetTrigger(AnimationConsts.GunShoot);
     }
 
     private Vector2 GetCurrentVelocityVector()

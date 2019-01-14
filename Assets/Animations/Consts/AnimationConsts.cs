@@ -4,5 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationConsts {
-    // public static String AnimationName { get { return "AnimationName";} }
+    // public static string AnimationName { get { return "AnimationName";} }
+    public static string GunShoot {get { return "Shoot";} }
 }
