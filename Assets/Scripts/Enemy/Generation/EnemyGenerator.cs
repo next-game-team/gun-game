@@ -3,22 +3,23 @@
 public class EnemyGenerator : Singleton<EnemyGenerator>
 {
 
-    public void GenerateEnemyWithConfig(EnemyGenerationConfig generationConfig)
+    public GameObject GenerateEnemyWithConfig(EnemyGenerationConfig generationConfig)
     {
-        GenerateRandomEnemyOnRandomPosition();
+        return GenerateRandomEnemyOnRandomPosition();
     }
     
-    public void GenerateRandomEnemyOnRandomPosition()
+    public GameObject GenerateRandomEnemyOnRandomPosition()
     {
         var freePlatform = RandomUtils.GetRandomObjectFromList(PlatformMap.Instance.FreePlatforms);
         if (freePlatform == null)
         {
             Debug.LogWarning("There is no free platform");
-            return;
+            return null;
         }
 
         var enemy = PoolManager.Instance.EnemyPool.GetObject().GetComponent<PlatformObject>();
         enemy.gameObject.SetActive(true);
         freePlatform.SetPlatformObject(enemy);
+        return enemy.gameObject;
     }
 }

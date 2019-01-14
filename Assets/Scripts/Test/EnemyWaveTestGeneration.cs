@@ -9,7 +9,7 @@ public class EnemyWaveTestGeneration : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            EnemyWaveGenerator.GenerateWave(_enemyWaveConfig);
+            EnemyWaveGenerator.GenerateWaveEnemies(_enemyWaveConfig);
         }
     }
 }
