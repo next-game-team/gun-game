@@ -17,6 +17,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private MoveConfig _moveConfig;
 
     private bool _isMoveCooldown;
+    public bool IsMoveCooldown => _isMoveCooldown;
     private float _currentCooldownTime;
     
     private void Awake()
@@ -35,6 +36,11 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SetCooldown();
+    }
+
     private void OnMoveEvent(DirectionEnum directionEnum)
     {
         if(_isMoveCooldown) return;
@@ -42,8 +48,7 @@ public class CharacterController : MonoBehaviour
         var moveResult = BetweenPlatformMover.MoveTo(_platformObject, directionEnum);
         if (moveResult == false) return;
         
-        _isMoveCooldown = true;
-        _currentCooldownTime = _moveConfig.CooldownTime;    
+        SetCooldown(); 
     }
 
     private void OnAttackEvent()
@@ -66,5 +71,11 @@ public class CharacterController : MonoBehaviour
             _isMoveCooldown = false;
         }
 
+    }
+    
+    private void SetCooldown()
+    {
+        _isMoveCooldown = true;
+        _currentCooldownTime = _moveConfig.CooldownTime;
     }
 }
