@@ -8,9 +8,22 @@ public class PlatformMapGenerator : MonoBehaviour
     [SerializeField] private float _distanceBetweenColumns;
     [SerializeField] private GameObject _mapContainer;
     [SerializeField] private Platform _platformPrefab;
-    
+
+    private PlatformMap _platformMap;
+
+    private void Awake()
+    {
+        _platformMap = GetComponent<PlatformMap>();
+    }
+
+    private void OnValidate()
+    {
+        _platformMap = GetComponent<PlatformMap>();
+    }
+
     public void GenerateMap()
     {
+        _platformMap.CleanChildren();
         var currentPosition = new Vector2(_mapContainer.transform.position.x, _mapContainer.transform.position.y);
         for (var rowInd = 0; rowInd < _rowCount; rowInd++)
         {

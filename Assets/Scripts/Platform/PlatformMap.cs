@@ -89,4 +89,11 @@ public class PlatformMap : Singleton<PlatformMap>
 
         return row;
     }
+
+    public void CleanChildren()
+    {
+        var children = new List<GameObject>();
+        foreach (Transform child in transform) children.Add(child.gameObject);
+        children.ForEach(DestroyImmediate);
+    }
 }
