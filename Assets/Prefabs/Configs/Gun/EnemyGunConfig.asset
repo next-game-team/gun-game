@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21dc2d9dd6f4472aa42b0c457ff6804, type: 3}
   m_Name: EnemyGunConfig
   m_EditorClassIdentifier: 
-  RotationSpeed: 3
-  CooldownTime: 2
+  RotationSpeed: 100
+  CooldownTime: 1
   BulletConfig: {fileID: 11400000, guid: 444d668d2970a467e992e936c11abac2, type: 2}
