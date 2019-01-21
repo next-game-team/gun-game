@@ -16,5 +16,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   DamageCount: 1
-  Speed: 50
+  Speed: 70
   Lifetime: 5
