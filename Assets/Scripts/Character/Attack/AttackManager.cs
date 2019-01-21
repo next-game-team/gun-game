@@ -4,6 +4,7 @@ public class AttackManager<T> : MonoBehaviour where T : AttackController
 {
     [SerializeField]
     private Gun _gun;
+    public Gun Gun => _gun;
     
     protected T AttackController;
     
