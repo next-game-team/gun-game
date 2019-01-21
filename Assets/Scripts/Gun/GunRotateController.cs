@@ -42,4 +42,9 @@ public class GunRotateController : MonoBehaviour
         _currentAngle += (_isLeftRotated ? 1 : -1) * RotationSpeed * Time.deltaTime;
         transform.rotation = Quaternion.AngleAxis(_currentAngle, Vector3.forward);
     }
+
+    private void OnEnable()
+    {
+        StartRotating();
+    }
 }
