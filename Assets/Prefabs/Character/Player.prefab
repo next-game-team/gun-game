@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e71fa470c84989be253e33191b45cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _betweenPlatformMoveDuration: 0.5
   _currentPlatform: {fileID: 0}
   _objectBottomPosition: {fileID: 1852208854110700079}
 --- !u!114 &6851512918488561020
