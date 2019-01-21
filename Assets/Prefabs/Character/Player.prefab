@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a01fe061fb64082962acad98e9c799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 100
+  _rotationSpeed: 500
   _isLeftRotated: 1
 --- !u!1 &7483765033866189475
 GameObject:
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d7713d0a2a40ddbbbc180f2488c935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveConfig: {fileID: 0}
+  _moveConfig: {fileID: 11400000, guid: 1cb5bba881a4c45408b7e642a1ab1552, type: 2}
 --- !u!114 &8817344859393212143
 MonoBehaviour:
   m_ObjectHideFlags: 0
