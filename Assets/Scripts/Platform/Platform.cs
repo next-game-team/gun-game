@@ -46,13 +46,9 @@ public class Platform : MonoBehaviour
         // Set links on platform object and platform
         PlatformObject = platformObject;
         _platformObject.CurrentPlatform = this;
-        
+
         // Remove this platform from list of free platforms
         PlatformMap.Instance.FreePlatforms.Remove(this);
-        
-        // Set platform object on current position
-        platformObject.transform.position = CenterOfTopBound.position
-                                            + platformObject.VectorFromBottomToCenter;
     }
 
     public bool IsFree { get; private set; } = true;

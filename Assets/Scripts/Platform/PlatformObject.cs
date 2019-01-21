@@ -1,8 +1,18 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class PlatformObject : MonoBehaviour
 {
 
+    [SerializeField] 
+    private float _betweenPlatformMoveDuration = 0.5f;
+
+    public float BetweenPlatformMoveDuration
+    {
+        get { return _betweenPlatformMoveDuration; }
+        set { _betweenPlatformMoveDuration = value; }
+    } 
+    
     [SerializeField, ReadOnly]
     private Platform _currentPlatform;
 
@@ -21,6 +31,17 @@ public class PlatformObject : MonoBehaviour
     {
         get { return _currentPlatform; }
         set { _currentPlatform = value; }
+    }
+
+    public void SetOnPlatform(Platform platform)
+    {
+        transform.position = VectorFromBottomToCenter + platform.CenterOfTopBound.position;
+    }
+
+    public void MoveToPlatform(Platform platform)
+    {
+        transform.DOMove(VectorFromBottomToCenter + platform.CenterOfTopBound.position, 
+            BetweenPlatformMoveDuration);
     }
 
     private void Awake()

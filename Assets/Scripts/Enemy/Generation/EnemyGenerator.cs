@@ -19,6 +19,7 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
 
         var enemy = PoolManager.Instance.EnemyPool.GetObject().GetComponent<PlatformObject>();
         enemy.gameObject.SetActive(true);
+        enemy.SetOnPlatform(freePlatform);
         freePlatform.SetPlatformObject(enemy);
         return enemy.gameObject;
     }
