@@ -202,4 +202,12 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1
+    functionName: OnRecoilEnd
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: f34346addb93d4a299e518d5215d6df2,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

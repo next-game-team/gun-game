@@ -1,12 +1,13 @@
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerAttackController))]
 public class PlayerAttackManager : AttackManager<PlayerAttackController>
 {
-   
-   [SerializeField]
-   private float _aimTime = 0.4f;
 
+   [SerializeField]
+   private PlayerAttackAimConfig _aimConfig;
+   
    private float _currentAimTime;
    private bool _isInAttack;
    
@@ -46,8 +47,8 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
       if (Gun.IsInCooldown) return;
 
       _isInAttack = true;
-      _currentAimTime = _aimTime; 
-      
-      Time.timeScale = 0.2f;
+      _currentAimTime = _aimConfig.AimTime;
+
+      Time.timeScale = _aimConfig.AimTimeScale;
    }
 }
