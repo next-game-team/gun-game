@@ -2,7 +2,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerAttackController))]
 public class PlayerAttackWithChargeManager : PlayerAttackManager
-{  
+{
+   [SerializeField] private PlayerAttackChargeConfig _attackChargeConfig;
+   
    private float _currentAimTime;
 
    private void Update()
@@ -24,6 +26,6 @@ public class PlayerAttackWithChargeManager : PlayerAttackManager
    {
       base.OnAttackStart();
       
-      _currentAimTime = AimConfig.AimTime;
+      _currentAimTime = _attackChargeConfig.ChargeTime;
    }
 }

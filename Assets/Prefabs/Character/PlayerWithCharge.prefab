@@ -355,7 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a01fe061fb64082962acad98e9c799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 400
   _isRotating: 1
   _isLeftRotated: 1
 --- !u!1 &7483765033866189475
@@ -379,7 +378,7 @@ GameObject:
   - component: {fileID: 3462574950231551170}
   - component: {fileID: 1260262499271006841}
   m_Layer: 9
-  m_Name: Player
+  m_Name: PlayerWithCharge
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,6 +499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gun: {fileID: 6698245780920573654}
   _aimConfig: {fileID: 11400000, guid: 7e9b293501a7b47ce95bd03d665b71a2, type: 2}
+  _attackChargeConfig: {fileID: 11400000, guid: 53fe4651f8fa643a3af5fdf351a28584,
+    type: 2}
 --- !u!114 &4307218278771098511
 MonoBehaviour:
   m_ObjectHideFlags: 0
