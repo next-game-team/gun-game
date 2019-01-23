@@ -12,10 +12,13 @@ public class PlayerAttackWithTimeManager : AttackManager<PlayerAttackController>
    private float _timeEnergyCapacity = 3f;
    public float TimeEnergyCapacity => _timeEnergyCapacity; 
 
+   [SerializeField] 
+   private float _timeEnergyIncreaseValue = 1f;
+   
    public float CurrentTimeEnergy { get; private set; }
-   
-   private bool _isInAttack;
-   
+
+   private bool _isInAttack;   
+
    protected override void Awake()
    {
       base.Awake();
@@ -36,6 +39,13 @@ public class PlayerAttackWithTimeManager : AttackManager<PlayerAttackController>
             CurrentTimeEnergy -= Time.unscaledDeltaTime;
          }
       }
+      else
+      {
+         // Check if already fill capacity
+         if (CurrentTimeEnergy >= _timeEnergyCapacity) return;
+         
+         CurrentTimeEnergy += _timeEnergyIncreaseValue * Time.deltaTime;
+      }
    }
 
    protected override void OnAttackEvent()
@@ -54,6 +64,5 @@ public class PlayerAttackWithTimeManager : AttackManager<PlayerAttackController>
 
       Time.timeScale = _aimConfig.AimTimeScale;
       _isInAttack = true;
-      CurrentTimeEnergy = TimeEnergyCapacity;
    }
 }
