@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerAttackController))]
-public class PlayerAttackManager : AttackManager<PlayerAttackController>
+public class PlayerAttackWithChargeManager : AttackManager<PlayerAttackController>
 {
 
    [SerializeField]
