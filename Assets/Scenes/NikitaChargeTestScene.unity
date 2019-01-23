@@ -5296,6 +5296,14 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 421333563}
+    - target: {fileID: 2108460198, guid: e718afcf6f9ce441595874dc7be025e7, type: 3}
+      propertyPath: _shakeAmplitude
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108460198, guid: e718afcf6f9ce441595874dc7be025e7, type: 3}
+      propertyPath: _shakeFrequency
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e718afcf6f9ce441595874dc7be025e7, type: 3}
 --- !u!1 &2037822858
