@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public abstract class PlayerCollectableController : MonoBehaviour, ICollectableController
+public class PlayerCollectableController : MonoBehaviour, ICollectableController
 {
-    public abstract void Collect(CollectableObject collectableObject);
+    public virtual void Collect(CollectableObject collectableObject)
+    {
+        
+    }
 }
