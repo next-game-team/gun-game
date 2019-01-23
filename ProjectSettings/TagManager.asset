@@ -12,6 +12,7 @@ TagManager:
   - BulletPool
   - Enemy
   - EnemyPool
+  - CollectablePool
   layers:
   - Default
   - TransparentFX
@@ -57,6 +58,9 @@ TagManager:
     locked: 0
   - name: Gun
     uniqueID: 761223733
+    locked: 0
+  - name: PowerUp
+    uniqueID: 1508842751
     locked: 0
   - name: Bullet
     uniqueID: 2299397297
