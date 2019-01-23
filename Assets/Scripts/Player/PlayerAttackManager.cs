@@ -8,11 +8,14 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
    private PlayerAttackAimConfig _aimConfig;
    public PlayerAttackAimConfig AimConfig => _aimConfig;
 
+   private GunRayController _gunRayController;
+
    protected bool IsInAttack;
    
    protected override void Awake()
    {
       base.Awake();
+      _gunRayController = Gun.GetComponent<GunRayController>();
       AttackController.OnAttackStartEvent += OnAttackStart;
    }
 
@@ -24,6 +27,7 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
       base.OnAttackEvent();
       Time.timeScale = 1;
       IsInAttack = false;
+      _gunRayController.TurnOff();
    }
 
    protected virtual void OnAttackStart()
@@ -32,5 +36,6 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
 
       Time.timeScale = _aimConfig.AimTimeScale;
       IsInAttack = true;
+      _gunRayController.TurnOn();
    }
 }
