@@ -1,25 +1,13 @@
-using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerAttackController))]
-public class PlayerAttackWithChargeManager : AttackManager<PlayerAttackController>
-{
-
-   [SerializeField]
-   private PlayerAttackAimConfig _aimConfig;
-   
+public class PlayerAttackWithChargeManager : PlayerAttackManager
+{  
    private float _currentAimTime;
-   private bool _isInAttack;
-   
-   protected override void Awake()
-   {
-      base.Awake();
-      AttackController.OnAttackStartEvent += OnAttackStart;
-   }
 
    private void Update()
    {
-      if (_isInAttack)
+      if (IsInAttack)
       {
          if (_currentAimTime <= 0)
          {
@@ -32,23 +20,10 @@ public class PlayerAttackWithChargeManager : AttackManager<PlayerAttackControlle
       }
    }
 
-   protected override void OnAttackEvent()
+   protected override void OnAttackStart()
    {
-      // If attack was called before
-      if (_isInAttack == false) return;
+      base.OnAttackStart();
       
-      base.OnAttackEvent();
-      _isInAttack = false;
-      Time.timeScale = 1;
-   }
-
-   private void OnAttackStart()
-   {
-      if (Gun.IsInCooldown) return;
-
-      _isInAttack = true;
-      _currentAimTime = _aimConfig.AimTime;
-
-      Time.timeScale = _aimConfig.AimTimeScale;
+      _currentAimTime = AimConfig.AimTime;
    }
 }

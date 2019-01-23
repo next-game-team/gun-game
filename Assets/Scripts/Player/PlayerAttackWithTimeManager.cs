@@ -1,34 +1,24 @@
-using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerAttackController))]
-public class PlayerAttackWithTimeManager : AttackManager<PlayerAttackController>
+public class PlayerAttackWithTimeManager : PlayerAttackManager
 {
-
-   [SerializeField]
-   private PlayerAttackAimConfig _aimConfig;
    
    [SerializeField]
-   private float _timeEnergyCapacity = 3f;
-   public float TimeEnergyCapacity => _timeEnergyCapacity; 
-
-   [SerializeField] 
-   private float _timeEnergyIncreaseValue = 1f;
+   private PlayerTimeEnergyConfig _attackWithTimeConfig;
+   public PlayerTimeEnergyConfig AttackWithTimeConfig => _attackWithTimeConfig;
    
    public float CurrentTimeEnergy { get; private set; }
-
-   private bool _isInAttack;   
 
    protected override void Awake()
    {
       base.Awake();
-      AttackController.OnAttackStartEvent += OnAttackStart;
-      CurrentTimeEnergy = _timeEnergyCapacity;
+      CurrentTimeEnergy = AttackWithTimeConfig.TimeEnergyCapacity;
    }
 
    private void Update()
    {
-      if (_isInAttack)
+      if (IsInAttack)
       {
          if (CurrentTimeEnergy <= 0)
          {
@@ -42,27 +32,9 @@ public class PlayerAttackWithTimeManager : AttackManager<PlayerAttackController>
       else
       {
          // Check if already fill capacity
-         if (CurrentTimeEnergy >= _timeEnergyCapacity) return;
+         if (CurrentTimeEnergy >= AttackWithTimeConfig.TimeEnergyCapacity) return;
          
-         CurrentTimeEnergy += _timeEnergyIncreaseValue * Time.deltaTime;
+         CurrentTimeEnergy += AttackWithTimeConfig.TimeEnergyIncreaseValue * Time.deltaTime;
       }
-   }
-
-   protected override void OnAttackEvent()
-   {
-      // If attack was called before
-      if (_isInAttack == false) return;
-      
-      base.OnAttackEvent();
-      Time.timeScale = 1;
-      _isInAttack = false;
-   }
-
-   private void OnAttackStart()
-   {
-      if (Gun.IsInCooldown) return;
-
-      Time.timeScale = _aimConfig.AimTimeScale;
-      _isInAttack = true;
    }
 }

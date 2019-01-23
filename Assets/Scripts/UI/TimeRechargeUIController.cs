@@ -17,6 +17,6 @@ public class TimeRechargeUIController : MonoBehaviour
 
     void Update()
     {
-        _img.fillAmount = (_timeManager.CurrentTimeEnergy / _timeManager.TimeEnergyCapacity);
+        _img.fillAmount = (_timeManager.CurrentTimeEnergy / _timeManager.AttackWithTimeConfig.TimeEnergyCapacity);
     }
 }

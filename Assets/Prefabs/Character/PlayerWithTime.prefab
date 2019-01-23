@@ -499,7 +499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gun: {fileID: 6698245780920573654}
   _aimConfig: {fileID: 11400000, guid: 7e9b293501a7b47ce95bd03d665b71a2, type: 2}
-  _timeEnergyCapacity: 1.5
+  _attackWithTimeConfig: {fileID: 11400000, guid: d492200bad7d9442fb64819fcb2958de,
+    type: 2}
 --- !u!114 &4307218278771098511
 MonoBehaviour:
   m_ObjectHideFlags: 0
