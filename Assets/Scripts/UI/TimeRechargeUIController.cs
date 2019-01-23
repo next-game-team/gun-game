@@ -14,6 +14,7 @@ public class TimeRechargeUIController : MonoBehaviour
         _timeManager = _player.GetComponent<PlayerAttackWithTimeManager>();
         _img = GetComponent<Image>();
     }
+    
 
     void Update()
     {
