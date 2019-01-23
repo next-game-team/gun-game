@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 525473890409926502}
   - component: {fileID: 525473890409926497}
+  - component: {fileID: 2108460198}
   m_Layer: 0
   m_Name: CinemaMachine
   m_TagString: Untagged
@@ -69,6 +70,21 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 525473891349303023}
+--- !u!114 &2108460198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525473890409926496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e88af665aec4c75a7489cc427c0cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _virtualCamera: {fileID: 0}
+  _shakeAmplitude: 1.5
+  _shakeFrequency: 3
 --- !u!1 &525473891349303022
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +96,7 @@ GameObject:
   - component: {fileID: 525473891349303023}
   - component: {fileID: 525473891349303021}
   - component: {fileID: 525473891349303020}
+  - component: {fileID: 1896941227}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -154,3 +171,19 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &1896941227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525473891349303022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 554b0ed52734c154eab51f6cedd3a7d7, type: 2}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
