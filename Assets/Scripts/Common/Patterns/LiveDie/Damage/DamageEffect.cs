@@ -5,7 +5,7 @@ public abstract class DamageEffect : MonoBehaviour
 {
     public abstract void OnDamageReceived(Damageble damageble, DamageInfo damageInfo);
 
-    private void Awake()
+    protected virtual void Awake()
     {
         GetComponent<Damageble>().OnDamageEvent += OnDamageReceived;
     }
