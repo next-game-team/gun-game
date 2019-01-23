@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(ICollectableController))]
 public class PlatformObject : MonoBehaviour
 {
 
@@ -13,19 +14,10 @@ public class PlatformObject : MonoBehaviour
         set { _betweenPlatformMoveDuration = value; }
     } 
     
+    public ICollectableController CollectableController { get; private set; }
+    
     [SerializeField, ReadOnly]
     private Platform _currentPlatform;
-
-    [SerializeField, ReadOnly] 
-    private Transform _objectBottomPosition;
-    
-    public Transform ObjectBottomPosition
-    {
-        get { return _objectBottomPosition; }
-        set { _objectBottomPosition = value; }
-    }
-    
-    public Vector3 VectorFromBottomToCenter { get; set; }
 
     public Platform CurrentPlatform
     {
@@ -33,31 +25,23 @@ public class PlatformObject : MonoBehaviour
         set { _currentPlatform = value; }
     }
 
+    private PlatformObjectPosition _platformObjectPosition;
+
     public void SetOnPlatform(Platform platform)
     {
-        transform.position = VectorFromBottomToCenter + platform.CenterOfTopBound.position;
+        transform.position = _platformObjectPosition.GetPositionForPlatform(platform);
     }
-
+    
     public void MoveToPlatform(Platform platform)
     {
-        transform.DOMove(VectorFromBottomToCenter + platform.CenterOfTopBound.position, 
+        transform.DOMove(_platformObjectPosition.GetPositionForPlatform(platform), 
             BetweenPlatformMoveDuration);
     }
 
     private void Awake()
     {
-        Init();
-    }
-
-    private void OnValidate()
-    {
-        Init();
-    }
-
-    private void Init()
-    {
-        ObjectBottomPosition = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformObjectBottom).transform;
-        VectorFromBottomToCenter = transform.position - _objectBottomPosition.position;
+        CollectableController = GetComponent<ICollectableController>();
+        _platformObjectPosition = GetComponent<PlatformObjectPosition>();
     }
 
 }

@@ -14,5 +14,8 @@
     BulletPool,
     
     // Enemy
-    EnemyPool
+    EnemyPool,
+    
+    // Collectable
+    CollectablePool
 }

@@ -37,4 +37,10 @@ public class PlayerAttackWithTimeManager : PlayerAttackManager
          CurrentTimeEnergy += AttackWithTimeConfig.TimeEnergyIncreaseValue * Time.deltaTime;
       }
    }
+
+   public void IncreaseTimeEnergy(float timeEnergyValue)
+   {
+      CurrentTimeEnergy = Mathf.Clamp(CurrentTimeEnergy + timeEnergyValue,
+         0, AttackWithTimeConfig.TimeEnergyCapacity);
+   }
 }
