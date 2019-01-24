@@ -14,18 +14,23 @@ public class CharacterDamageEffect : DamageEffect
     private bool _isRandomShake;
 
     private CharacterMoveManager _moveManager;
+    private PlatformObject _platformObject;
     private Sequence _currentSequence;
 
     protected override void Awake()
     {
         base.Awake();
         _moveManager = GetComponent<CharacterMoveManager>();
+        _platformObject = GetComponent<PlatformObject>();
         _moveManager.OnMoveEvent += CancelEffectOnAnotherMove;
     }
 
     public override void OnDamageReceived(Damageble damageble, DamageInfo damageInfo)
     {
         CancelEffectOnAnotherMove(); // Cancel previous damage effect
+        
+        // Skip effect if object is already moving
+        if (_platformObject.IsInMove) return;
         
         if (_isRandomShake)
         {

@@ -26,6 +26,8 @@ public class PlatformObject : MonoBehaviour
     }
 
     private PlatformObjectPosition _platformObjectPosition;
+    
+    public bool IsInMove { get; private set; }
 
     public void SetOnPlatform(Platform platform)
     {
@@ -34,8 +36,15 @@ public class PlatformObject : MonoBehaviour
     
     public void MoveToPlatform(Platform platform)
     {
-        transform.DOMove(_platformObjectPosition.GetPositionForPlatform(platform), 
+        IsInMove = true;
+        var tween = transform.DOMove(_platformObjectPosition.GetPositionForPlatform(platform), 
             BetweenPlatformMoveDuration);
+        tween.onComplete += OnMoveEnd;
+    }
+
+    private void OnMoveEnd()
+    {
+        IsInMove = false;
     }
 
     private void Awake()
