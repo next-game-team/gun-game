@@ -25,6 +25,8 @@ public class CharacterDamageEffect : DamageEffect
 
     public override void OnDamageReceived(Damageble damageble, DamageInfo damageInfo)
     {
+        CancelEffectOnAnotherMove(); // Cancel previous damage effect
+        
         if (_isRandomShake)
         {
             RandomShake(damageble);
