@@ -617,6 +617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ac92192b56548c39b0d5ca5cc6c261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recoilPower: 2
-  _recoilDuration: 0.5
+  _recoilPower: 0.5
+  _recoilDuration: 0.2
   _isRandomShake: 0
