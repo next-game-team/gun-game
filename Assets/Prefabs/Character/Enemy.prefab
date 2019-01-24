@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 1405508912513160130}
   - component: {fileID: 4767547211851469820}
   - component: {fileID: 7555681459280252120}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4525399233783535610}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bottom
   m_TagString: PlatformObjectBottom
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8598088588659116748}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 8578491338733090635}
   - component: {fileID: 2180995547893119576}
   - component: {fileID: 7999394261792781793}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5440696213757502252}
   - component: {fileID: 7700772696594259163}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GunContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
