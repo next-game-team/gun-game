@@ -25,7 +25,7 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
       if (IsInAttack == false) return;
       
       base.OnAttackEvent();
-      Time.timeScale = 1;
+      GameManager.Instance.SetTimeScale(1);
       IsInAttack = false;
       _gunRayController.TurnOff();
    }
@@ -34,7 +34,7 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
    {
       if (Gun.IsInCooldown) return;
 
-      Time.timeScale = _aimConfig.AimTimeScale;
+      GameManager.Instance.SetTimeScale(_aimConfig.AimTimeScale);
       IsInAttack = true;
       _gunRayController.TurnOn();
    }

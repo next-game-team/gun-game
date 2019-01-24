@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AttackByTouchController : AttackController
 {
-    void Update() 
+
+    protected override void CheckInput()
     {
         if(Input.touchCount > 0) //to change the logic
         {

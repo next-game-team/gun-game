@@ -4,8 +4,8 @@ public class PlayerAttackController : AttackController
 {
     public delegate void AttackStartEvent();
     public event AttackStartEvent OnAttackStartEvent;
-    
-    private void Update()
+
+    protected override void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

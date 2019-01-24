@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 
 public class AttackEvent : UnityEvent {}
 
-public abstract class AttackController : MonoBehaviour
+public abstract class AttackController : InputController
 {
     public AttackEvent AttackEvent { get; } = new AttackEvent(); 
 }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class MoveEvent : UnityEvent<DirectionEnum> {}
 
-public abstract class MoveController : MonoBehaviour
+public abstract class MoveController : InputController
 {
     public MoveEvent MoveCallEvent { get; } = new MoveEvent(); 
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MoveByKeyController : MoveController
 {
-    private void Update()
+
+    protected override void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {

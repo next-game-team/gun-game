@@ -13,13 +13,10 @@ public class EnemyMoveController : MoveController
         _moveManager = GetComponent<CharacterMoveManager>();
     }
 
-    // Update is called once per frame
-    private void Update()
+    protected override void CheckInput()
     {
         if (_moveManager.IsMoveCooldown) return;
         
         MoveCallEvent.Invoke(_platformObject.CurrentPlatform.GetRandomFreeNeighborDirection());
     }
-
-
 }

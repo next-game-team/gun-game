@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyAttackController : AttackController
 {
-    [SerializeField] private Transform _shootPoint; //change
+    [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _raycastLength;
     [SerializeField] private LayerMask _player;
     [SerializeField, Range(0, 1)] private float _shootProbability;
 
-    void Update()
-    {   
-        if(FindPlayer())
+    protected override void CheckInput()
+    {
+        if (FindPlayer())
         {
             AttackEvent.Invoke();
         }
