@@ -9,16 +9,16 @@ public class MoveBySwipeController : MoveController, IBeginDragHandler, IDragHan
     {
         if(eventData.delta.x > 0)
         {
-            MoveEvent.Invoke(DirectionEnum.RIGHT);
+            MoveCallEvent.Invoke(DirectionEnum.RIGHT);
         } else if(eventData.delta.x < 0)
         {
-            MoveEvent.Invoke(DirectionEnum.LEFT);
+            MoveCallEvent.Invoke(DirectionEnum.LEFT);
         } else if (eventData.delta.y > 0)
         {
-            MoveEvent.Invoke(DirectionEnum.UP);
+            MoveCallEvent.Invoke(DirectionEnum.UP);
         } else if (eventData.delta.y < 0)
         {
-            MoveEvent.Invoke(DirectionEnum.DOWN);
+            MoveCallEvent.Invoke(DirectionEnum.DOWN);
         }
     }
 

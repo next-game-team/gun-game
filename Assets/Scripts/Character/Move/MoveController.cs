@@ -7,5 +7,5 @@ public class MoveEvent : UnityEvent<DirectionEnum> {}
 
 public abstract class MoveController : MonoBehaviour
 {
-    public MoveEvent MoveEvent { get; } = new MoveEvent(); 
+    public MoveEvent MoveCallEvent { get; } = new MoveEvent(); 
 }

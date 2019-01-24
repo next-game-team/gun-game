@@ -18,7 +18,7 @@ public class EnemyMoveController : MoveController
     {
         if (_moveManager.IsMoveCooldown) return;
         
-        MoveEvent.Invoke(_platformObject.CurrentPlatform.GetRandomFreeNeighborDirection());
+        MoveCallEvent.Invoke(_platformObject.CurrentPlatform.GetRandomFreeNeighborDirection());
     }
 
 

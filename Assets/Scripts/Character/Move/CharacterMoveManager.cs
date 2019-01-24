@@ -4,21 +4,25 @@ using UnityEngine;
 [RequireComponent(typeof(PlatformObject))]
 public class CharacterMoveManager : MonoBehaviour
 {
+    [SerializeField] private MoveConfig _moveConfig;
+    
     private MoveController _moveController;
     private PlatformObject _platformObject;
-    
-    [SerializeField] private MoveConfig _moveConfig;
 
     private bool _isMoveCooldown;
     public bool IsMoveCooldown => _isMoveCooldown;
+    
     private float _currentCooldownTime;
+
+    public delegate void MoveEvent();
+    public event MoveEvent OnMoveEvent;
     
     private void Awake()
     {
         _platformObject = GetComponent<PlatformObject>();
         
         _moveController = GetComponent<MoveController>();
-        _moveController.MoveEvent.AddListener(OnMoveEvent);
+        _moveController.MoveCallEvent.AddListener(OnMoveCallEvent);
     }
 
     private void OnEnable()
@@ -26,12 +30,13 @@ public class CharacterMoveManager : MonoBehaviour
         SetCooldown();
     }
 
-    private void OnMoveEvent(DirectionEnum directionEnum)
+    private void OnMoveCallEvent(DirectionEnum directionEnum)
     {
         if(_isMoveCooldown) return;
 
         var moveResult = BetweenPlatformMover.MoveTo(_platformObject, directionEnum);
         if (moveResult == false) return;
+        OnMoveEvent?.Invoke();
         
         SetCooldown(); 
     }
