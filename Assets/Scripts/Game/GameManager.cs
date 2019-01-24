@@ -16,12 +16,14 @@ public class GameManager : Singleton<GameManager>
     private GameObject _player;
     private Liveble _playerLiveble;
     private Dieble _playerDieble;
+    private PlayerAttackManager _playerAttackManager;
 
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerLiveble = _player.GetComponent<Liveble>();
         _playerLiveble.OnDieEvent += OnPlayerDeath; // Subscribe on player death event
+        _playerAttackManager = _player.GetComponent<PlayerAttackManager>();
     }
 
     private void Start()
@@ -74,6 +76,13 @@ public class GameManager : Singleton<GameManager>
     {
         _isPause = true;
         Time.timeScale = 0;
+        
+        // Cancel player attack
+        if (_playerAttackManager.IsInAttack)
+        {
+            Debug.Log("Cancel player attack on pausing time");
+            _playerAttackManager.CancelAttack();
+        }
     }
 
     private void ResumeTime()

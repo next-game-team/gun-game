@@ -10,7 +10,7 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
 
    private GunRayController _gunRayController;
 
-   protected bool IsInAttack;
+   public bool IsInAttack { get; private set; }
    
    protected override void Awake()
    {
@@ -25,9 +25,7 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
       if (IsInAttack == false) return;
       
       base.OnAttackEvent();
-      GameManager.Instance.SetTimeScale(1);
-      IsInAttack = false;
-      _gunRayController.TurnOff();
+      ReturnToNormalState();
    }
 
    protected virtual void OnAttackStart()
@@ -37,5 +35,17 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
       GameManager.Instance.SetTimeScale(_aimConfig.AimTimeScale);
       IsInAttack = true;
       _gunRayController.TurnOn();
+   }
+
+   public void CancelAttack()
+   {
+      ReturnToNormalState();
+   }
+
+   private void ReturnToNormalState()
+   {
+      GameManager.Instance.SetTimeScale(1);
+      IsInAttack = false;
+      _gunRayController.TurnOff();
    }
 }
