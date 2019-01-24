@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterMoveManager))]
 public class CharacterDamageEffect : DamageEffect
 {
     [SerializeField] 
@@ -11,7 +12,17 @@ public class CharacterDamageEffect : DamageEffect
 
     [SerializeField]
     private bool _isRandomShake;
-    
+
+    private CharacterMoveManager _moveManager;
+    private Sequence _currentSequence;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _moveManager = GetComponent<CharacterMoveManager>();
+        _moveManager.OnMoveEvent += CancelEffectOnAnotherMove;
+    }
+
     public override void OnDamageReceived(Damageble damageble, DamageInfo damageInfo)
     {
         if (_isRandomShake)
@@ -26,18 +37,27 @@ public class CharacterDamageEffect : DamageEffect
 
     private void DirectionShake(Damageble damageble, DamageInfo damageInfo)
     {
-        var characterPositionX = damageble.transform.position.x;
+        var characterPositionX = damageble.transform.localPosition.x;
         // Calculate position to recoil
         var isDamageFromRight = characterPositionX <= damageInfo.AssaulterPosition.x ? -1 : 1;  
         
-        var sequence = DOTween.Sequence();
-        sequence.Append(damageble.transform.DOMoveX(characterPositionX
+        _currentSequence = DOTween.Sequence();
+        _currentSequence.Append(damageble.transform.DOLocalMoveX(characterPositionX
                                                     + isDamageFromRight * _recoilPower, _recoilDuration))
-            .Append(damageble.transform.DOMoveX(characterPositionX, _recoilDuration));
+            .Append(damageble.transform.DOLocalMoveX(characterPositionX, _recoilDuration));
     }
 
     private void RandomShake(Damageble damageble)
     {
         damageble.transform.DOShakePosition(_recoilDuration, Vector2.right * _recoilPower);
+    }
+
+    private void CancelEffectOnAnotherMove()
+    {
+        // If damage effect is playing then stop it
+        if (_currentSequence != null && _currentSequence.IsActive())
+        {
+            _currentSequence.Complete();
+        }
     }
 }
