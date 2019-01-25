@@ -9,9 +9,16 @@ public class EnemyAttackController : AttackController
     [SerializeField] private LayerMask _player;
     [SerializeField, Range(0, 1)] private float _shootProbability;
 
+    private Liveble _liveble;
+
+    private void Awake()
+    {
+        _liveble = GetComponent<Liveble>();
+    }
+
     protected override void CheckInput()
     {
-        if (FindPlayer())
+        if (_liveble.IsAlive() && FindPlayer())
         {
             AttackEvent.Invoke();
         }
