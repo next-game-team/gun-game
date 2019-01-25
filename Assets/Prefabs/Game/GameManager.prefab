@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7537bddbdb467782b557e9456adcec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnTime: 5
+  _spawnTime: 4.5
 --- !u!1 &1804836276
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +388,7 @@ MonoBehaviour:
   _pausePanel: {fileID: 0}
   _deathScreen: {fileID: 0}
   _isPause: 0
+  _currentTimeScale: 0
 --- !u!114 &4673558281487604807
 MonoBehaviour:
   m_ObjectHideFlags: 0
