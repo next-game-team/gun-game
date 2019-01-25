@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerTimeEnergyConfig
   m_EditorClassIdentifier: 
   TimeEnergyCapacity: 4
-  TimeEnergyIncreaseValue: 0.1
+  TimeEnergyIncreaseValue: 0.3
