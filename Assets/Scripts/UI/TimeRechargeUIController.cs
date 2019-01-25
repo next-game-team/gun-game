@@ -10,7 +10,7 @@ public class TimeRechargeUIController : MonoBehaviour
 
     void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObjectOnSceneManager.Instance.Player;
         _timeManager = _player.GetComponent<PlayerAttackWithTimeManager>();
         _img = GetComponent<Image>();
     }

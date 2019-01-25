@@ -13,17 +13,15 @@ public class GameManager : Singleton<GameManager>
     [SerializeField, ReadOnly] 
     private float _currentTimeScale;
 
-    private GameObject _player;
     private Liveble _playerLiveble;
     private Dieble _playerDieble;
     private PlayerAttackManager _playerAttackManager;
 
     private void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _playerLiveble = _player.GetComponent<Liveble>();
+        _playerLiveble = GameObjectOnSceneManager.Instance.Player.GetComponent<Liveble>();
         _playerLiveble.OnDieEvent += OnPlayerDeath; // Subscribe on player death event
-        _playerAttackManager = _player.GetComponent<PlayerAttackManager>();
+        _playerAttackManager = GameObjectOnSceneManager.Instance.Player.GetComponent<PlayerAttackManager>();
     }
 
     private void Start()

@@ -12,6 +12,6 @@ public class EnemyManager : Singleton<EnemyManager>
     // Start is called before the first frame update
     private void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag(TagUtils.GetTagNameByEnum(TagEnum.Player));
+        _player = GameObjectOnSceneManager.Instance.Player;
     }
 }
