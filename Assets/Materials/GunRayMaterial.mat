@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GunRayMaterial
-  m_Shader: {fileID: 4800000, guid: 74db66f016826774ebe09e275eecdf0d, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3e6c1776342300545976f0ad6a86ef1b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -73,8 +73,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MKGlowPower: 1.31
-    - _MKGlowTexStrength: 2.3
+    - _MKGlowPower: 1.15
+    - _MKGlowTexStrength: 6.3
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -88,6 +88,6 @@ Material:
     - _Color: {r: 1, g: 0.25, b: 0.9204546, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _MKGlowColor: {r: 0.735849, g: 0.06594872, b: 0.62622905, a: 1}
-    - _MKGlowTexColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MKGlowColor: {r: 1, g: 0.4669811, b: 0.9127221, a: 1}
+    - _MKGlowTexColor: {r: 1, g: 0, b: 0.8605418, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
