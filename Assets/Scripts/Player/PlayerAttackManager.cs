@@ -26,6 +26,7 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
       
       base.OnAttackEvent();
       ReturnToNormalState();
+      _gunRayController.ShootEffect();
    }
 
    protected virtual void OnAttackStart()
@@ -40,12 +41,12 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
    public void CancelAttack()
    {
       ReturnToNormalState();
+      _gunRayController.TurnOff();
    }
 
    private void ReturnToNormalState()
    {
       GameManager.Instance.SetTimeScale(1);
       IsInAttack = false;
-      _gunRayController.TurnOff();
    }
 }
