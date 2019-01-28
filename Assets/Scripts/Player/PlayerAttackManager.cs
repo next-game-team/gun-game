@@ -27,6 +27,9 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
       base.OnAttackEvent();
       ReturnToNormalState();
       _gunRayController.ShootEffect();
+
+      CameraShakeController shake = GameObject.FindObjectOfType<CameraShakeController>();
+      shake.GetComponent<CameraShakeController>().Shooting();
    }
 
    protected virtual void OnAttackStart()
