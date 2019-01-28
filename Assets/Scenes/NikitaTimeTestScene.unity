@@ -177,7 +177,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 427, y: 153}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &37465071
 MonoBehaviour:
@@ -2830,6 +2830,7 @@ GameObject:
   - component: {fileID: 1058024341}
   - component: {fileID: 1058024343}
   - component: {fileID: 1058024342}
+  - component: {fileID: 1058024344}
   m_Layer: 5
   m_Name: WaveLine
   m_TagString: Untagged
@@ -2854,7 +2855,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 427, y: 153}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058024342
 MonoBehaviour:
@@ -2893,6 +2894,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058024340}
   m_CullTransparentMesh: 0
+--- !u!114 &1058024344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058024340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9c1d93eaaec4392981232cbe60acbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1066494237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,7 +3868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1368367393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3872,10 +3885,10 @@ RectTransform:
   m_Father: {fileID: 1999884459}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 150}
-  m_SizeDelta: {x: -1420, y: 150}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 98}
+  m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1368367394
 CanvasRenderer:
@@ -6021,6 +6034,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1029009139}
+    - target: {fileID: 440641641, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
+      propertyPath: _waveLineImageController
+      value: 
+      objectReference: {fileID: 1058024344}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
 --- !u!1001 &7631347410793501380
