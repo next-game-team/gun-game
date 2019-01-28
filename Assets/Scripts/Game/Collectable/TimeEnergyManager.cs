@@ -26,6 +26,10 @@ public class TimeEnergyManager : MonoBehaviour
             .FreePlatforms
             .FindAll(platform => platform.CollectableObject == null);
         var platformToGenerate = RandomUtils.GetRandomObjectFromList(freePlatformsWithoutCollectable);
+
+        //The return from the method if not found free platform
+        if(freePlatformsWithoutCollectable.Count == 0)
+            return;
         
         // Generate time energy collectable
         var collectable = PoolManager.Instance.CollectablePool.GetObject().GetComponent<CollectableObject>();
