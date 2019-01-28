@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class Level : MonoBehaviour
 
     [SerializeField] 
     private ImageAmountController _waveLineImageController;
+
+    private float _timeBetweenWaves = 2f;
     
     private bool _isPlayed;
     private int _currentAliveEnemyCount;
@@ -62,20 +65,21 @@ public class Level : MonoBehaviour
         _currentAliveEnemyCount--;
         if (_currentAliveEnemyCount == 0)
         {
-            OnWaveEnd();
+            StartCoroutine(OnWaveEnd());
         }
     }
 
-    private void OnWaveEnd()
+    private IEnumerator OnWaveEnd()
     {
         // If waves is end
         if (_currentEnemyWaveIndex == EnemyWaves.Count - 1)
         {
             _waveLineImageController.gameObject.transform.parent.gameObject.SetActive(false);
             OnLevelEnd?.Invoke();
-            return;
+            yield break;
         }
         
+        yield return new WaitForSeconds(_timeBetweenWaves); // Wait before start next wave
         GenerateNextWave();
     }
 }
