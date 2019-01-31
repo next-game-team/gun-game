@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ArturTestScene.unity
     guid: e109b913846944c7195c71441043bf26
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/NikitaTimeTestScene.unity
     guid: 07d7d913a8b75401c884985b1d29ec9e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NikitaChargeTestScene.unity
     guid: b807485be0d8d427495c8fc83d4e85b8
   m_configObjects: {}
