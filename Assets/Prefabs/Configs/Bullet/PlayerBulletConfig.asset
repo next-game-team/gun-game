@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WhatIsTarget:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
   DamageCount: 1
-  Speed: 50
+  Speed: 70
   Lifetime: 5

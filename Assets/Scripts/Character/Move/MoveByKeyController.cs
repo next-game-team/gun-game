@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class MoveByKeyController : MoveController
 {
-    private void Update()
+
+    protected override void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            MoveEvent.Invoke(DirectionEnum.UP);
+            MoveCallEvent.Invoke(DirectionEnum.UP);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            MoveEvent.Invoke(DirectionEnum.DOWN);
+            MoveCallEvent.Invoke(DirectionEnum.DOWN);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            MoveEvent.Invoke(DirectionEnum.LEFT);
+            MoveCallEvent.Invoke(DirectionEnum.LEFT);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            MoveEvent.Invoke(DirectionEnum.RIGHT);
+            MoveCallEvent.Invoke(DirectionEnum.RIGHT);
         }
     }
 }

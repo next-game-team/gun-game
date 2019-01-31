@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,14 +10,38 @@ public class Level : MonoBehaviour
     
     public List<EnemyWaveConfig> EnemyWaves { get; set; }
 
+    [SerializeField] 
+    private ImageAmountController _waveLineImageController;
+
+    private float _timeBetweenWaves = 2f;
+    
     private bool _isPlayed;
     private int _currentAliveEnemyCount;
     private int _currentEnemyWaveIndex;
-    
+
+    private void Awake()
+    {
+        CheckInitialization();
+    }
+
+    private void CheckInitialization()
+    {
+        if (_waveLineImageController == null)
+        {
+            Debug.LogError("ImageAmountController isn't set for WaveLineImage");
+        }
+    }
+
     public void StartLevel()
     {
+        // Set level played from first wave
         _isPlayed = true;
         _currentEnemyWaveIndex = -1;
+        
+        _waveLineImageController.gameObject.transform.parent.gameObject.SetActive(true);
+        _waveLineImageController.Init(EnemyWaves.Count);
+        _waveLineImageController.SetImageAmount(0);
+        
         GenerateNextWave();
     }
 
@@ -30,6 +55,8 @@ public class Level : MonoBehaviour
         {
             enemyGameObject.GetComponent<Liveble>().OnDieEvent += OnEnemyDie;
         }
+        
+        _waveLineImageController.SetImageAmount(_currentEnemyWaveIndex + 1);
     }
 
     private void OnEnemyDie(Liveble enemyLiveble)
@@ -38,19 +65,21 @@ public class Level : MonoBehaviour
         _currentAliveEnemyCount--;
         if (_currentAliveEnemyCount == 0)
         {
-            OnWaveEnd();
+            StartCoroutine(OnWaveEnd());
         }
     }
 
-    private void OnWaveEnd()
+    private IEnumerator OnWaveEnd()
     {
         // If waves is end
         if (_currentEnemyWaveIndex == EnemyWaves.Count - 1)
         {
+            _waveLineImageController.gameObject.transform.parent.gameObject.SetActive(false);
             OnLevelEnd?.Invoke();
-            return;
+            yield break;
         }
         
+        yield return new WaitForSeconds(_timeBetweenWaves); // Wait before start next wave
         GenerateNextWave();
     }
 }

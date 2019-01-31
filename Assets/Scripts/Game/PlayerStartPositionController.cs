@@ -8,7 +8,7 @@ public class PlayerStartPositionController : MonoBehaviour
     [SerializeField] 
     private PlatformObject _player;
 
-    private void Awake()
+    private void Start()
     {
         if (_startPlatform == null || _player == null)
         {
@@ -17,5 +17,6 @@ public class PlayerStartPositionController : MonoBehaviour
         }
 
         _startPlatform.SetPlatformObject(_player);
+        _player.SetOnPlatform(_startPlatform);
     }
 }

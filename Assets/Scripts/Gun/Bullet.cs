@@ -48,6 +48,11 @@ public class Bullet : MonoBehaviour
     {
         if (GameObjectUtils.CompareLayerWithMask(other.gameObject, BulletConfig.WhatIsTarget))
         {
+            Damageble damageble = other.gameObject.GetComponent<Damageble>();
+            if(damageble != null)
+            {
+                damageble.ReceiveDamage(new DamageInfo(BulletConfig.DamageCount, transform.position));
+            }
             DestroyBullet();
         }
     }
@@ -57,6 +62,5 @@ public class Bullet : MonoBehaviour
         _rb.velocity = Vector2.zero;
         _isAlive = false;
         PoolManager.Instance.BulletPool.ReturnObject(gameObject);
-        
     }
 }

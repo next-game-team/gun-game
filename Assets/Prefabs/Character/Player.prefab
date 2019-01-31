@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1377452920}
   - component: {fileID: 1571878139}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377452919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.62, z: 0}
+  m_LocalPosition: {x: -0.02, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 986721807723837892}
@@ -48,7 +48,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 1
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 82e0e1995464847cd912926927831e42, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -65,12 +65,12 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingLayerID: -1995569999
+  m_SortingLayer: 5
+  m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 5, z: 0}
+  - {x: 0, y: 8, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -78,8 +78,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.009773254
-        value: 0.1716423
+        time: 0
+        value: 0.29850388
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -88,7 +88,7 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 0.14178467
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 9219992474617718324}
   - component: {fileID: 6698245780920573654}
   - component: {fileID: 1196654057}
+  - component: {fileID: 8915597682805147575}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -162,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275986926375303767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.25, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1377452920}
@@ -251,36 +252,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1445972368197621878
-GameObject:
+--- !u!114 &8915597682805147575
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5720034231309485634}
-  m_Layer: 0
-  m_Name: ShootPointEnd
-  m_TagString: Untagged
-  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5720034231309485634
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445972368197621878}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 986721807723837892}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 275986926375303767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe4980872376402c87ef011c9f11e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationWaitTime: 0.002
+  _animationSpeed: 0.3
+  _flashSize: 4
 --- !u!1 &2231516215256575780
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a01fe061fb64082962acad98e9c799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 100
+  _isRotating: 1
   _isLeftRotated: 1
 --- !u!1 &7483765033866189475
 GameObject:
@@ -368,14 +354,16 @@ GameObject:
   - component: {fileID: 1728395091960872629}
   - component: {fileID: 387049464298176805}
   - component: {fileID: 6990840545138723512}
-  - component: {fileID: 8365268218686947209}
+  - component: {fileID: 2225789917816110697}
+  - component: {fileID: 8817344859393212143}
   - component: {fileID: 4307218278771098511}
-  - component: {fileID: 6851512918488561020}
+  - component: {fileID: 4510277717373671213}
   - component: {fileID: 3881316288480066534}
   - component: {fileID: 3952068449530934093}
   - component: {fileID: 511607631888768392}
   - component: {fileID: 3462574950231551170}
-  - component: {fileID: 1260262499271006841}
+  - component: {fileID: 649581076569910304}
+  - component: {fileID: 7771410489634272134}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -459,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b5c6f1a91c54dea81fd25970aa5481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8365268218686947209
+--- !u!114 &2225789917816110697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -468,7 +456,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7483765033866189475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fdd06811a60442b3b6c2c8ae63cb8cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d7713d0a2a40ddbbbc180f2488c935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveConfig: {fileID: 11400000, guid: 1cb5bba881a4c45408b7e642a1ab1552, type: 2}
+--- !u!114 &8817344859393212143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483765033866189475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0234e879ef4ad596dc8f2b2ff08bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4307218278771098511
@@ -483,9 +484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e71fa470c84989be253e33191b45cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _betweenPlatformMoveDuration: 0.5
   _currentPlatform: {fileID: 0}
-  _objectBottomPosition: {fileID: 1852208854110700079}
---- !u!114 &6851512918488561020
+--- !u!114 &4510277717373671213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -494,11 +495,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7483765033866189475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a2a6ad286f14c7384300f9f4b0511c, type: 3}
+  m_Script: {fileID: 11500000, guid: f326294815744753b8fd9ad5d51cb592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gun: {fileID: 6698245780920573654}
-  _moveConfig: {fileID: 11400000, guid: 1cb5bba881a4c45408b7e642a1ab1552, type: 2}
+  _objectBottomPosition: {fileID: 1852208854110700079}
 --- !u!61 &3881316288480066534
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3d13b820f932645b2b8d9cfa8929eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1260262499271006841
+--- !u!114 &649581076569910304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -572,9 +572,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7483765033866189475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26aff5219f8564d5b9e0daccffd8dee6, type: 3}
+  m_Script: {fileID: 11500000, guid: b3bb20cfda1741ceb90a37ca92255e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _whatIsBullet:
-    serializedVersion: 2
-    m_Bits: 2048
+--- !u!114 &7771410489634272134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483765033866189475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ac92192b56548c39b0d5ca5cc6c261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recoilPower: 0.5
+  _recoilDuration: 0.2
+  _isRandomShake: 0

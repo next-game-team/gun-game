@@ -17,7 +17,11 @@ public class Damageble : MonoBehaviour
 	public void ReceiveDamage(DamageInfo damageInfo)
 	{
 		_liveble.DecreaseHp(damageInfo.DamageCount);
-		OnDamageEvent?.Invoke(this, damageInfo);
+
+		if (_liveble.IsAlive())
+		{
+			OnDamageEvent?.Invoke(this, damageInfo);	
+		}
 	}
 	
 }

@@ -41,18 +41,32 @@ public class Platform : MonoBehaviour
         }
     }
 
+    [SerializeField, ReadOnly]
+    private CollectableObject _collectableObject;
+    public CollectableObject CollectableObject => _collectableObject;
+
+    public void SetCollectableObject(CollectableObject collectableObject)
+    {
+        _collectableObject = collectableObject;
+        _collectableObject.SetOnPlatform(this);
+    }
+
     public void SetPlatformObject(PlatformObject platformObject)
     {
         // Set links on platform object and platform
         PlatformObject = platformObject;
         _platformObject.CurrentPlatform = this;
         
+        // Resolve picking collectable
+        if (_collectableObject != null)
+        {
+            platformObject.CollectableController.Collect(_collectableObject);
+            _collectableObject.Destroy();
+            _collectableObject = null;
+        }
+
         // Remove this platform from list of free platforms
         PlatformMap.Instance.FreePlatforms.Remove(this);
-        
-        // Set platform object on current position
-        platformObject.transform.position = CenterOfTopBound.position
-                                            + platformObject.VectorFromBottomToCenter;
     }
 
     public bool IsFree { get; private set; } = true;

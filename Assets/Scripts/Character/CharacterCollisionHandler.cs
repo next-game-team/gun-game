@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Liveble))]
+[RequireComponent(typeof(Damageble))]
 public class CharacterCollisionHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask _whatIsBullet;
 
-    private Liveble _liveble;
+    private Damageble _damageble;
 
     private void Awake()
     {
-        _liveble = GetComponent<Liveble>();
+        _damageble = GetComponent<Damageble>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,7 +19,7 @@ public class CharacterCollisionHandler : MonoBehaviour
         if (GameObjectUtils.CompareLayerWithMask(other.gameObject, _whatIsBullet))
         {
             var bullet = other.GetComponent<Bullet>();
-            _liveble.DecreaseHp(bullet.BulletConfig.DamageCount);
+            _damageble.ReceiveDamage(new DamageInfo(bullet.BulletConfig.DamageCount, bullet.transform.position));
         }
     }
 }

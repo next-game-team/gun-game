@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AttackByKeyController : AttackController
 {
-    // Update is called once per frame
-    private void Update()
+    
+    protected override void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

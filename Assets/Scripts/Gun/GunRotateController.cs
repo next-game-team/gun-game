@@ -1,11 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GunRotateController : MonoBehaviour
 {
-    [SerializeField]
-    private float _rotationSpeed = 1;
+    
+    public float RotationSpeed { get; set; }
+
+    [SerializeField, ReadOnly]
+    private bool _isRotating = true;
+    
     [SerializeField, ReadOnly]
     private bool _isLeftRotated = true;
     
@@ -14,6 +16,16 @@ public class GunRotateController : MonoBehaviour
     public void ChangeRotation()
     {
         _isLeftRotated = !_isLeftRotated;
+    }
+
+    public void StopRotating()
+    {
+        _isRotating = false;
+    }
+
+    public void StartRotating()
+    {
+        _isRotating = true;
     }
     
     // Start is called before the first frame update
@@ -25,7 +37,14 @@ public class GunRotateController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _currentAngle += (_isLeftRotated ? 1 : -1) * _rotationSpeed * Time.deltaTime;
+        if (_isRotating == false) return;
+        
+        _currentAngle += (_isLeftRotated ? 1 : -1) * RotationSpeed * Time.deltaTime;
         transform.rotation = Quaternion.AngleAxis(_currentAngle, Vector3.forward);
+    }
+
+    private void OnEnable()
+    {
+        StartRotating();
     }
 }

@@ -1,15 +1,15 @@
-using UnityEngine;
-
 public static class BetweenPlatformMover
 {
     public static bool MoveTo(PlatformObject platformObject, DirectionEnum directionEnum)
     {
         var newPlatform = GetNeighborByDirection(platformObject.CurrentPlatform, directionEnum);
+        // Check if can move to new platform
         if (newPlatform == null || !newPlatform.IsFree)
         {
             return false;
         }
-        
+
+        platformObject.MoveToPlatform(newPlatform);
         platformObject.CurrentPlatform.EmptyPlatform();
         newPlatform.SetPlatformObject(platformObject);
         return true;

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21dc2d9dd6f4472aa42b0c457ff6804, type: 3}
   m_Name: PlayerGunConfig
   m_EditorClassIdentifier: 
-  RotationSpeed: 0
-  CooldownTime: 1
+  RotationSpeed: 400
+  CooldownTime: 0.8
   BulletConfig: {fileID: 11400000, guid: be645ef166aba44be827440fc1fe4fab, type: 2}

@@ -5,21 +5,20 @@ using UnityEngine;
 public class EnemyMoveController : MoveController
 {
     private PlatformObject _platformObject;
-    private CharacterController _characterController;
+    private CharacterMoveManager _moveManager;
+    private Liveble _liveble;
 
     private void Awake()
     {
         _platformObject = GetComponent<PlatformObject>();
-        _characterController = GetComponent<CharacterController>();
+        _moveManager = GetComponent<CharacterMoveManager>();
+        _liveble = GetComponent<Liveble>();
     }
 
-    // Update is called once per frame
-    private void Update()
+    protected override void CheckInput()
     {
-        if (_characterController.IsMoveCooldown) return;
+        if (_moveManager.IsMoveCooldown || !_liveble.IsAlive()) return;
         
-        MoveEvent.Invoke(_platformObject.CurrentPlatform.GetRandomFreeNeighborDirection());
+        MoveCallEvent.Invoke(_platformObject.CurrentPlatform.GetRandomFreeNeighborDirection());
     }
-
-
 }
