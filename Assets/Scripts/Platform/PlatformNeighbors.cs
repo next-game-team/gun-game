@@ -23,6 +23,8 @@ public class PlatformNeighbors
     private Platform _bottom;
     public Platform Bottom => _bottom;
 
+    public Dictionary<DirectionEnum, Platform> DirectionDictionary { get; }
+    
     public PlatformNeighbors(Platform left, Platform right, Platform top, Platform bottom)
     {
         _left = left;
@@ -30,5 +32,12 @@ public class PlatformNeighbors
         _top = top;
         _bottom = bottom;
         List = new List<Platform>() {Left, Right, Top, Bottom};
+        DirectionDictionary = new Dictionary<DirectionEnum, Platform>()
+        {
+            {DirectionEnum.LEFT, _left},
+            {DirectionEnum.RIGHT, _right},
+            {DirectionEnum.UP, _top},
+            {DirectionEnum.DOWN, _bottom}
+        };
     }
 }

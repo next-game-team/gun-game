@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -77,16 +78,30 @@ public class Platform : MonoBehaviour
 
     public bool HasFreeEnabledNeighbor()
     {
-        return _neighbors.List.Any(neighbor => neighbor.IsEnabled && neighbor.IsFree);
+        return _neighbors.List.Any(neighbor => neighbor.IsFree);
     }
 
     public Platform GetRandomFreeNeighbor()
     {
         // Find all free neighbors
-        var freeNeighbors = _neighbors.List.FindAll(neighbor => neighbor.IsEnabled && neighbor.IsFree);
+        var freeNeighbors = _neighbors.List.FindAll(neighbor => neighbor.IsFree);
         
         // Return null if there is no any free neighbors or return random free neighbor
         return RandomUtils.GetRandomObjectFromList(freeNeighbors);
+    }
+
+    public DirectionEnum GetRandomFreeNeighborDirection()
+    {
+        var freeDirections = new List<DirectionEnum>();
+        foreach (var pair in _neighbors.DirectionDictionary)
+        {
+            if (pair.Value != null && pair.Value.IsFree)
+            {
+                freeDirections.Add(pair.Key);
+            }
+        }
+        
+        return freeDirections.Count == 0 ? DirectionEnum.NONE : RandomUtils.GetRandomObjectFromList(freeDirections);
     }
 
     private void OnValidate()
