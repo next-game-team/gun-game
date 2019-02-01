@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerWithTimeGunConfig
   m_EditorClassIdentifier: 
   RotationSpeed: 400
-  CooldownTime: 0.2
+  CooldownTime: 0.4
   BulletConfig: {fileID: 11400000, guid: be645ef166aba44be827440fc1fe4fab, type: 2}
