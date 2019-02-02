@@ -83,9 +83,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _virtualCamera: {fileID: 0}
-  _shakeAmplitude: 1.5
-  _shakeFrequency: 3
-  _shakeConfig: {fileID: 11400000, guid: e60c0b5a8585946dca149ae0c427d406, type: 2}
+  _damageShakeConfig: {fileID: 11400000, guid: e6b542cce3b9a4297beb81824896c77c, type: 2}
+  _shootShakeConfig: {fileID: 11400000, guid: e60c0b5a8585946dca149ae0c427d406, type: 2}
 --- !u!1 &525473891349303022
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,11 +7,8 @@ public class CameraShakeController : MonoBehaviour
     [SerializeField, ReadOnly] private CinemachineVirtualCamera _virtualCamera;
     private CinemachineBasicMultiChannelPerlin _virtualCameraNoise;
 
-    [SerializeField] private float _shakeAmplitude;
-    [SerializeField] private float _shakeFrequency;
-
-
-    [SerializeField] private ShakeConfig _shakeConfig;
+    [SerializeField] private ShakeConfig _damageShakeConfig;
+    [SerializeField] private ShakeConfig _shootShakeConfig;
 
 
     void Awake()
@@ -41,8 +38,8 @@ public class CameraShakeController : MonoBehaviour
 
     IEnumerator HarlemShake()
     {
-        _virtualCameraNoise.m_AmplitudeGain = _shakeAmplitude;
-        _virtualCameraNoise.m_FrequencyGain = _shakeFrequency;
+        _virtualCameraNoise.m_AmplitudeGain = _damageShakeConfig.ShakeAmplitude;
+        _virtualCameraNoise.m_FrequencyGain = _damageShakeConfig.ShakeFrequency;
         yield return new WaitForSeconds(0.5f);
         _virtualCameraNoise.m_AmplitudeGain = 0f;
         _virtualCameraNoise.m_FrequencyGain = 0f;
@@ -55,8 +52,8 @@ public class CameraShakeController : MonoBehaviour
 
     IEnumerator ShootShake()
     {
-        _virtualCameraNoise.m_AmplitudeGain = _shakeConfig.ShakeAmplitude;
-        _virtualCameraNoise.m_FrequencyGain = _shakeConfig.ShakeFrequency;
+        _virtualCameraNoise.m_AmplitudeGain = _shootShakeConfig.ShakeAmplitude;
+        _virtualCameraNoise.m_FrequencyGain = _shootShakeConfig.ShakeFrequency;
         yield return new WaitForSeconds(0.2f);
         _virtualCameraNoise.m_AmplitudeGain = 0f;
         _virtualCameraNoise.m_FrequencyGain = 0f;
