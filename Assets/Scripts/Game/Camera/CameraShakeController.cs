@@ -10,8 +10,9 @@ public class CameraShakeController : MonoBehaviour
     [SerializeField] private float _shakeAmplitude;
     [SerializeField] private float _shakeFrequency;
 
-    [SerializeField] private float _shakeAmplitudeInShooting;
-    [SerializeField] private float _shakeFrequencyInShooting;
+
+    [SerializeField] private ShakeConfig _shakeConfig;
+
 
     void Awake()
     {
@@ -54,8 +55,8 @@ public class CameraShakeController : MonoBehaviour
 
     IEnumerator ShootShake()
     {
-        _virtualCameraNoise.m_AmplitudeGain = _shakeAmplitudeInShooting;
-        _virtualCameraNoise.m_FrequencyGain = _shakeFrequencyInShooting;
+        _virtualCameraNoise.m_AmplitudeGain = _shakeConfig.ShakeAmplitude;
+        _virtualCameraNoise.m_FrequencyGain = _shakeConfig.ShakeFrequency;
         yield return new WaitForSeconds(0.2f);
         _virtualCameraNoise.m_AmplitudeGain = 0f;
         _virtualCameraNoise.m_FrequencyGain = 0f;
