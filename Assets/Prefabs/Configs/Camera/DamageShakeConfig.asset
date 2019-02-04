@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69204e6a1045544a09729ff4c31cde39, type: 3}
   m_Name: DamageShakeConfig
   m_EditorClassIdentifier: 
-  ShakeAmplitude: 0
-  ShakeFrequency: 0
+  ShakeAmplitude: 1.5
+  ShakeFrequency: 3
