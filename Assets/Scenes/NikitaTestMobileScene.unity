@@ -572,6 +572,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 2248340133651895704, guid: 6308f9660c69549fea22ba22cc7adaf9,
+        type: 3}
+      propertyPath: orthographic size
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2248340133651895705, guid: 6308f9660c69549fea22ba22cc7adaf9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -626,11 +631,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2248340133651895704, guid: 6308f9660c69549fea22ba22cc7adaf9,
-        type: 3}
-      propertyPath: orthographic size
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6308f9660c69549fea22ba22cc7adaf9, type: 3}
@@ -3195,17 +3195,17 @@ PrefabInstance:
     - target: {fileID: 2273476433277394646, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8851635
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2273476433277394646, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5551069
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2273476433277394646, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.03228615
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2273476433277394646, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
         type: 3}
@@ -3249,14 +3249,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2273476433277394645, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
         type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 736961851}
-    - target: {fileID: 2273476433277394645, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
-        type: 3}
       propertyPath: _startPlatform
       value: 
       objectReference: {fileID: 1728951091}
+    - target: {fileID: 2273476433277394645, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 736961851}
     - target: {fileID: 440641641, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
       propertyPath: _waveLineImageController
       value: 
