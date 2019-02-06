@@ -7,11 +7,14 @@ public class PlayerAttackController : AttackController
 
     protected override void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) ||
+            // Check if user tap on screen (1 touch) or tap while swiping (2 touches) 
+            Input.touchCount == (TouchManager.Instance.IsInDrag ? 2 : 1))
         {
             OnAttackStartEvent?.Invoke();
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space) ||
+                 Input.touchCount == (TouchManager.Instance.IsInDrag ? 1 : 0))
         {
             AttackEvent?.Invoke();
         }
