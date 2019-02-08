@@ -1,43 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
-public class CommonMoveController : MoveController, IBeginDragHandler, IEndDragHandler
-{
-    public void OnBeginDrag(PointerEventData eventData)
-    {    
-        if (GameManager.Instance.IsPause) return;
-
-        TouchManager.Instance.IsInDrag = true;
+public class CommonMoveController : MoveController
+{   
+    protected override void CheckInput()
+    {
+        CheckKeyInput();
+        CheckTouchInput();
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    private void CheckTouchInput()
     {
-        if (GameManager.Instance.IsPause) return;
-        
-        TouchManager.Instance.IsInDrag = false;
-        
-        // Check move direction
-        if (eventData.delta.x > 0)
+        if (TouchManager.Instance.MoveTouchState == TouchManager.TouchState.TouchEnd)
         {
-            MoveCallEvent.Invoke(DirectionEnum.RIGHT);
-        } 
-        else if (eventData.delta.x < 0)
-        {
-            MoveCallEvent.Invoke(DirectionEnum.LEFT);
-        } 
-        else if (eventData.delta.y > 0)
-        {
-            MoveCallEvent.Invoke(DirectionEnum.UP);
-        } 
-        else if (eventData.delta.y < 0)
-        {
-            MoveCallEvent.Invoke(DirectionEnum.DOWN);
+            MoveCallEvent.Invoke(TouchManager.Instance.MoveDirection);
+            TouchManager.Instance.MoveTouchState = TouchManager.TouchState.Idle;
         }
     }
-    
-    protected override void CheckInput()
+
+    private void CheckKeyInput()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {

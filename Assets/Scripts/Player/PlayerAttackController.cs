@@ -5,22 +5,26 @@ public class PlayerAttackController : AttackController
     public delegate void AttackStartEvent();
     public event AttackStartEvent OnAttackStartEvent;
 
-    private bool _attackByTouch = false;
+    private bool _isInAttack;
 
     protected override void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) ||
-            // Check if user tap on screen (1 touch) or tap while swiping (2 touches) 
-            Input.touchCount == (TouchManager.Instance.IsInDrag ? 2 : 1))
+        if (!_isInAttack && 
+            (Input.GetKeyDown(KeyCode.Space) 
+             || TouchManager.Instance.AttackTouchState == TouchManager.TouchState.Touch))
         {
+            _isInAttack = true;
             OnAttackStartEvent?.Invoke();
-            _attackByTouch = Input.touchCount == (TouchManager.Instance.IsInDrag ? 2 : 1);
         }
-        else if (Input.GetKeyUp(KeyCode.Space) ||
-                 (Input.touchCount == (TouchManager.Instance.IsInDrag ? 1 : 0) && _attackByTouch))
+        else if (_isInAttack && (Input.GetKeyUp(KeyCode.Space) 
+                                 || TouchManager.Instance.AttackTouchState == TouchManager.TouchState.TouchEnd))
         {
+            _isInAttack = false;
+            if (TouchManager.Instance.AttackTouchState == TouchManager.TouchState.TouchEnd)
+            {
+                TouchManager.Instance.AttackTouchState = TouchManager.TouchState.Idle;
+            }
             AttackEvent?.Invoke();
-            _attackByTouch = false;
         }
     }
 }
