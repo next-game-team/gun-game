@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6f06acc794492da149c7da35f9d2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _swipeDistanceConst: 0.2
 --- !u!1 &270324076
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +382,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startPlatform: {fileID: 0}
-  _player: {fileID: 0}
 --- !u!114 &2273476433277394641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,8 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa4d072350504853b0bbebabaff6c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pausePanel: {fileID: 0}
-  _deathScreen: {fileID: 0}
   _isPause: 0
   _currentTimeScale: 0
 --- !u!114 &4673558281487604807

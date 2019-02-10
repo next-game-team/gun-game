@@ -2340,18 +2340,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b5785490dbd343d095a7d255c58287e, type: 3}
---- !u!114 &736961851 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7887617071399872440, guid: 5b5785490dbd343d095a7d255c58287e,
-    type: 3}
-  m_PrefabInstance: {fileID: 736961850}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e71fa470c84989be253e33191b45cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &743075213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,12 +2965,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1055af074320740d1a51ad7ee35a36eb, type: 3}
---- !u!1 &1160922493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1824814748, guid: 1055af074320740d1a51ad7ee35a36eb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1160922492}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1160922494 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2479586824884697483, guid: 1055af074320740d1a51ad7ee35a36eb,
@@ -2995,12 +2977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9c1d93eaaec4392981232cbe60acbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1160922495 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3203693826854066116, guid: 1055af074320740d1a51ad7ee35a36eb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1160922492}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1187103093
 GameObject:
   m_ObjectHideFlags: 0
@@ -3182,16 +3158,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1727357409677098868, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
-        type: 3}
-      propertyPath: _pausePanel
-      value: 
-      objectReference: {fileID: 1160922495}
-    - target: {fileID: 1727357409677098868, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
-        type: 3}
-      propertyPath: _deathScreen
-      value: 
-      objectReference: {fileID: 1160922493}
     - target: {fileID: 2273476433277394646, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3252,11 +3218,6 @@ PrefabInstance:
       propertyPath: _startPlatform
       value: 
       objectReference: {fileID: 1728951091}
-    - target: {fileID: 2273476433277394645, guid: 03c8bf9e0aa834b2a9aca85a80e67884,
-        type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 736961851}
     - target: {fileID: 440641641, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
       propertyPath: _waveLineImageController
       value: 
