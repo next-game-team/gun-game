@@ -9,32 +9,35 @@ public class TextWaveController : MonoBehaviour
     public int CurrentWave {get; private set;}
     public int TotalWaves {get; private set;}
 
-    [HideInInspector] public bool _starNextWave;
+    [SerializeField] private float _timeTextSpeed; 
 
     void Awake()
     {
-        _starNextWave = false;
         _text = GetComponent<TextMeshProUGUI>();
     }
 
-    public void SetWaveNumText(int _curWave, int _totWave)
+    public void SetWaveNumText(int currentWave, int totalWave)
     {
-        CurrentWave = _curWave;
-        TotalWaves = _totWave;
+        CurrentWave = currentWave;
+        TotalWaves = totalWave;
 
-        if(_starNextWave)
         StartCoroutine(Type(CurrentWave, TotalWaves));
     }
 
-
-    IEnumerator Type(int currentW, int totalW)
+    public void ClearText()
     {
         _text.text = "";
-        string waveText = "Wave " + currentW.ToString() + " / " + totalW.ToString();
+    }
+
+
+    IEnumerator Type(int currentWave, int totalWave)
+    {
+        _text.text = "";
+        string waveText = "Wave " + currentWave.ToString() + " / " + totalWave.ToString();
         foreach(char letter in waveText.ToCharArray())
         {
             _text.text += letter;
-            yield return new WaitForSeconds(0.07f);
+            yield return new WaitForSeconds(_timeTextSpeed);
         }
     }
    
