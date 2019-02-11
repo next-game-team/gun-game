@@ -3916,6 +3916,10 @@ PrefabInstance:
       propertyPath: _waveTextInfo
       value: 
       objectReference: {fileID: 609729520}
+    - target: {fileID: 440641641, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
+      propertyPath: _textWaveController
+      value: 
+      objectReference: {fileID: 609729520}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
 --- !u!1001 &3203693825928364054
@@ -3929,6 +3933,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 609729520, guid: 1055af074320740d1a51ad7ee35a36eb, type: 3}
+      propertyPath: _timeTextSpeed
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3203693826598190735, guid: 1055af074320740d1a51ad7ee35a36eb,
         type: 3}
