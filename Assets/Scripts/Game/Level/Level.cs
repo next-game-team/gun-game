@@ -13,7 +13,7 @@ public class Level : MonoBehaviour
     [SerializeField] 
     private ImageAmountController _waveLineImageController;
     
-    [SerializeField] private TextWaveController _waveTextInfo;
+    [SerializeField] private TextWaveController _textWaveController;
 
     private float _timeBetweenWaves = 2f;
     
@@ -33,7 +33,7 @@ public class Level : MonoBehaviour
             Debug.LogError("ImageAmountController isn't set for WaveLineImage");
         }
 
-        if(_waveTextInfo == null)
+        if(_textWaveController == null)
         {
             Debug.LogError("TextWaveController isn't set for TextWaveInfo");
         }
@@ -48,7 +48,6 @@ public class Level : MonoBehaviour
         _waveLineImageController.gameObject.transform.parent.gameObject.SetActive(true);
         _waveLineImageController.Init(EnemyWaves.Count);
         _waveLineImageController.SetImageAmount(0);
-        _waveTextInfo.SetWaveNumText(_currentEnemyWaveIndex + 1, 3);
         
         GenerateNextWave();
     }
@@ -65,8 +64,7 @@ public class Level : MonoBehaviour
         }
         
         _waveLineImageController.SetImageAmount(_currentEnemyWaveIndex + 1);
-        _waveTextInfo._starNextWave = true;
-        _waveTextInfo.SetWaveNumText(_currentEnemyWaveIndex + 1, 3);
+        _textWaveController.SetWaveNumText(_currentEnemyWaveIndex + 1, EnemyWaves.Count);
     }
 
     private void OnEnemyDie(Liveble enemyLiveble)
@@ -85,6 +83,7 @@ public class Level : MonoBehaviour
         if (_currentEnemyWaveIndex == EnemyWaves.Count - 1)
         {
             _waveLineImageController.gameObject.transform.parent.gameObject.SetActive(false);
+            _textWaveController.ClearText();
             OnLevelEnd?.Invoke();
             yield break;
         }
