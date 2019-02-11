@@ -66,7 +66,7 @@ public class GameManager : Singleton<GameManager>
         GameObjectOnSceneManager.Instance.CanvasController.DeathScreen.SetActive(true);
     }
 
-    public void OnContinueButtonClicked() //Add HP
+    public void ContinueGame() //Add HP
     {
         ResumeTime();
         _playerLiveble.InitHp();
