@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b99ceb491704b8e9e2b8752bf4e795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeTextSpeed: 0.07
 --- !u!1 &717265807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,7 +1327,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 627349834}
         m_MethodName: Action
         m_Mode: 1
         m_Arguments:
@@ -1743,7 +1744,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2143553383}
         m_MethodName: Action
         m_Mode: 1
         m_Arguments:
@@ -2090,7 +2091,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 130605236}
         m_MethodName: Action
         m_Mode: 1
         m_Arguments:
