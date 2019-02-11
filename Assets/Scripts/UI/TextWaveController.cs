@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class TextWaveController : MonoBehaviour
 {
@@ -8,8 +9,11 @@ public class TextWaveController : MonoBehaviour
     public int CurrentWave {get; private set;}
     public int TotalWaves {get; private set;}
 
+    [HideInInspector] public bool _starNextWave;
+
     void Awake()
     {
+        _starNextWave = false;
         _text = GetComponent<TextMeshProUGUI>();
     }
 
@@ -18,7 +22,20 @@ public class TextWaveController : MonoBehaviour
         CurrentWave = _curWave;
         TotalWaves = _totWave;
 
-        _text.text = "Wave " + CurrentWave.ToString() + " / " + TotalWaves.ToString();
+        if(_starNextWave)
+        StartCoroutine(Type(CurrentWave, TotalWaves));
+    }
+
+
+    IEnumerator Type(int currentW, int totalW)
+    {
+        _text.text = "";
+        string waveText = "Wave " + currentW.ToString() + " / " + totalW.ToString();
+        foreach(char letter in waveText.ToCharArray())
+        {
+            _text.text += letter;
+            yield return new WaitForSeconds(0.07f);
+        }
     }
    
 }
