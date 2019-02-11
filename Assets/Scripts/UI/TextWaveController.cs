@@ -9,7 +9,7 @@ public class TextWaveController : MonoBehaviour
     public int CurrentWave {get; private set;}
     public int TotalWaves {get; private set;}
 
-    [SerializeField] private float _timeTextSpeed; 
+    [SerializeField] private float _timeTextSpeed = 0.07f; 
 
     void Awake()
     {
