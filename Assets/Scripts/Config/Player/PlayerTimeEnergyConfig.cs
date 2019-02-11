@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerTimeEnergyConfig", menuName = "Create PlayerTimeEnergy config")]
+[CreateAssetMenu(fileName = "PlayerTimeEnergyConfig", menuName = "Create Config/PlayerTimeEnergy config")]
 public class PlayerTimeEnergyConfig : ScriptableObject
 {
     public float TimeEnergyCapacity = 3f;
