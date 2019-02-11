@@ -65,6 +65,7 @@ public class Level : MonoBehaviour
         }
         
         _waveLineImageController.SetImageAmount(_currentEnemyWaveIndex + 1);
+        _waveTextInfo._starNextWave = true;
         _waveTextInfo.SetWaveNumText(_currentEnemyWaveIndex + 1, 3);
     }
 
