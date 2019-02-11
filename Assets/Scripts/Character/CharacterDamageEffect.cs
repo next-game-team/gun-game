@@ -36,7 +36,8 @@ public class CharacterDamageEffect : DamageEffect
         CancelEffectOnAnotherMove(); // Cancel previous damage effect
 
         _particleInstance.transform.position = damageInfo.AssaulterPosition;
-        _particleInstance.transform.rotation = Quaternion.FromToRotation(transform.position, damageInfo.AssaulterPosition);
+        _particleInstance.transform.rotation = Quaternion.AngleAxis(MathUtils.GetPointOnTargetLookAngle(
+            transform.position, damageInfo.AssaulterPosition), Vector3.forward);
         _particleInstance.Play();
         
         // Skip effect if object is already moving
