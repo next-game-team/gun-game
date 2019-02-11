@@ -268,6 +268,8 @@ MonoBehaviour:
   _recoilPower: 0.5
   _recoilDuration: 0.2
   _isRandomShake: 0
+  _particlePrefab: {fileID: 6643373051600778573, guid: bf1e13f18e698461cb5f4ad270ec2866,
+    type: 3}
 --- !u!95 &7714536778963656058
 Animator:
   serializedVersion: 3

@@ -96,6 +96,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7771410489634272134, guid: 6950e1a7a4fa741a890b258f1a0c96b1,
+        type: 3}
+      propertyPath: _particle
+      value: 
+      objectReference: {fileID: 6643373051600778573, guid: bf1e13f18e698461cb5f4ad270ec2866,
+        type: 3}
+    - target: {fileID: 7771410489634272134, guid: 6950e1a7a4fa741a890b258f1a0c96b1,
+        type: 3}
+      propertyPath: _particlePrefab
+      value: 
+      objectReference: {fileID: 6643373051600778573, guid: bf1e13f18e698461cb5f4ad270ec2866,
+        type: 3}
     - target: {fileID: 6698245780920573654, guid: 6950e1a7a4fa741a890b258f1a0c96b1,
         type: 3}
       propertyPath: _gunConfig
