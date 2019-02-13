@@ -36,7 +36,7 @@ public class TouchManager : Singleton<TouchManager>
         {
             var isSwipeTouch = InSwipeZone(touch);
             
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began && !GameManager.Instance.IsPause)
             {
                 if (isSwipeTouch && MoveTouchState == TouchState.Idle)
                 {
