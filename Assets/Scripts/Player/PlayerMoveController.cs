@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CommonMoveController : MoveController
+public class PlayerMoveController : MoveController
 {   
     protected override void CheckInput()
     {
