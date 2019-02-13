@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    
+    [Header("Current Game state")]
     [SerializeField, ReadOnly]
     private bool _isPause = false;
     public bool IsPause => _isPause;
@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     {
         SetTimeScale(1);
     }
-
+    
     public void SetTimeScale(float timeScale)
     {
         _currentTimeScale = timeScale;
