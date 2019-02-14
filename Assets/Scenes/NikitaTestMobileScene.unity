@@ -3254,6 +3254,10 @@ PrefabInstance:
       propertyPath: _textWaveController
       value: 
       objectReference: {fileID: 1171398258}
+    - target: {fileID: 1695315790, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c8bf9e0aa834b2a9aca85a80e67884, type: 3}
 --- !u!1 &1269599694
