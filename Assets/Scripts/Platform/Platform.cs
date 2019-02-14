@@ -57,6 +57,9 @@ public class Platform : MonoBehaviour
         PlatformObject = platformObject;
         _platformObject.CurrentPlatform = this;
         
+        // Remove this platform from list of free platforms
+        PlatformMap.Instance.FreePlatforms.Remove(this);
+        
         // Resolve picking collectable
         if (_collectableObject != null)
         {
@@ -64,9 +67,6 @@ public class Platform : MonoBehaviour
             _collectableObject.Destroy();
             _collectableObject = null;
         }
-
-        // Remove this platform from list of free platforms
-        PlatformMap.Instance.FreePlatforms.Remove(this);
     }
 
     public bool IsFree { get; private set; } = true;
