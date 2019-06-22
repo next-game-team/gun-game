@@ -358,11 +358,11 @@ GameObject:
   - component: {fileID: 8817344859393212143}
   - component: {fileID: 4307218278771098511}
   - component: {fileID: 4510277717373671213}
+  - component: {fileID: 321833102240906364}
   - component: {fileID: 3881316288480066534}
   - component: {fileID: 3952068449530934093}
   - component: {fileID: 511607631888768392}
   - component: {fileID: 3462574950231551170}
-  - component: {fileID: 649581076569910304}
   - component: {fileID: 7771410489634272134}
   m_Layer: 9
   m_Name: Player
@@ -499,6 +499,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectBottomPosition: {fileID: 1852208854110700079}
+--- !u!114 &321833102240906364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483765033866189475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957671c3c6f4423bbfaf71e3da67bfda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeEnergyValue: 1
 --- !u!61 &3881316288480066534
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -563,18 +576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3d13b820f932645b2b8d9cfa8929eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &649581076569910304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7483765033866189475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3bb20cfda1741ceb90a37ca92255e35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7771410489634272134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,3 +591,4 @@ MonoBehaviour:
   _recoilPower: 0.5
   _recoilDuration: 0.2
   _isRandomShake: 0
+  _particlePrefab: {fileID: 0}

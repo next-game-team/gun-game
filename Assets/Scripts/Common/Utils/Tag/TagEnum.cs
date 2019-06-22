@@ -17,5 +17,8 @@
     EnemyPool,
     
     // Collectable
-    CollectablePool
+    CollectablePool,
+    
+    // Common
+    Canvas
 }

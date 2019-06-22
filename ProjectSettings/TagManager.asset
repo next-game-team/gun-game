@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - EnemyPool
   - CollectablePool
+  - Canvas
   layers:
   - Default
   - TransparentFX

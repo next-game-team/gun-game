@@ -1,4 +1,5 @@
 public enum CollectableType
 {
-    TimeEnergy
+    TimeEnergy,
+    LevelStarter
 }

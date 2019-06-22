@@ -3,9 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private GameObject _pausePanel;
-    [SerializeField] private GameObject _deathScreen;
-    
+    [Header("Current Game state")]
     [SerializeField, ReadOnly]
     private bool _isPause = false;
     public bool IsPause => _isPause;
@@ -28,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     {
         SetTimeScale(1);
     }
-
+    
     public void SetTimeScale(float timeScale)
     {
         _currentTimeScale = timeScale;
@@ -43,13 +41,13 @@ public class GameManager : Singleton<GameManager>
     public void PauseGame()
     {
         PauseTime();
-        _pausePanel.SetActive(true);
+        GameObjectOnSceneManager.Instance.CanvasController.PausePanel.SetActive(true);
     }
 
     public void ResumeGame()
     {
         ResumeTime();
-        _pausePanel.SetActive(false);
+        GameObjectOnSceneManager.Instance.CanvasController.PausePanel.SetActive(false);
     }
 
     public void RestartGame(int sceneNumber)
@@ -57,17 +55,22 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(sceneNumber);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     private void OnPlayerDeath(Liveble liveble)
     {
         PauseTime();
-        _deathScreen.SetActive(true);
+        GameObjectOnSceneManager.Instance.CanvasController.DeathScreen.SetActive(true);
     }
 
-    public void OnContinueButtonClicked() //Add HP
+    public void ContinueGame() //Add HP
     {
         ResumeTime();
         _playerLiveble.InitHp();
-        _deathScreen.SetActive(false);
+        GameObjectOnSceneManager.Instance.CanvasController.DeathScreen.SetActive(false);
     }
 
     private void PauseTime()

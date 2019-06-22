@@ -4,15 +4,15 @@ public class PlayerStartPositionController : MonoBehaviour
 {
     [SerializeField]
     private Platform _startPlatform;
-
-    [SerializeField] 
+ 
     private PlatformObject _player;
 
     private void Start()
     {
-        if (_startPlatform == null || _player == null)
+        _player = GameObjectOnSceneManager.Instance.Player.GetComponent<PlatformObject>();
+        if (_startPlatform == null)
         {
-            Debug.LogWarning("PlayerStartPositionController doesn't have objects");
+            Debug.LogWarning("PlayerStartPositionController doesn't have Start Platform");
             return;
         }
 

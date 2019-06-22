@@ -7,7 +7,7 @@ public class AttackByKeyController : AttackController
     
     protected override void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
             AttackEvent.Invoke();
         }

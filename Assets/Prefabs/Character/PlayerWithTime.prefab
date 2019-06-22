@@ -41,6 +41,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWithTime
       objectReference: {fileID: 0}
+    - target: {fileID: 7771410489634272134, guid: 6950e1a7a4fa741a890b258f1a0c96b1,
+        type: 3}
+      propertyPath: _particlePrefab
+      value: 
+      objectReference: {fileID: 6643373051600778573, guid: bf1e13f18e698461cb5f4ad270ec2866,
+        type: 3}
     - target: {fileID: 1728395091960872629, guid: 6950e1a7a4fa741a890b258f1a0c96b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -102,6 +108,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ea5aa64d1114c441fbfbe103e2287a4b,
         type: 2}
+    - target: {fileID: 8915597682805147575, guid: 6950e1a7a4fa741a890b258f1a0c96b1,
+        type: 3}
+      propertyPath: _flashSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571878139, guid: 6950e1a7a4fa741a890b258f1a0c96b1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6950e1a7a4fa741a890b258f1a0c96b1, type: 3}
 --- !u!1 &3561095504269246100 stripped

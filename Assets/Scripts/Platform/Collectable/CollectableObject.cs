@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(PlatformObjectPosition))]
 public class CollectableObject : MonoBehaviour
 {
     [SerializeField] 
@@ -13,7 +14,7 @@ public class CollectableObject : MonoBehaviour
     
     private PlatformObjectPosition _platformObjectPosition;
 
-    public void Destroy()
+    public virtual void Destroy()
     {
         PoolManager.Instance.CollectablePool.ReturnObject(gameObject);
     }

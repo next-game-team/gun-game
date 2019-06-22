@@ -13,6 +13,10 @@ public class CharacterDamageEffect : DamageEffect
     [SerializeField]
     private bool _isRandomShake;
 
+    [SerializeField] private ParticleSystem _particlePrefab;
+
+    private ParticleSystem _particleInstance;
+    
     private CharacterMoveManager _moveManager;
     private PlatformObject _platformObject;
     private Sequence _currentSequence;
@@ -23,11 +27,18 @@ public class CharacterDamageEffect : DamageEffect
         _moveManager = GetComponent<CharacterMoveManager>();
         _platformObject = GetComponent<PlatformObject>();
         _moveManager.OnMoveEvent += CancelEffectOnAnotherMove;
+
+        _particleInstance = Instantiate(_particlePrefab, transform);
     }
 
     public override void OnDamageReceived(Damageble damageble, DamageInfo damageInfo)
     {
         CancelEffectOnAnotherMove(); // Cancel previous damage effect
+
+        _particleInstance.transform.position = damageInfo.AssaulterPosition;
+        _particleInstance.transform.rotation = Quaternion.AngleAxis(MathUtils.GetPointOnTargetLookAngle(
+            transform.position, damageInfo.AssaulterPosition), Vector3.forward);
+        _particleInstance.Play();
         
         // Skip effect if object is already moving
         if (_platformObject.IsInMove) return;

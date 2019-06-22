@@ -8,6 +8,8 @@ public class TimeEnergyManager : MonoBehaviour
 
     private void Update()
     {
+        if (!LevelManager.Instance.CurrentLevel.IsPlayed) return;   
+        
         if (_currentSpawnTime <= 0)
         {
             Spawn();
@@ -21,15 +23,8 @@ public class TimeEnergyManager : MonoBehaviour
 
     private void Spawn()
     {
-        // Find free platforms to generate
-        var freePlatformsWithoutCollectable = PlatformMap.Instance
-            .FreePlatforms
-            .FindAll(platform => platform.CollectableObject == null);
-        // Return from the method if not found free platform
-        if (freePlatformsWithoutCollectable.Count == 0) return;
-        
-        // Pick random free platform
-        var platformToGenerate = RandomUtils.GetRandomObjectFromList(freePlatformsWithoutCollectable);
+        var platformToGenerate = PlatformUtils.GetRandomPlatformForCollectable();
+        if (platformToGenerate == null) return;
         
         // Generate time energy collectable
         var collectable = PoolManager.Instance.CollectablePool.GetObject().GetComponent<CollectableObject>();

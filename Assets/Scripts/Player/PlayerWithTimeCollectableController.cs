@@ -14,6 +14,7 @@ public class PlayerWithTimeCollectableController : PlayerCollectableController
 
     public override void Collect(CollectableObject collectableObject)
     {
+        base.Collect(collectableObject);
         switch (collectableObject.Type)
         {
             case CollectableType.TimeEnergy:

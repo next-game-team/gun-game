@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "GunConfig", menuName = "Create Gun config")]
+[CreateAssetMenu(fileName = "GunConfig", menuName = "Create Config/Gun config")]
 public class GunConfig : ScriptableObject
 {
     public float RotationSpeed;

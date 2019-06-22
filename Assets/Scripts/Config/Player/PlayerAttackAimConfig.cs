@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerAttackAimConfig", menuName = "Create PlayerAttackAim config")]
+[CreateAssetMenu(fileName = "PlayerAttackAimConfig", menuName = "Create Config/PlayerAttackAim config")]
 public class PlayerAttackAimConfig : ScriptableObject
 {
     public float AimTimeScale = 0.2f;

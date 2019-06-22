@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BulletConfig", menuName = "Create Bullet config")]
+[CreateAssetMenu(fileName = "BulletConfig", menuName = "Create Config/Bullet config")]
 public class BulletConfig : ScriptableObject
 {
     public LayerMask WhatIsTarget;

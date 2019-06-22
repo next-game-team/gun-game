@@ -12,10 +12,13 @@ public class Level : MonoBehaviour
 
     [SerializeField] 
     private ImageAmountController _waveLineImageController;
+    
+    [SerializeField] private TextWaveController _textWaveController;
 
     private float _timeBetweenWaves = 2f;
-    
-    private bool _isPlayed;
+
+    public bool IsPlayed { get; private set; }
+
     private int _currentAliveEnemyCount;
     private int _currentEnemyWaveIndex;
 
@@ -30,12 +33,17 @@ public class Level : MonoBehaviour
         {
             Debug.LogError("ImageAmountController isn't set for WaveLineImage");
         }
+
+        if(_textWaveController == null)
+        {
+            Debug.LogError("TextWaveController isn't set for TextWaveInfo");
+        }
     }
 
     public void StartLevel()
     {
         // Set level played from first wave
-        _isPlayed = true;
+        IsPlayed = true;
         _currentEnemyWaveIndex = -1;
         
         _waveLineImageController.gameObject.transform.parent.gameObject.SetActive(true);
@@ -57,6 +65,7 @@ public class Level : MonoBehaviour
         }
         
         _waveLineImageController.SetImageAmount(_currentEnemyWaveIndex + 1);
+        _textWaveController.SetWaveNumText(_currentEnemyWaveIndex + 1, EnemyWaves.Count);
     }
 
     private void OnEnemyDie(Liveble enemyLiveble)
@@ -74,7 +83,11 @@ public class Level : MonoBehaviour
         // If waves is end
         if (_currentEnemyWaveIndex == EnemyWaves.Count - 1)
         {
+            // Turn off wave line
             _waveLineImageController.gameObject.transform.parent.gameObject.SetActive(false);
+            _textWaveController.ClearText();
+
+            IsPlayed = false;
             OnLevelEnd?.Invoke();
             yield break;
         }
