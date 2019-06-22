@@ -155,7 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1337612079}
-  - component: {fileID: 1337612080}
+  - component: {fileID: 2240443782968835020}
   m_Layer: 0
   m_Name: CollectablePool
   m_TagString: CollectablePool
@@ -177,7 +177,7 @@ Transform:
   m_Father: {fileID: 2273476432590027741}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1337612080
+--- !u!114 &2240443782968835020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1337612078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c009c6290e240a8a38aa0c22f143dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 40aa73ae37eac4042b446416f5502071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _objectsCount: 3
@@ -513,7 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2273476433438022634}
-  - component: {fileID: 2273476433438022635}
+  - component: {fileID: 6067787470007979680}
   m_Layer: 0
   m_Name: BulletPool
   m_TagString: BulletPool
@@ -535,7 +535,7 @@ Transform:
   m_Father: {fileID: 2273476432590027741}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2273476433438022635
+--- !u!114 &6067787470007979680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2273476433438022633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c009c6290e240a8a38aa0c22f143dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 40aa73ae37eac4042b446416f5502071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _objectsCount: 3
@@ -559,7 +559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2273476433970250920}
-  - component: {fileID: 2273476433970250921}
+  - component: {fileID: 1101084379892549189}
   m_Layer: 0
   m_Name: EnemyPool
   m_TagString: EnemyPool
@@ -581,7 +581,7 @@ Transform:
   m_Father: {fileID: 2273476432590027741}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2273476433970250921
+--- !u!114 &1101084379892549189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2273476433970250927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c009c6290e240a8a38aa0c22f143dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 40aa73ae37eac4042b446416f5502071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _objectsCount: 2
