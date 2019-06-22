@@ -85,7 +85,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4263944912693638385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43b11c674346341e8a3b8ff531a379ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 79510ee2435674e069a93cf3228fe412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _particlePrefab: {fileID: 8702590878169627182}
@@ -178,6 +178,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8702590878169627168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5b4344a78904724a429add5539a4e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 70a8c3a39f97547d98bb50ead082751c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
