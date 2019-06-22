@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PoolManager : Singleton<PoolManager> {
+public class PoolManager : TagPoolManager<PoolManager, TagEnum> {
     
     public Pool BulletPool { get; private set; }
     public Pool EnemyPool { get; private set; }
@@ -11,14 +11,5 @@ public class PoolManager : Singleton<PoolManager> {
         BulletPool = InitPool(TagEnum.BulletPool);
         EnemyPool = InitPool(TagEnum.EnemyPool);
         CollectablePool = InitPool(TagEnum.CollectablePool);
-    }
-
-    private static Pool InitPool(TagEnum tagEnum)
-    {
-        var pool = GameObject             
-            .FindGameObjectWithTag(TagUtils.GetTagNameByEnum(tagEnum))
-            .GetComponent<Pool>();
-        pool.Init();
-        return pool;
     }
 }
