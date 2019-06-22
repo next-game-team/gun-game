@@ -22,10 +22,11 @@ public class PlayerAttackWithChargeManager : PlayerAttackManager
       }
    }
 
-   protected override void OnAttackStart()
+   protected override bool OnAttackStart()
    {
-      base.OnAttackStart();
+      if (!base.OnAttackStart()) return false;
       
       _currentAimTime = _attackChargeConfig.ChargeTime;
+      return true;
    }
 }

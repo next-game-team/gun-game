@@ -20,6 +20,12 @@ public class SeparableImage : MonoBehaviour
 
     private readonly List<SeparableImageParticle> _particles = new List<SeparableImageParticle>();
     private int _currentLastParticle;
+
+    public void Init(int particleCount)
+    {
+        _particleCount = particleCount;
+        Init();
+    }
     
     public void Init()
     {
@@ -31,13 +37,7 @@ public class SeparableImage : MonoBehaviour
 
         if (_particlePrefab == null) return;
 
-        // Clean old particles
-        foreach (var particle in _particles)
-        {
-            if (particle != null)
-            DestroyImmediate(particle.gameObject);
-        }
-        _particles.Clear();
+        Clean();
         
         var halfParticleWidth = _particleWidth / 2;
         var currentParticleX = -_particleAreaWidth / 2 + halfParticleWidth;
@@ -58,6 +58,17 @@ public class SeparableImage : MonoBehaviour
         }
 
         _currentLastParticle = _particleCount - 1;
+    }
+
+    public void Clean()
+    {
+       // Clean old particles
+       foreach (var particle in _particles)
+       {
+           if (particle != null)
+           DestroyImmediate(particle.gameObject);
+       }
+       _particles.Clear();
     }
 
     // Start is called before the first frame update

@@ -32,13 +32,14 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
       shake.GetComponent<CameraShakeController>().Shooting();
    }
 
-   protected virtual void OnAttackStart()
+   protected virtual bool OnAttackStart()
    {
-      if (Gun.IsInCooldown) return;
+      if (Gun.IsInCooldown) return false;
 
       GameManager.Instance.SetTimeScale(_aimConfig.AimTimeScale);
       IsInAttack = true;
       _gunRayController.TurnOn();
+      return true;
    }
 
    public void CancelAttack()

@@ -28,7 +28,7 @@
     }
 
     // Method called when player call attack for the first time
-    private void OnPlayerAttackCall()
+    private bool OnPlayerAttackCall()
     {
         GameObjectOnSceneManager.Instance.CanvasController
             .ControlTutorial.AttackScreen.gameObject.SetActive(false);
@@ -37,6 +37,7 @@
         GameObjectOnSceneManager.Instance
             .Player.GetComponent<PlayerAttackController>().OnAttackStartEvent -= OnPlayerAttackCall;
         CheckTutorialComplete();
+        return true;
     }
 
     private void CheckTutorialComplete()
