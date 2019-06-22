@@ -6,18 +6,19 @@ using Image = UnityEngine.UI.Image;
 public class SeparableImage : MonoBehaviour
 {
 
-    [SerializeField] private SeparableImageParticle _particlePrefab; 
+    [Header("Setup"), SerializeField] private SeparableImageParticle _particlePrefab; 
     [SerializeField] private int _particleCount = 1;
     [SerializeField] private Vector2 _particleMargin;
     [SerializeField] private float _particleSplitSize = 0.1f;
-    [SerializeField, ReadOnly] private float _particleWidth;
+    
+    [Header("Current"), SerializeField, ReadOnly] private float _particleWidth;
     [SerializeField, ReadOnly] private float _particleHeight;
      
     private Image _backgroundImage;
     private Rect _backgroundRect;
     private float _particleAreaWidth;
 
-    private List<SeparableImageParticle> _particles;
+    private readonly List<SeparableImageParticle> _particles = new List<SeparableImageParticle>();
     private int _currentLastParticle;
     
     public void Init()
