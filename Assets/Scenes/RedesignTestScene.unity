@@ -401,7 +401,7 @@ PrefabInstance:
     - target: {fileID: 3561095504269246100, guid: dd15cda8c449b4778b39e754114fb038,
         type: 3}
       propertyPath: m_Name
-      value: CirclePlayer2
+      value: CirclePlayer
       objectReference: {fileID: 0}
     - target: {fileID: 4705241221583018626, guid: dd15cda8c449b4778b39e754114fb038,
         type: 3}
@@ -457,6 +457,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470459940357134457, guid: dd15cda8c449b4778b39e754114fb038,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 761223733
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470459940357134457, guid: dd15cda8c449b4778b39e754114fb038,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd15cda8c449b4778b39e754114fb038, type: 3}
