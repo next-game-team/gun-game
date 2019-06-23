@@ -9,6 +9,9 @@ public class PlatformMapGenerator : MonoBehaviour
     [SerializeField] private GameObject _mapContainer;
     [SerializeField] private Platform _platformPrefab;
 
+    public int RowCount => _rowCount;
+    public int ColumnCount => _columnCount;
+    
     private PlatformMap _platformMap;
 
     private void Awake()
@@ -25,7 +28,7 @@ public class PlatformMapGenerator : MonoBehaviour
     {
         _platformMap.CleanChildren();
         var currentPosition = new Vector2(_mapContainer.transform.position.x, _mapContainer.transform.position.y);
-        for (var rowInd = 0; rowInd < _rowCount; rowInd++)
+        for (var rowInd = 0; rowInd < RowCount; rowInd++)
         {
             GenerateRow(rowInd, currentPosition);
             currentPosition += Vector2.down * _distanceBetweenRows;

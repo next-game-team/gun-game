@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlatformNeighborsFinder))]
+[RequireComponent(typeof(PlatformMapGenerator))]
 public class PlatformMap : Singleton<PlatformMap>
 {
 
@@ -16,6 +18,7 @@ public class PlatformMap : Singleton<PlatformMap>
     private int _columnCount;
 
     private PlatformNeighborsFinder _neighborsFinder;
+    private PlatformMapGenerator _mapGenerator;
     
     public List<List<Platform>> Platforms => _platforms;
     public List<Platform> FreePlatforms => _freePlatforms;
@@ -53,6 +56,14 @@ public class PlatformMap : Singleton<PlatformMap>
             Debug.LogWarning("PlatformNeighborsFinder doesn't set on PlatformMap");
             return;
         }
+        
+        // Get PlatformMapGenerator and check if exist
+        _mapGenerator = GetComponent<PlatformMapGenerator>();
+        if (_mapGenerator == null)
+        {
+            Debug.LogWarning("PlatformMapGenerator doesn't set on PlatformMap");
+            return;
+        }
 
         // Find First Platform and Check if exist
         var gameObjectWithTag = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.FirstPlatform);
@@ -67,6 +78,11 @@ public class PlatformMap : Singleton<PlatformMap>
         _platforms = new List<List<Platform>>();
         while (firstPlatformInCurrentRow != null)
         {
+            if (_platforms.Count > _mapGenerator.RowCount)
+            {
+                throw new UnityException("Rows more than in generator. Something when wrong..."
+                                         + firstPlatformInCurrentRow.gameObject.name);
+            }
            _platforms.Add(GetPlatformsInCurrentRow(firstPlatformInCurrentRow));
            firstPlatformInCurrentRow = firstPlatformInCurrentRow.Neighbors.Bottom;
         }
@@ -82,6 +98,12 @@ public class PlatformMap : Singleton<PlatformMap>
         var currentPlatform = firstPlatformInRow;
         while (currentPlatform != null)
         {
+            if (row.Count > _mapGenerator.RowCount)
+            {
+                throw new UnityException("Columns more than in generator. Something when wrong... " 
+                                         + currentPlatform.gameObject.name);
+            }
+            
             _neighborsFinder.FindNeighbors(currentPlatform);
             row.Add(currentPlatform);
             currentPlatform = currentPlatform.Neighbors.Right;
