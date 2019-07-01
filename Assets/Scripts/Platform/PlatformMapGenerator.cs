@@ -8,6 +8,8 @@ public class PlatformMapGenerator : MonoBehaviour
     [SerializeField] private float _distanceBetweenColumns;
     [SerializeField] private GameObject _mapContainer;
     [SerializeField] private Platform _platformPrefab;
+    [SerializeField] private bool _enableOnRowCreated;
+    [SerializeField] private GameObject _linePrefab;
 
     public int RowCount => _rowCount;
     public int ColumnCount => _columnCount;
@@ -44,7 +46,8 @@ public class PlatformMapGenerator : MonoBehaviour
                 Quaternion.identity,
                 _mapContainer.transform);
             platform.gameObject.name = "Platform-" + (rowInd + 1) + "-" + (columnInd + 1);
-
+            OnRowCreated(rowInd, columnInd, platform);
+            
             // Set FirstPlatform tag to first platform
             if (rowInd == 0 && columnInd == 0)
             {
@@ -52,4 +55,21 @@ public class PlatformMapGenerator : MonoBehaviour
             }
         }
     }
+
+    protected void OnRowCreated(int rowInd, int columnInd, Platform platform)
+    {
+        // Create bottom line
+        /*if (rowInd < RowCount - 1)
+        {
+            Instantiate(_linePrefab,
+                platform.transform.position - (Vector3.up * (_distanceBetweenRows + platform.)))
+        }*/
+        
+        // Create right line
+    }
+
+    /*protected GameObject CreateLine(Platform platform)
+    {
+        platform
+    }*/
 }
