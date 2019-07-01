@@ -44,8 +44,8 @@
   },
   "lock": {
     "com.nikchernyakov.common-utils": {
-       "hash": "6d607ba684a9fcc0b89433999a898b12292309fe",
-       "revision": "v1.0.1"
+      "hash": "6d607ba684a9fcc0b89433999a898b12292309fe",
+      "revision": "v1.0.1"
     }
   }
 }
