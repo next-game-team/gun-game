@@ -121,7 +121,7 @@ public class Platform : MonoBehaviour
     private void OnValidate()
     {   
         // Find CenterOfTopBound in children
-        _centerOfTopBound = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformTopCenter).transform;
+        _centerOfTopBound = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformTopCenter)?.transform;
         if (_centerOfTopBound == null)
         {
             Debug.LogError("Platform doesn't have CenterOfTopBound");
