@@ -19,6 +19,7 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
 
         var enemy = PoolManager.Instance.EnemyPool.GetObject().GetComponent<PlatformObject>();
         enemy.GetComponent<Liveble>().InitHp();
+        enemy.GetComponent<HpLampController>().InitLamps();
         enemy.gameObject.SetActive(true);
         enemy.SetOnPlatform(freePlatform);
         freePlatform.SetPlatformObject(enemy);
