@@ -5,7 +5,7 @@ using UnityEngine;
 public class HpLampController : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> _lamps;
+    private HpLampPositionController _hpLampPositionController;
     
     private Liveble _liveble;
     
@@ -14,6 +14,16 @@ public class HpLampController : MonoBehaviour
     {
         _liveble = GetComponent<Liveble>();
         _liveble.OnHpUpdateEvent += OnHpUpdate;
+        
+        InitLamps();
+    }
+
+    public void InitLamps()
+    {
+        if(_hpLampPositionController != null) Destroy(_hpLampPositionController.gameObject);
+        var hpLampPositionPrefab = GlobalCharacterManager.Instance.GetHpLampPositionPrefab(_liveble.HpConfig.Hp);
+        _hpLampPositionController = Instantiate(hpLampPositionPrefab, transform)
+            .GetComponent<HpLampPositionController>();
     }
 
     private void OnHpUpdate(Liveble liveble, int hpDelta)
@@ -34,7 +44,7 @@ public class HpLampController : MonoBehaviour
             lampIndex <= _liveble.CurrentHp + hpDelta; 
             lampIndex++)
         {
-            _lamps[lampIndex].SetActive(true);
+            _hpLampPositionController.Lamps[lampIndex].SetActive(true);
         }
     }
     
@@ -44,7 +54,7 @@ public class HpLampController : MonoBehaviour
             lampIndex > _liveble.CurrentHp - hpDelta; 
             lampIndex--)
         {
-            _lamps[lampIndex].SetActive(false);
+            _hpLampPositionController.Lamps[lampIndex].SetActive(false);
         }
     }
 }

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e87b7f9a5d324ad59d997556c01e106, type: 3}
   m_Name: PlayerHpConfig
   m_EditorClassIdentifier: 
-  Hp: 4
+  Hp: 5
