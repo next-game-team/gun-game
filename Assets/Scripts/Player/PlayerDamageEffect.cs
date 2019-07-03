@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerDamageEffect : CharacterDamageEffect
+﻿public class PlayerDamageEffect : CharacterDamageEffect
 {
     private CameraShakeController _shakeController;
 
