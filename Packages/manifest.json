@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.nikchernyakov.common-utils": "https://github.com/nikchernyakov/unity-common-utils.git#v1.0.1",
+    "com.nikchernyakov.common-utils": "https://github.com/nikchernyakov/unity-common-utils.git#v1.0.3",
     "com.unity.cinemachine": "2.3.4",
 
     "com.unity.ads": "2.0.8",
@@ -44,8 +44,8 @@
   },
   "lock": {
     "com.nikchernyakov.common-utils": {
-      "hash": "6d607ba684a9fcc0b89433999a898b12292309fe",
-      "revision": "v1.0.1"
+      "hash": "0e56264c8bbe1a8240e90dbe212f0d04bc8190ee",
+      "revision": "v1.0.3"
     }
   }
 }
