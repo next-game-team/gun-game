@@ -15,15 +15,30 @@ public class PlatformMapGenerator : MonoBehaviour
     public int ColumnCount => _columnCount;
     
     private PlatformMap _platformMap;
+    [SerializeField, ReadOnly]
+    private float _platformPrefabSize;
+    [SerializeField, ReadOnly]
+    private float _linePrefabSize;
 
     private void Awake()
     {
-        _platformMap = GetComponent<PlatformMap>();
+        Init();
     }
 
     private void OnValidate()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         _platformMap = GetComponent<PlatformMap>();
+        _platformPrefabSize = _platformPrefab.GetComponent<SpriteRenderer>().size.y;
+
+        if (_linePrefab != null)
+        {
+            _linePrefabSize = _linePrefab.GetComponent<SpriteRenderer>().size.y;   
+        }
     }
 
     public void GenerateMap()
@@ -59,17 +74,49 @@ public class PlatformMapGenerator : MonoBehaviour
     protected void OnRowCreated(int rowInd, int columnInd, Platform platform)
     {
         // Create bottom line
-        /*if (rowInd < RowCount - 1)
+        if (rowInd < RowCount - 1)
         {
-            Instantiate(_linePrefab,
-                platform.transform.position - (Vector3.up * (_distanceBetweenRows + platform.)))
-        }*/
+            CreateLine(platform, true);
+        }
         
         // Create right line
+        if (columnInd < ColumnCount - 1)
+        {
+            CreateLine(platform, false);
+        }
     }
 
-    /*protected GameObject CreateLine(Platform platform)
+    protected GameObject CreateLine(Platform platform, bool isBottom)
     {
-        platform
-    }*/
+        Vector3 linePositionDelta;
+        if (isBottom)
+        {
+            linePositionDelta = Vector3.down * (_distanceBetweenRows / 2);
+        }
+        else
+        {
+            linePositionDelta = Vector3.right * (_distanceBetweenColumns / 2);
+        }
+        var line = Instantiate(_linePrefab,
+            platform.transform.position + linePositionDelta,
+            Quaternion.identity, platform.transform);
+
+        if (!isBottom)
+        {
+            line.transform.Rotate(0, 0, 90);
+        }
+
+        float lineSize;
+        if (isBottom)
+        {
+            lineSize = _distanceBetweenRows - _platformPrefabSize;
+        }
+        else
+        {
+            lineSize = _distanceBetweenColumns - _platformPrefabSize;
+        }
+
+        line.GetComponent<SpriteRenderer>().size += Vector2.up * Mathf.Abs(lineSize - _linePrefabSize);
+        return line;
+    }
 }
