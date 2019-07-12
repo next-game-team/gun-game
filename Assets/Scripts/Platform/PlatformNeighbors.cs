@@ -1,3 +1,6 @@
+using System;
+
+[Serializable]
 public class PlatformNeighbors : Neighbors<Platform>
 {
     public PlatformNeighbors()

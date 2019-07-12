@@ -48,6 +48,7 @@ public class PlatformMapGenerator : AbstractMapGenerator<Platform>
                 currentPosition + Vector2.right * DistanceBetweenColumns * columnInd,
                 Quaternion.identity,
                 _mapContainer.transform);
+            platform.SidePoints.Init();
             platform.gameObject.name = "Platform-" + (rowInd + 1) + "-" + (columnInd + 1);
             OnRowCreated(rowInd, columnInd, platform);
             
