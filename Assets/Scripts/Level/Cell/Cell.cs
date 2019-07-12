@@ -1,16 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Platform : AbstractPlace<Platform>
+public class Cell : AbstractPlace<Cell>
 {
+    [SerializeField, ReadOnly] private int _distance;
+    
+    [SerializeField, ReadOnly] 
+    private Neighbors<GameObject> _lineNeighbors = new Neighbors<GameObject>();
 
-    [SerializeField] 
+    public Neighbors<GameObject> LineNeighbors
+    {
+        get { return _lineNeighbors; }
+        set { _lineNeighbors = value; }
+    }
+
+    public int Distance
+    {
+        get { return _distance; }
+        set { _distance = value; }
+    }
+
+    /*[SerializeField] 
     private Transform _centerOfTopBound;
     
-    public Transform CenterOfTopBound => _centerOfTopBound;
+    public Transform CenterOfTopBound => _centerOfTopBound; */
 
-    [SerializeField, ReadOnly]
+    /*[SerializeField, ReadOnly]
     private PlatformObject _platformObject;
 
     public PlatformObject PlatformObject
@@ -28,41 +42,19 @@ public class Platform : AbstractPlace<Platform>
         }
     }
 
-    [SerializeField, ReadOnly]
-    private CollectableObject _collectableObject;
-    public CollectableObject CollectableObject => _collectableObject;
-
-    public void SetCollectableObject(CollectableObject collectableObject)
-    {
-        _collectableObject = collectableObject;
-        _collectableObject.SetOnPlatform(this);
-    }
-
     public void SetPlatformObject(PlatformObject platformObject)
     {
         // Set links on platform object and platform
         PlatformObject = platformObject;
         _platformObject.CurrentPlatform = this;
-        
-        // Remove this platform from list of free platforms
-        PlatformMap.Instance.FreePlatforms.Remove(this);
-        
-        // Resolve picking collectable
-        if (_collectableObject != null)
-        {
-            platformObject.CollectableController.Collect(_collectableObject);
-            _collectableObject.Destroy();
-            _collectableObject = null;
-        }
     }
 
-    public bool IsFree { get; private set; } = true;
+    //public bool IsFree { get; private set; } = true;
 
     public void EmptyPlatform()
     {
         _platformObject = null;
         IsFree = true;
-        PlatformMap.Instance.FreePlatforms.Add(this);
     }
     
     public bool IsEnabled { get; private set; } = false;
@@ -79,13 +71,13 @@ public class Platform : AbstractPlace<Platform>
 
     public bool HasFreeEnabledNeighbor()
     {
-        return Neighbors.List.Any(neighbor => neighbor.IsFree);
+        return _neighbors.List.Any(neighbor => neighbor.IsFree);
     }
 
     public Platform GetRandomFreeNeighbor()
     {
         // Find all free neighbors
-        var freeNeighbors = Neighbors.List.FindAll(neighbor => neighbor.IsFree);
+        var freeNeighbors = _neighbors.List.FindAll(neighbor => neighbor.IsFree);
         
         // Return null if there is no any free neighbors or return random free neighbor
         return RandomUtils.GetRandomObjectFromList(freeNeighbors);
@@ -94,7 +86,7 @@ public class Platform : AbstractPlace<Platform>
     public DirectionEnum GetRandomFreeNeighborDirection()
     {
         var freeDirections = new List<DirectionEnum>();
-        foreach (var pair in Neighbors.DirectionDictionary)
+        foreach (var pair in _neighbors.DirectionDictionary)
         {
             if (pair.Value != null && pair.Value.IsFree)
             {
@@ -113,6 +105,5 @@ public class Platform : AbstractPlace<Platform>
         {
             Debug.LogError("Platform doesn't have CenterOfTopBound");
         }
-    }
-
+    }*/
 }

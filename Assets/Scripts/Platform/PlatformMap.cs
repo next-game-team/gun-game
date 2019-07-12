@@ -2,7 +2,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlatformNeighborsFinder))]
-[RequireComponent(typeof(PlatformMapGenerator))]
 public class PlatformMap : Singleton<PlatformMap>
 {
 
