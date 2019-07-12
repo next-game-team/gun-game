@@ -56,7 +56,7 @@ public class AbstractMapGenerator<T> : MonoBehaviour where T : AbstractPlace<T>
 
         var lineSize = isVertical ? lineSizeVertical : lineSizeHorizontal;
 
-        line.GetComponent<SpriteRenderer>().size += Vector2.up * Mathf.Abs(lineSize - _linePrefabSize);
+        line.GetComponent<SpriteRenderer>().size += Vector2.up * (lineSize - _linePrefabSize);
         return line;
     }
 }
