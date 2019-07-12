@@ -13,5 +13,9 @@ public class LevelMapGenerationEditor : Editor
         {
             script.GenerateMap();
         }
+        if(GUILayout.Button("Recalculate distances"))
+        {
+            script.RecalculateDistances();
+        }
     }
 }

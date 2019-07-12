@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,6 +41,7 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         cell.SidePoints.Init();
         _generationQueue.Enqueue(cell);
         HandleQueue();
+        CalculateDistances(cell);
     }
 
     public void HandleQueue()
@@ -71,15 +73,6 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         if (!RandomUtils.IsRandomSaysTrue(_linkProbability)) return;
 
         GeneratePath(cell, neighbor, direction);
-
-        if (cell.Distance > neighbor.Distance + 1)
-        {
-            cell.Distance = neighbor.Distance + 1;
-        }
-        else if (cell.Distance + 1 < neighbor.Distance)
-        {
-            neighbor.Distance = cell.Distance + 1;
-        }
     }
 
     private void GeneratePath(Cell cell, Cell neighbor, DirectionEnum direction)
@@ -106,10 +99,47 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         neighbor.SidePoints.Init();
         
         GeneratePath(cell, neighbor, direction);
-
-        neighbor.Distance = cell.Distance + 1;
         return neighbor;
     }
+
+    public void RecalculateDistances()
+    {
+        CalculateDistances(transform.GetChild(0).GetComponent<Cell>());
+    }
     
+    // BFS min distance algorithm realization
+    private void CalculateDistances(Cell cell)
+    {
+        // Init all distances to max value
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<Cell>().Distance = int.MaxValue;
+        }
+        
+        var cycleIteration = 0;
+        cell.Distance = 0;
+        var queue = new Queue<Cell>();
+        queue.Enqueue(cell);
+        while (queue.Count != 0)
+        {
+            if (cycleIteration > 10000)
+            {
+                Debug.LogError("Calculation distances error. Reach limit of operations.");
+                return;
+            }
+            
+            var currentCell = queue.Dequeue();
+            foreach (var neighbor in currentCell.Neighbors.List())
+            {
+                if (neighbor.Distance > currentCell.Distance + 1)
+                {
+                    neighbor.Distance = currentCell.Distance + 1;
+                    queue.Enqueue(neighbor);
+                }
+            }
+
+            cycleIteration++;
+        }
+    }
     
 }

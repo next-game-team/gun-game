@@ -2,7 +2,16 @@
 
 public class Cell : AbstractPlace<Cell>
 {
-    [SerializeField, ReadOnly] private int _distance;
+    [SerializeField, ReadOnly] 
+    private CellNeighbors _neighbors = new CellNeighbors();
+    
+    public CellNeighbors Neighbors
+    {
+        get { return _neighbors; }
+        set { _neighbors = value; }
+    }
+    
+    [SerializeField, ReadOnly] private int _distance = int.MaxValue;
     
     [SerializeField, ReadOnly] 
     private Neighbors<GameObject> _lineNeighbors = new Neighbors<GameObject>();

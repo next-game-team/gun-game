@@ -1,11 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 [Serializable]
 public class Neighbors<T>
 {
-    public List<T> List { get; }
+    public List<T> List()
+    {
+        return FullList().FindAll(elem => elem != null);
+    }
+
+    public List<T> FullList()
+    {
+        return new List<T>() {Left, Right, Top, Bottom};
+    }
     
     [SerializeField]
     private T _left;
@@ -36,7 +45,6 @@ public class Neighbors<T>
         _right = right;
         _top = top;
         _bottom = bottom;
-        List = new List<T>() {Left, Right, Top, Bottom};
         DirectionDictionary = new Dictionary<DirectionEnum, T>()
         {
             {DirectionEnum.LEFT, _left},

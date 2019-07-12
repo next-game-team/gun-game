@@ -5,6 +5,15 @@ using UnityEngine;
 public class Platform : AbstractPlace<Platform>
 {
 
+    [SerializeField, ReadOnly] 
+    private PlatformNeighbors _neighbors = new PlatformNeighbors();
+    
+    public PlatformNeighbors Neighbors
+    {
+        get { return _neighbors; }
+        set { _neighbors = value; }
+    }
+    
     [SerializeField] 
     private Transform _centerOfTopBound;
     
@@ -79,13 +88,13 @@ public class Platform : AbstractPlace<Platform>
 
     public bool HasFreeEnabledNeighbor()
     {
-        return Neighbors.List.Any(neighbor => neighbor.IsFree);
+        return Neighbors.List().Any(neighbor => neighbor.IsFree);
     }
 
     public Platform GetRandomFreeNeighbor()
     {
         // Find all free neighbors
-        var freeNeighbors = Neighbors.List.FindAll(neighbor => neighbor.IsFree);
+        var freeNeighbors = Neighbors.List().FindAll(neighbor => neighbor.IsFree);
         
         // Return null if there is no any free neighbors or return random free neighbor
         return RandomUtils.GetRandomObjectFromList(freeNeighbors);

@@ -3,7 +3,7 @@
 	
 	public void FindNeighbors(Platform platform)
 	{
-		var neighbors = new Neighbors<Platform>(
+		var neighbors = new PlatformNeighbors(
 			DirectionUtils.FindNeighbor(platform, DirectionEnum.LEFT,
 				RaycastLength, NeighborLayerMask), 
 			DirectionUtils.FindNeighbor(platform, DirectionEnum.RIGHT,
