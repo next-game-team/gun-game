@@ -70,6 +70,7 @@ public class GameManager : Singleton<GameManager>
     {
         ResumeTime();
         _playerLiveble.InitHp();
+        GameObjectOnSceneManager.Instance.Player.GetComponent<HpLampController>().InitLamps();
         GameObjectOnSceneManager.Instance.CanvasController.DeathScreen.SetActive(false);
     }
 
