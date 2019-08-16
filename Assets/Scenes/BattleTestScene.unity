@@ -4760,6 +4760,21 @@ PrefabInstance:
       propertyPath: _damageDuration
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6557711210553449971, guid: dd15cda8c449b4778b39e754114fb038,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6557711210553449971, guid: dd15cda8c449b4778b39e754114fb038,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246529911009366220, guid: dd15cda8c449b4778b39e754114fb038,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd15cda8c449b4778b39e754114fb038, type: 3}
 --- !u!1 &1291533817
