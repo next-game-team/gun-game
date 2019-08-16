@@ -6,13 +6,16 @@ using UnityEngine;
 public class LevelMapGenerator : AbstractMapGenerator<Cell>
 {
 
-    [SerializeField, Range(0, 1)] private float _generateProbability = 0.5f;
+    [SerializeField, Range(0, 1)] private float _startGenerateProbability = 0.5f;
+    [SerializeField, Range(0, 1)] private float _decreaseGenerateProbabilityDelta = 0.05f;
     [SerializeField, Range(0, 1)] private float _linkProbability = 0.5f;
+    [SerializeField] private int _teleportPathLength = 5;
     
     private LevelMap _levelMap;
     private CellNeighborFinder _neighborFinder;
 
     private Queue<Cell> _generationQueue;
+    private Queue<Cell> _mainPathQueue;
 
     private void Awake()
     {
@@ -34,13 +37,92 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
     public void GenerateMap()
     {
         _levelMap.CleanChildren();
+        
+        GenerateMainPath();
+        // Handle each main cell
+        foreach (var currentMainCell in _mainPathQueue)
+        {
+            currentMainCell.GenerateProbability = _startGenerateProbability;
+            GenerateExtraPath(currentMainCell);
+        }
 
+    }
+
+    private void GenerateMainPath()
+    {
+        _mainPathQueue = new Queue<Cell>();
+        
+        // Create start cell
+        var startCell = Instantiate(PlacePrefab, _levelMap.transform);
+        startCell.SidePoints.Init();
+        startCell.IsMain = true;
+        _mainPathQueue.Enqueue(startCell);
+        
+        // Create path
+        // Generate all other cells
+        var currentCell = startCell;
+        for (var i = 2; i <= _teleportPathLength; i++)
+        {
+            var freeDirections = currentCell.GetFreeNeighborDirections()
+                .FindAll(direction => _neighborFinder.FindNeighbor(currentCell, direction) == null);
+            var nextCellDirection = freeDirections.Count == 0 
+                ? DirectionEnum.NONE : RandomUtils.GetRandomObjectFromList(freeDirections); 
+            if (nextCellDirection == DirectionEnum.NONE)
+            {
+                Debug.LogError("There is no neighbors in main cell");
+                return;
+            }
+            
+            currentCell = GenerateNeighbor(currentCell, nextCellDirection);
+            currentCell.IsMain = true;
+
+            if (i == _teleportPathLength - 1)
+            {
+                currentCell.Type = CellType.Boss;
+            }
+            else if (i == _teleportPathLength)
+            {
+                currentCell.Type = CellType.Teleport;
+            }
+            else
+            {
+                _mainPathQueue.Enqueue(currentCell);
+            }
+        }
+    }
+
+    private void GenerateExtraPath(Cell mainCell)
+    {
+        var cycleIteration = 0;
         _generationQueue = new Queue<Cell>();
-        var cell = Instantiate(PlacePrefab, _levelMap.transform);
-        cell.SidePoints.Init();
-        _generationQueue.Enqueue(cell);
-        HandleQueue();
-        CalculateDistances(cell);
+        _generationQueue.Enqueue(mainCell);
+
+        while (_generationQueue.Count > 0)
+        {
+            if (cycleIteration > 10000)
+            {
+                Debug.LogError("Generating extra path error. Reach limit of operations.");
+                return;
+            }
+            
+            var currentCell = _generationQueue.Dequeue();
+            currentCell.GetFreeNeighborDirections().ForEach(freeDirection =>
+            {
+                var neighbor = _neighborFinder.FindNeighbor(currentCell, freeDirection);
+                if (neighbor != null)
+                {
+                    HandleExistingNeighbor(currentCell, neighbor, freeDirection);
+                }
+                else
+                {
+                    if (!RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability)) return;
+                    neighbor = GenerateNeighbor(currentCell, freeDirection);
+                    neighbor.GenerateProbability = currentCell.GenerateProbability - _decreaseGenerateProbabilityDelta;
+                    _generationQueue.Enqueue(neighbor);
+                }
+            });
+            cycleIteration++;
+        }
     }
 
     public void HandleQueue()
@@ -51,7 +133,7 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         }
         
         var cell = _generationQueue.Dequeue();
-        foreach (var direction in cell.SidePoints.DirectionDictionary.Keys)
+        foreach (var direction in DirectionUtils.directionList)
         {
             var neighbor = _neighborFinder.FindNeighbor(cell, direction);
             if (neighbor != null)
@@ -87,9 +169,6 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
 
     private Cell GenerateNeighbor(Cell cell, DirectionEnum direction)
     {
-        if (!RandomUtils.IsRandomSaysTrue(_generateProbability)) return null;
-
-        // Generate neighbor
         var isVertical = DirectionUtils.IsVerticalDirection(direction);
         Vector3 positionDelta = DirectionUtils.vectorDirectionDictionary[direction]
                                 * (isVertical ? DistanceBetweenRows : DistanceBetweenColumns);

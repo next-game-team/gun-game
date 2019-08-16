@@ -1,8 +1,16 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class DirectionUtils
 {
+    // All directions list
+    public static readonly List<DirectionEnum> directionList = Enum
+        .GetValues(typeof(DirectionEnum))
+        .Cast<DirectionEnum>()
+        .ToList();
+    
     public static readonly Dictionary<DirectionEnum, Vector2> vectorDirectionDictionary =
         new Dictionary<DirectionEnum, Vector2>
         {

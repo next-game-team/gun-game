@@ -1,9 +1,39 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Cell : AbstractPlace<Cell>
 {
-    [SerializeField, ReadOnly] 
+    [SerializeField, ReadOnly] private bool _isMain;
+
+    [SerializeField, ReadOnly] private CellType _type = CellType.Empty;
+    
+    [SerializeField, Range(0, 1)] private float _generateProbability = 0.5f;
+    
+    [SerializeField, ReadOnly]
     private CellNeighbors _neighbors = new CellNeighbors();
+
+    [SerializeField, ReadOnly] private int _distance = int.MaxValue;
+    
+    [SerializeField, ReadOnly] 
+    private Neighbors<GameObject> _lineNeighbors = new Neighbors<GameObject>();
+    
+    public bool IsMain
+    {
+        get { return _isMain; }
+        set { _isMain = value; }
+    }
+    
+    public CellType Type
+    {
+        get { return _type; }
+        set { _type = value; }
+    }
+    
+    public float GenerateProbability
+    {
+        get { return _generateProbability; }
+        set { _generateProbability = value; }
+    }
     
     public CellNeighbors Neighbors
     {
@@ -11,11 +41,6 @@ public class Cell : AbstractPlace<Cell>
         set { _neighbors = value; }
     }
     
-    [SerializeField, ReadOnly] private int _distance = int.MaxValue;
-    
-    [SerializeField, ReadOnly] 
-    private Neighbors<GameObject> _lineNeighbors = new Neighbors<GameObject>();
-
     public Neighbors<GameObject> LineNeighbors
     {
         get { return _lineNeighbors; }
@@ -92,20 +117,6 @@ public class Cell : AbstractPlace<Cell>
         return RandomUtils.GetRandomObjectFromList(freeNeighbors);
     }
 
-    public DirectionEnum GetRandomFreeNeighborDirection()
-    {
-        var freeDirections = new List<DirectionEnum>();
-        foreach (var pair in _neighbors.DirectionDictionary)
-        {
-            if (pair.Value != null && pair.Value.IsFree)
-            {
-                freeDirections.Add(pair.Key);
-            }
-        }
-        
-        return freeDirections.Count == 0 ? DirectionEnum.NONE : RandomUtils.GetRandomObjectFromList(freeDirections);
-    }
-
     private void OnValidate()
     {   
         // Find CenterOfTopBound in children
@@ -115,4 +126,18 @@ public class Cell : AbstractPlace<Cell>
             Debug.LogError("Platform doesn't have CenterOfTopBound");
         }
     }*/
+
+    public List<DirectionEnum> GetFreeNeighborDirections()
+    {
+        var freeDirections = new List<DirectionEnum>();
+        foreach (var pair in _neighbors.DirectionDictionary)
+        {
+            if (pair.Value == null)
+            {
+                freeDirections.Add(pair.Key);
+            }
+        }
+
+        return freeDirections;
+    }
 }

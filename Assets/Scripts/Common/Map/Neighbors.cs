@@ -36,7 +36,13 @@ public class Neighbors<T>
 
     public Neighbors()
     {
-        DirectionDictionary = new Dictionary<DirectionEnum, T>();
+        DirectionDictionary = new Dictionary<DirectionEnum, T>()
+        {
+            {DirectionEnum.LEFT, default(T)},
+            {DirectionEnum.RIGHT, default(T)},
+            {DirectionEnum.UP, default(T)},
+            {DirectionEnum.DOWN, default(T)}
+        };
     }
     
     public Neighbors(T left, T right, T top, T bottom)
