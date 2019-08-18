@@ -111,6 +111,8 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
                 var neighbor = _neighborFinder.FindNeighbor(currentCell, freeDirection);
                 if (neighbor != null)
                 {
+                    if (neighbor.Type == CellType.Teleport) 
+                        return; // Path to teleport must be only from Boss cell
                     HandleExistingNeighbor(currentCell, neighbor, freeDirection);
                 }
                 else
