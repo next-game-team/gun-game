@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,17 +6,22 @@ using UnityEngine;
 [RequireComponent(typeof(CellNeighborFinder))]
 public class LevelMapGenerator : AbstractMapGenerator<Cell>
 {
-
-    [SerializeField, Range(0, 1)] private float _startGenerateProbability = 0.5f;
+    [SerializeField, Range(0, 1), Header("LevelMapGenerator Config")]
+    private float _startGenerateProbability = 0.5f;
     [SerializeField, Range(0, 1)] private float _decreaseGenerateProbabilityDelta = 0.05f;
     [SerializeField, Range(0, 1)] private float _linkProbability = 0.5f;
     [SerializeField] private int _teleportPathLength = 5;
+    [SerializeField] private int _generatorCount = 3;
+    [SerializeField, Range(0, 1)] private float _generatorGenerateProbability = 0.1f;
+    [SerializeField, Range(0, 1)] private float _increaseGeneratorGenerateProbabilityDelta = 0.1f;
     
     private LevelMap _levelMap;
     private CellNeighborFinder _neighborFinder;
 
-    private Queue<Cell> _generationQueue;
+    private Queue<Cell> _bypassQueue;
     private Queue<Cell> _mainPathQueue;
+    private int _currentGeneratorCount;
+    private bool _hardConfig;
 
     private void Awake()
     {
@@ -39,13 +45,31 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         _levelMap.CleanChildren();
         
         GenerateMainPath();
-        // Handle each main cell
+        // Handle each main cell and generate extra paths
         foreach (var currentMainCell in _mainPathQueue)
         {
             currentMainCell.GenerateProbability = _startGenerateProbability;
-            GenerateExtraPath(currentMainCell);
+            PathBypass(currentMainCell, GenerateExtraPath, "Generating extra path error");
         }
-
+        
+        // Generate generators
+        _currentGeneratorCount = 0;
+        var cycleIterations = 0;
+        _hardConfig = true;
+        while (_currentGeneratorCount < _generatorCount)
+        {
+            // Prevent infinity loop
+            if (cycleIterations > 5)
+            {
+                _hardConfig = false;
+            }
+            else
+            {
+                cycleIterations++;    
+            }
+            
+            GenerateGenerators();
+        }
     }
 
     private void GenerateMainPath()
@@ -91,50 +115,76 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         }
     }
 
-    private void GenerateExtraPath(Cell mainCell)
+    private bool GenerateExtraPath(Cell currentCell)
     {
-        var cycleIteration = 0;
-        _generationQueue = new Queue<Cell>();
-        _generationQueue.Enqueue(mainCell);
-
-        while (_generationQueue.Count > 0)
+        currentCell.GetFreeNeighborDirections().ForEach(freeDirection =>
         {
-            if (cycleIteration > 10000)
+            var neighbor = _neighborFinder.FindNeighbor(currentCell, freeDirection);
+            if (neighbor != null)
             {
-                Debug.LogError("Generating extra path error. Reach limit of operations.");
-                return;
+                if (neighbor.Type == CellType.Teleport) 
+                    return; // Path to teleport must be only from Boss cell
+                HandleExistingNeighbor(currentCell, neighbor, freeDirection);
             }
-            
-            var currentCell = _generationQueue.Dequeue();
-            currentCell.GetFreeNeighborDirections().ForEach(freeDirection =>
+            else
             {
-                var neighbor = _neighborFinder.FindNeighbor(currentCell, freeDirection);
-                if (neighbor != null)
-                {
-                    if (neighbor.Type == CellType.Teleport) 
-                        return; // Path to teleport must be only from Boss cell
-                    HandleExistingNeighbor(currentCell, neighbor, freeDirection);
-                }
-                else
-                {
-                    if (!RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability)) return;
-                    neighbor = GenerateNeighbor(currentCell, freeDirection);
-                    neighbor.GenerateProbability = currentCell.GenerateProbability - _decreaseGenerateProbabilityDelta;
-                    _generationQueue.Enqueue(neighbor);
-                }
-            });
-            cycleIteration++;
+                if (!RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability)) return;
+                neighbor = GenerateNeighbor(currentCell, freeDirection);
+                neighbor.GenerateProbability = Math.Max(
+                    currentCell.GenerateProbability - _decreaseGenerateProbabilityDelta, 0);
+                _bypassQueue.Enqueue(neighbor);
+            }
+        });
+        return true;
+    }
+
+    private void GenerateGenerators()
+    {
+        foreach (var currentMainCell in _mainPathQueue)
+        {
+            if (_currentGeneratorCount == _generatorCount) return;
+            currentMainCell.GenerateProbability = _generatorGenerateProbability;
+            PathBypass(currentMainCell, GenerateGeneratorOnPath, "Generator generation error");
         }
+    }
+    
+    private bool GenerateGeneratorOnPath(Cell currentCell)
+    {
+        if (currentCell.Type != CellType.Generator &&
+            (!_hardConfig || HardPreGenerationCheck(currentCell)) &&
+            RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability))
+        {
+            currentCell.UpdateType(CellType.Generator);
+            _currentGeneratorCount++;
+            return false;
+        }
+
+        currentCell.Neighbors.List().ForEach(neighbor =>
+        {
+            if (neighbor.IsMain) return;
+            neighbor.GenerateProbability = Math.Min(currentCell.GenerateProbability
+                                           + _increaseGeneratorGenerateProbabilityDelta, 1);
+            _bypassQueue.Enqueue(neighbor);
+        });
+
+        return true;
+    }
+
+    // Check if possible to generate generator in this cell
+    private bool HardPreGenerationCheck(Cell cell)
+    {
+        return !cell.IsMain && // Not generate on Main path
+               !cell.HasNeighborWithType(CellType.Generator);
     }
 
     public void HandleQueue()
     {
-        if (_generationQueue.Count == 0)
+        if (_bypassQueue.Count == 0)
         {
             return;
         }
         
-        var cell = _generationQueue.Dequeue();
+        var cell = _bypassQueue.Dequeue();
         foreach (var direction in DirectionUtils.directionList)
         {
             var neighbor = _neighborFinder.FindNeighbor(cell, direction);
@@ -145,7 +195,7 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
             else
             {
                 neighbor = GenerateNeighbor(cell, direction);
-                if (neighbor != null) _generationQueue.Enqueue(neighbor);
+                if (neighbor != null) _bypassQueue.Enqueue(neighbor);
             }
         }
         HandleQueue();
@@ -180,6 +230,29 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         
         GeneratePath(cell, neighbor, direction);
         return neighbor;
+    }
+
+    private void PathBypass(Cell mainCell,
+                            Func<Cell, bool> handleCurrentCell,
+                            string errorLogMsg)
+    {
+        var cycleIteration = 0;
+        _bypassQueue = new Queue<Cell>();
+        _bypassQueue.Enqueue(mainCell);
+
+        while (_bypassQueue.Count > 0)
+        {
+            if (cycleIteration > 100000)
+            {
+                Debug.LogError(errorLogMsg + ". Reach limit of operations.");
+                return;
+            }
+            cycleIteration++;
+            
+            var currentCell = _bypassQueue.Dequeue();
+            var handleResult = handleCurrentCell(currentCell);
+            if (!handleResult) return;
+        }
     }
 
     public void RecalculateDistances()

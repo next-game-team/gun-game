@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Cell : AbstractPlace<Cell>
@@ -152,5 +153,10 @@ public class Cell : AbstractPlace<Cell>
         }
 
         return freeDirections;
+    }
+
+    public bool HasNeighborWithType(CellType type)
+    {
+        return _neighbors.List().Any(neighbor => neighbor.Type == CellType.Generator);
     }
 }
