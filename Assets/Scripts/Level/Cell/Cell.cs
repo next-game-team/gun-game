@@ -3,19 +3,26 @@ using UnityEngine;
 
 public class Cell : AbstractPlace<Cell>
 {
-    [SerializeField, ReadOnly] private bool _isMain;
+    [SerializeField, ReadOnly, Header("Info")] 
+    private bool _isMain;
 
-    [SerializeField, ReadOnly] private CellType _type = CellType.Empty;
-    
-    [SerializeField, Range(0, 1)] private float _generateProbability = 0.5f;
-    
+    [SerializeField, ReadOnly] 
+    private CellType _type = CellType.Empty;
+
     [SerializeField, ReadOnly]
     private CellNeighbors _neighbors = new CellNeighbors();
 
-    [SerializeField, ReadOnly] private int _distance = int.MaxValue;
+    [SerializeField, ReadOnly] 
+    private int _distance = int.MaxValue;
     
     [SerializeField, ReadOnly] 
     private Neighbors<GameObject> _lineNeighbors = new Neighbors<GameObject>();
+
+    [SerializeField, Header("Configuration")]
+    private SpriteRenderer _icon;
+    
+    [SerializeField, Range(0, 1)] 
+    private float _generateProbability = 0.5f;
     
     public bool IsMain
     {
@@ -126,6 +133,12 @@ public class Cell : AbstractPlace<Cell>
             Debug.LogError("Platform doesn't have CenterOfTopBound");
         }
     }*/
+
+    public void UpdateType(CellType type)
+    {
+        Type = type;
+        _icon.sprite = CellTypeManager.Instance.TypeIconDictionary[type];
+    }
 
     public List<DirectionEnum> GetFreeNeighborDirections()
     {

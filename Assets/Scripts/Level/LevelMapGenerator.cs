@@ -78,11 +78,11 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
 
             if (i == _teleportPathLength - 1)
             {
-                currentCell.Type = CellType.Boss;
+                currentCell.UpdateType(CellType.Boss);
             }
             else if (i == _teleportPathLength)
             {
-                currentCell.Type = CellType.Teleport;
+                currentCell.UpdateType(CellType.Teleport);
             }
             else
             {
