@@ -175,6 +175,6 @@ public class Cell : AbstractPlace<Cell>
 
     public bool HasNeighborWithType(CellType type)
     {
-        return _neighbors.List().Any(neighbor => neighbor.Type == CellType.Generator);
+        return Neighbors.List().Any(neighbor => neighbor.Type == type);
     }
 }
