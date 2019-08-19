@@ -16,9 +16,6 @@ public class Cell : AbstractPlace<Cell>
     [SerializeField, ReadOnly] 
     private CellType _type = CellType.Empty;
 
-    [SerializeField, ReadOnly]
-    private CellNeighbors _neighbors = new CellNeighbors();
-
     [SerializeField, ReadOnly] 
     private int _distance = int.MaxValue;
     
@@ -60,13 +57,7 @@ public class Cell : AbstractPlace<Cell>
         get { return _generateProbability; }
         set { _generateProbability = value; }
     }
-    
-    public CellNeighbors Neighbors
-    {
-        get { return _neighbors; }
-        set { _neighbors = value; }
-    }
-    
+
     public Neighbors<GameObject> LineNeighbors
     {
         get { return _lineNeighbors; }
@@ -162,7 +153,7 @@ public class Cell : AbstractPlace<Cell>
     public List<DirectionEnum> GetFreeNeighborDirections()
     {
         var freeDirections = new List<DirectionEnum>();
-        foreach (var pair in _neighbors.DirectionDictionary)
+        foreach (var pair in Neighbors.DirectionDictionary)
         {
             if (pair.Value == null)
             {

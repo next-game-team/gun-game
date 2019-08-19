@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class Platform : AbstractPlace<Platform>
 {
-
-    [SerializeField, ReadOnly] 
-    private PlatformNeighbors _neighbors = new PlatformNeighbors();
-    
-    public PlatformNeighbors Neighbors
-    {
-        get { return _neighbors; }
-        set { _neighbors = value; }
-    }
-    
     [SerializeField] 
     private Transform _centerOfTopBound;
     
