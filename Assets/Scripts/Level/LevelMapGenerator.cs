@@ -14,6 +14,9 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
     [SerializeField] private int _generatorCount = 3;
     [SerializeField, Range(0, 1)] private float _generatorGenerateProbability = 0.1f;
     [SerializeField, Range(0, 1)] private float _increaseGeneratorGenerateProbabilityDelta = 0.1f;
+    [SerializeField] private int _enemiesCount = 4;
+    [SerializeField, Range(0, 1)] private float _enemyGenerateProbability = 0.4f;
+    [SerializeField, Range(0, 1)] private float _decreaseEnemyGenerateProbabilityDelta = 0.1f;
     
     private LevelMap _levelMap;
     private CellNeighborFinder _neighborFinder;
@@ -22,6 +25,7 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
     private Queue<Cell> _mainPathQueue;
     private int _currentGeneratorCount;
     private bool _hardConfig;
+    private int _currentEnemiesCount;
 
     private void Awake()
     {
@@ -69,6 +73,28 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
             }
             
             GenerateGenerators();
+        }
+        
+        // Generate enemies
+        _currentEnemiesCount = 0;
+        cycleIterations = 0;
+        _hardConfig = true;
+        while (_currentEnemiesCount < _enemiesCount)
+        {
+            // Prevent infinity loop
+            if (cycleIterations > 100000)
+            {
+                // TODO throw exception to regenerate map
+                Debug.LogError("Error generating enemy. Infinity loop in main function.");
+                break;
+            }
+            else if (cycleIterations > 10)
+            {
+                _hardConfig = false;
+            }
+            cycleIterations++;
+
+            GenerateEnemies();
         }
     }
 
@@ -150,12 +176,23 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         }
     }
     
+    private void GenerateEnemies()
+    {
+        foreach (var currentMainCell in _mainPathQueue)
+        {
+            if (_currentEnemiesCount == _enemiesCount) return;
+            currentMainCell.GenerateProbability = _enemyGenerateProbability;
+            _levelMap.GetAllCells().ForEach(cell => cell.IsChecked = false);
+            PathBypass(currentMainCell, GenerateEnemyOnPath, "Enemy generation error");
+        }
+    }
+    
     private bool GenerateGeneratorOnPath(Cell currentCell)
     {
         currentCell.IsChecked = true;
         if (currentCell.Type != CellType.Generator &&
             !currentCell.IsStart &&
-            (!_hardConfig || HardPreGenerationCheck(currentCell)) &&
+            (!_hardConfig || HardGeneratorPreGenerationCheck(currentCell)) &&
             RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability))
         {
             currentCell.UpdateType(CellType.Generator);
@@ -175,10 +212,40 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
     }
 
     // Check if possible to generate generator in this cell
-    private bool HardPreGenerationCheck(Cell cell)
+    private bool HardGeneratorPreGenerationCheck(Cell cell)
     {
         return !cell.IsMain && // Not generate on Main path
                !cell.HasNeighborWithType(CellType.Generator);
+    }
+    
+    private bool GenerateEnemyOnPath(Cell currentCell)
+    {
+        currentCell.IsChecked = true;
+        if (currentCell.Type == CellType.Empty &&
+            !currentCell.IsStart &&
+            (!_hardConfig || HardEnemyPreGenerationCheck(currentCell)) &&
+            RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability))
+        {
+            currentCell.UpdateType(CellType.Enemy);
+            _currentEnemiesCount++;
+            return false;
+        }
+        
+        currentCell.Neighbors.List().ForEach(neighbor =>
+        {
+            if (neighbor.IsMain || neighbor.IsChecked) return;
+            neighbor.GenerateProbability = Math.Max(currentCell.GenerateProbability
+                                                    - _decreaseEnemyGenerateProbabilityDelta, 0);
+            _bypassQueue.Enqueue(neighbor);
+        });
+
+        return true;
+    }
+    
+    // Check if possible to generate generator in this cell
+    private bool HardEnemyPreGenerationCheck(Cell cell)
+    {
+        return !cell.HasNeighborWithType(CellType.Enemy);
     }
 
     public void HandleQueue()
