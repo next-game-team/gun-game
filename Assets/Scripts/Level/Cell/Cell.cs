@@ -6,6 +6,12 @@ public class Cell : AbstractPlace<Cell>
 {
     [SerializeField, ReadOnly, Header("Info")] 
     private bool _isMain;
+    
+    [SerializeField, ReadOnly]
+    private bool _isStart;
+    
+    [SerializeField, ReadOnly]
+    private bool _isChecked;
 
     [SerializeField, ReadOnly] 
     private CellType _type = CellType.Empty;
@@ -29,6 +35,18 @@ public class Cell : AbstractPlace<Cell>
     {
         get { return _isMain; }
         set { _isMain = value; }
+    }
+    
+    public bool IsStart
+    {
+        get { return _isStart; }
+        set { _isStart = value; }
+    }
+    
+    public bool IsChecked
+    {
+        get { return _isChecked; }
+        set { _isChecked = value; }
     }
     
     public CellType Type

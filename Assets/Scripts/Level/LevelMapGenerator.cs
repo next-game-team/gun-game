@@ -80,6 +80,7 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         var startCell = Instantiate(PlacePrefab, _levelMap.transform);
         startCell.SidePoints.Init();
         startCell.IsMain = true;
+        startCell.IsStart = true;
         _mainPathQueue.Enqueue(startCell);
         
         // Create path
@@ -144,13 +145,16 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         {
             if (_currentGeneratorCount == _generatorCount) return;
             currentMainCell.GenerateProbability = _generatorGenerateProbability;
+            _levelMap.GetAllCells().ForEach(cell => cell.IsChecked = false);
             PathBypass(currentMainCell, GenerateGeneratorOnPath, "Generator generation error");
         }
     }
     
     private bool GenerateGeneratorOnPath(Cell currentCell)
     {
+        currentCell.IsChecked = true;
         if (currentCell.Type != CellType.Generator &&
+            !currentCell.IsStart &&
             (!_hardConfig || HardPreGenerationCheck(currentCell)) &&
             RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability))
         {
@@ -158,10 +162,10 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
             _currentGeneratorCount++;
             return false;
         }
-
+        
         currentCell.Neighbors.List().ForEach(neighbor =>
         {
-            if (neighbor.IsMain) return;
+            if (neighbor.IsMain || neighbor.IsChecked) return;
             neighbor.GenerateProbability = Math.Min(currentCell.GenerateProbability
                                            + _increaseGeneratorGenerateProbabilityDelta, 1);
             _bypassQueue.Enqueue(neighbor);
