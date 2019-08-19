@@ -84,9 +84,9 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
             // Prevent infinity loop
             if (cycleIterations > 100000)
             {
-                // TODO throw exception to regenerate map
-                Debug.LogError("Error generating enemy. Infinity loop in main function.");
-                break;
+                Debug.LogWarning("Error generating enemy. Infinity loop in main function. Regenerate map.");
+                GenerateMap();
+                return;
             }
             else if (cycleIterations > 10)
             {
