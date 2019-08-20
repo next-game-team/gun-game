@@ -5,9 +5,9 @@ using UnityEngine;
 public class CharacterMoveManager : MonoBehaviour
 {
     [SerializeField] private MoveConfig _moveConfig;
-    
+
     private MoveController _moveController;
-    private PlatformObject _platformObject;
+    private Moveble _movebleObject;
 
     private bool _isMoveCooldown;
     public bool IsMoveCooldown => _isMoveCooldown;
@@ -19,7 +19,7 @@ public class CharacterMoveManager : MonoBehaviour
     
     private void Awake()
     {
-        _platformObject = GetComponent<PlatformObject>();
+        _movebleObject = GetComponent<Moveble>();
         
         _moveController = GetComponent<MoveController>();
         _moveController.MoveCallEvent.AddListener(OnMoveCallEvent);
@@ -34,7 +34,7 @@ public class CharacterMoveManager : MonoBehaviour
     {
         if(_isMoveCooldown) return;
 
-        var moveResult = BetweenPlatformMover.MoveTo(_platformObject, directionEnum);
+        var moveResult = _movebleObject.MoveToDirection(directionEnum);
         if (moveResult == false) return;
         OnMoveEvent?.Invoke();
         

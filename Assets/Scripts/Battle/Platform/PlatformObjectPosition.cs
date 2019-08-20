@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlatformObjectPosition : MonoBehaviour
+public class PlatformObjectPosition : PlaceObjectPosition<Platform>
 {
     [SerializeField, ReadOnly] 
     private Transform _objectBottomPosition;

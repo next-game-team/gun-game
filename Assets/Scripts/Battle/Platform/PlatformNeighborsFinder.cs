@@ -4,19 +4,19 @@
 	public void FindNeighbors(Platform platform)
 	{
 		var neighbors = new Neighbors<Platform>(
-			DirectionUtils.FindNeighbor(platform, DirectionEnum.LEFT,
-				RaycastLength, NeighborLayerMask), 
-			DirectionUtils.FindNeighbor(platform, DirectionEnum.RIGHT,
-				RaycastLength, NeighborLayerMask), 
-			DirectionUtils.FindNeighbor(platform, DirectionEnum.UP,
-				RaycastLength, NeighborLayerMask), 
-			DirectionUtils.FindNeighbor(platform, DirectionEnum.DOWN,
-				RaycastLength, NeighborLayerMask)
+			FindNeighbor(platform, DirectionEnum.LEFT), 
+			FindNeighbor(platform, DirectionEnum.RIGHT), 
+			FindNeighbor(platform, DirectionEnum.UP), 
+			FindNeighbor(platform, DirectionEnum.DOWN)
 		);
 		
 		platform.Neighbors = neighbors;
 	}
 
-	
+	private Platform FindNeighbor(Platform platform, DirectionEnum direction)
+	{
+		return DirectionUtils.FindNeighbor(platform, direction,
+			RaycastLength, NeighborLayerMask);
+	}
 	
 }

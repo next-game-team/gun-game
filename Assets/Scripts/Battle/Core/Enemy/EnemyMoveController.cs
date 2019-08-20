@@ -19,6 +19,6 @@ public class EnemyMoveController : MoveController
     {
         if (_moveManager.IsMoveCooldown || !_liveble.IsAlive()) return;
         
-        MoveCallEvent.Invoke(_platformObject.CurrentPlatform.GetRandomFreeNeighborDirection());
+        MoveCallEvent.Invoke(_platformObject.CurrentPlace.GetRandomFreeNeighborDirection());
     }
 }

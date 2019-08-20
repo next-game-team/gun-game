@@ -20,7 +20,7 @@ public class SimpleEnemyDie : CommonDieInPool
         var platformObject = GetComponent<PlatformObject>();
         if (platformObject != null)
         {
-            platformObject.CurrentPlatform.EmptyPlatform();
+            platformObject.CurrentPlace.Empty();
         }
         
         base.Die(liveble);

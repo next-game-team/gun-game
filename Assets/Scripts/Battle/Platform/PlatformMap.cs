@@ -82,8 +82,8 @@ public class PlatformMap : Singleton<PlatformMap>
                 throw new UnityException("Rows more than in generator. Something when wrong..."
                                          + firstPlatformInCurrentRow.gameObject.name);
             }
-           _platforms.Add(GetPlatformsInCurrentRow(firstPlatformInCurrentRow));
-           firstPlatformInCurrentRow = firstPlatformInCurrentRow.Neighbors.Bottom;
+            _platforms.Add(GetPlatformsInCurrentRow(firstPlatformInCurrentRow));
+            firstPlatformInCurrentRow = firstPlatformInCurrentRow.Neighbors.Bottom;
         }
 
         // Save info about map size

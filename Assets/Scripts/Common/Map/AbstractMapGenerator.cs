@@ -40,7 +40,7 @@ public class AbstractMapGenerator<T> : MonoBehaviour where T : AbstractPlace<T>
         lineSizeHorizontal = DistanceBetweenColumns - _placePrefabSize;
     }
 
-    protected GameObject CreateLine(DirectionEnum direction, AbstractPlace<T> place)
+    protected GameObject CreateLine(DirectionEnum direction, T place)
     {
         var isVertical = DirectionUtils.IsVerticalDirection(direction);
         Vector3 linePositionDelta = DirectionUtils.vectorDirectionDictionary[direction]

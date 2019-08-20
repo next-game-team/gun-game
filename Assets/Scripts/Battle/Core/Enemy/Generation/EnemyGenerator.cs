@@ -21,8 +21,8 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
         enemy.GetComponent<Liveble>().InitHp();
         enemy.GetComponent<HpLampController>().InitLamps();
         enemy.gameObject.SetActive(true);
-        enemy.SetOnPlatform(freePlatform);
-        freePlatform.SetPlatformObject(enemy);
+        enemy.SetPlace(freePlatform);
+        freePlatform.SetCurrentObject(enemy);
         return enemy.gameObject;
     }
 }

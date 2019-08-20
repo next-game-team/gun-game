@@ -168,4 +168,14 @@ public class Cell : AbstractPlace<Cell>
     {
         return Neighbors.List().Any(neighbor => neighbor.Type == type);
     }
+
+    public override void HandleNewObject(PlaceObject<Cell> placeObject)
+    {
+        
+    }
+
+    public override void HandleEmpty()
+    {
+        
+    }
 }
