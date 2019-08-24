@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MoveController))]
-[RequireComponent(typeof(PlatformObject))]
 public class CharacterMoveManager : MonoBehaviour
 {
     [SerializeField] private MoveConfig _moveConfig;

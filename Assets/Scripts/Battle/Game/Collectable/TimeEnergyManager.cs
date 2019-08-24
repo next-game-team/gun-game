@@ -26,10 +26,6 @@ public class TimeEnergyManager : MonoBehaviour
         var platformToGenerate = PlatformUtils.GetRandomPlatformForCollectable();
         if (platformToGenerate == null) return;
         
-        // Generate time energy collectable
-        var collectable = PoolManager.Instance.CollectablePool.GetObject().GetComponent<CollectableObject>();
-        collectable.Type = CollectableType.TimeEnergy;
-        platformToGenerate.SetCollectableObject(collectable);
-        collectable.gameObject.SetActive(true);
+        platformToGenerate.SetType(PlatformType.Energy);
     }
 }

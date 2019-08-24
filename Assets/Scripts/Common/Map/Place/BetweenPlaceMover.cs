@@ -1,6 +1,6 @@
-public static class BetweenPlaceMover<T> where T : AbstractPlace<T>
+public static class BetweenPlaceMover<T, TP> where T : AbstractPlace<T, TP>
 {
-    public static bool MoveTo(PlaceObject<T> placeObject, DirectionEnum directionEnum)
+    public static bool MoveTo(PlaceObject<T, TP> placeObject, DirectionEnum directionEnum)
     {
         T newPlace;
         var result = placeObject.CurrentPlace.Neighbors.DirectionDictionary.TryGetValue(directionEnum, out newPlace);

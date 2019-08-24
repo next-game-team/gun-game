@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(LevelMap))]
 [RequireComponent(typeof(CellNeighborFinder))]
-public class LevelMapGenerator : AbstractMapGenerator<Cell>
+public class LevelMapGenerator : AbstractMapGenerator<Cell, CellType>
 {
     [SerializeField, Range(0, 1), Header("LevelMapGenerator Config")]
     private float _startGenerateProbability = 0.5f;
@@ -107,6 +107,7 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
         startCell.SidePoints.Init();
         startCell.IsMain = true;
         startCell.IsStart = true;
+        _levelMap.StartCell = startCell;
         _mainPathQueue.Enqueue(startCell);
         
         // Create path
@@ -129,11 +130,11 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
 
             if (i == _teleportPathLength - 1)
             {
-                currentCell.UpdateType(CellType.Boss);
+                currentCell.SetType(CellType.Boss);
             }
             else if (i == _teleportPathLength)
             {
-                currentCell.UpdateType(CellType.Teleport);
+                currentCell.SetType(CellType.Teleport);
             }
             else
             {
@@ -195,7 +196,7 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
             (!_hardConfig || HardGeneratorPreGenerationCheck(currentCell)) &&
             RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability))
         {
-            currentCell.UpdateType(CellType.Generator);
+            currentCell.SetType(CellType.Generator);
             _currentGeneratorCount++;
             return false;
         }
@@ -226,7 +227,7 @@ public class LevelMapGenerator : AbstractMapGenerator<Cell>
             (!_hardConfig || HardEnemyPreGenerationCheck(currentCell)) &&
             RandomUtils.IsRandomSaysTrue(currentCell.GenerateProbability))
         {
-            currentCell.UpdateType(CellType.Enemy);
+            currentCell.SetType(CellType.Enemy);
             _currentEnemiesCount++;
             return false;
         }

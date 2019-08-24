@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class Platform : AbstractPlace<Platform>
+public class Platform : AbstractPlace<Platform, PlatformType>
 {
     //[SerializeField] TODO is not using currently
     private Transform _centerOfTopBound;
@@ -59,22 +59,25 @@ public class Platform : AbstractPlace<Platform>
         }
     }*/
 
-    public override void HandleNewObject(PlaceObject<Platform> placeObject)
+    public override void HandleNewObject()
     {
         // Remove this platform from list of free platforms
         PlatformMap.Instance.FreePlatforms.Remove(this);
-        
-        // Resolve picking collectable
-        if (CollectableObject != null)
-        {
-            CurrentObject.CollectableController.Collect(CollectableObject);
-            CollectableObject.Destroy();
-            CollectableObject = null;
-        }
     }
 
     public override void HandleEmpty()
     {
         PlatformMap.Instance.FreePlatforms.Add(this);
+    }
+    
+    public override void SetType(PlatformType type)
+    {
+        Type = type;
+        Icon.sprite = PlatformTypeManager.Instance.TypeIconDictionary[type];
+    }
+
+    public override bool HasEmptyType()
+    {
+        return Type == PlatformType.Empty;
     }
 }

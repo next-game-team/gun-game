@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(ICollectableController))]
-public class PlatformObject : PlaceObject<Platform>
+[RequireComponent(typeof(PlatformEnterResolver))]
+public class PlatformObject : PlaceObject<Platform, PlatformType>
 {
+    [SerializeField] private PlatformEnterResolver _enterResolver;
+    
+    public override void ResolveEntering()
+    {
+        _enterResolver.Resolve(CurrentPlace);
+    }
 }

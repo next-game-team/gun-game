@@ -15,7 +15,7 @@
 
 	private Platform FindNeighbor(Platform platform, DirectionEnum direction)
 	{
-		return DirectionUtils.FindNeighbor(platform, direction,
+		return DirectionUtils.FindNeighbor<Platform, PlatformType>(platform, direction,
 			RaycastLength, NeighborLayerMask);
 	}
 	

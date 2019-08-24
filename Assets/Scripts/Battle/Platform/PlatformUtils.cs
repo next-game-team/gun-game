@@ -5,7 +5,7 @@ public static class PlatformUtils
         // Find free platforms to generate
         var freePlatformsWithoutCollectable = PlatformMap.Instance
             .FreePlatforms
-            .FindAll(platform => platform.CollectableObject == null);
+            .FindAll(platform => platform.Type == PlatformType.Empty);
         
         // Return from the method if not found free platform
         if (freePlatformsWithoutCollectable.Count == 0) return null;

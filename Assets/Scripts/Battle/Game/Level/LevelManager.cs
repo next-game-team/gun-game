@@ -10,21 +10,16 @@ public class LevelManager : Singleton<LevelManager>
     private Level _currentLevel;
     public Level CurrentLevel => _currentLevel;
 
-    [SerializeField] 
-    private CollectableObject _levelStarterCollectable; 
-    
     private LevelConfig _currentLevelConfig;
 
     private void Awake()
     {
         _currentLevelConfig = Instantiate(_startLevelConfig);
         CurrentLevel.OnLevelEnd += SetLevelStarterCollectable;
-        _levelStarterCollectable.gameObject.SetActive(true); // TODO: FIX IT!!!
     }
 
     private void Start()
     {
-        _levelStarterCollectable.gameObject.SetActive(false);
         SetLevelStarterCollectable();
     }
 
@@ -40,8 +35,7 @@ public class LevelManager : Singleton<LevelManager>
         var freePlatform = PlatformUtils.GetRandomPlatformForCollectable();
         if (freePlatform == null) yield return null;
         
-        freePlatform.SetCollectableObject(_levelStarterCollectable);
-        _levelStarterCollectable.gameObject.SetActive(true);
+        freePlatform.SetType(PlatformType.Start);
     }
     
     public void GenerateNextLevel()

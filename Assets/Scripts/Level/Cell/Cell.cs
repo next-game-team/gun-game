@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class Cell : AbstractPlace<Cell>
+public class Cell : AbstractPlace<Cell, CellType>
 {
     [SerializeField, ReadOnly, Header("Info")] 
     private bool _isMain;
@@ -14,17 +14,11 @@ public class Cell : AbstractPlace<Cell>
     private bool _isChecked;
 
     [SerializeField, ReadOnly] 
-    private CellType _type = CellType.Empty;
-
-    [SerializeField, ReadOnly] 
     private int _distance = int.MaxValue;
     
     [SerializeField, ReadOnly] 
     private Neighbors<GameObject> _lineNeighbors = new Neighbors<GameObject>();
 
-    [SerializeField, Header("Configuration")]
-    private SpriteRenderer _icon;
-    
     [SerializeField, Range(0, 1)] 
     private float _generateProbability = 0.5f;
     
@@ -39,19 +33,13 @@ public class Cell : AbstractPlace<Cell>
         get { return _isStart; }
         set { _isStart = value; }
     }
-    
+
     public bool IsChecked
     {
         get { return _isChecked; }
         set { _isChecked = value; }
     }
-    
-    public CellType Type
-    {
-        get { return _type; }
-        set { _type = value; }
-    }
-    
+
     public float GenerateProbability
     {
         get { return _generateProbability; }
@@ -70,44 +58,6 @@ public class Cell : AbstractPlace<Cell>
         set { _distance = value; }
     }
 
-    /*[SerializeField] 
-    private Transform _centerOfTopBound;
-    
-    public Transform CenterOfTopBound => _centerOfTopBound; */
-
-    /*[SerializeField, ReadOnly]
-    private PlatformObject _platformObject;
-
-    public PlatformObject PlatformObject
-    {
-        get { return _platformObject; }
-        set
-        {
-            if (value == null)
-            {
-                EmptyPlatform();
-            }
-            
-            _platformObject = value;
-            IsFree = false;
-        }
-    }
-
-    public void SetPlatformObject(PlatformObject platformObject)
-    {
-        // Set links on platform object and platform
-        PlatformObject = platformObject;
-        _platformObject.CurrentPlatform = this;
-    }
-
-    //public bool IsFree { get; private set; } = true;
-
-    public void EmptyPlatform()
-    {
-        _platformObject = null;
-        IsFree = true;
-    }
-    
     public bool IsEnabled { get; private set; } = false;
 
     public void Enable()
@@ -120,34 +70,15 @@ public class Cell : AbstractPlace<Cell>
         IsEnabled = false;
     }
 
-    public bool HasFreeEnabledNeighbor()
-    {
-        return _neighbors.List.Any(neighbor => neighbor.IsFree);
-    }
-
-    public Platform GetRandomFreeNeighbor()
-    {
-        // Find all free neighbors
-        var freeNeighbors = _neighbors.List.FindAll(neighbor => neighbor.IsFree);
-        
-        // Return null if there is no any free neighbors or return random free neighbor
-        return RandomUtils.GetRandomObjectFromList(freeNeighbors);
-    }
-
-    private void OnValidate()
-    {   
-        // Find CenterOfTopBound in children
-        _centerOfTopBound = GameObjectUtils.GetChildrenWithTag(gameObject, TagEnum.PlatformTopCenter)?.transform;
-        if (_centerOfTopBound == null)
-        {
-            Debug.LogError("Platform doesn't have CenterOfTopBound");
-        }
-    }*/
-
-    public void UpdateType(CellType type)
+    public override void SetType(CellType type)
     {
         Type = type;
-        _icon.sprite = CellTypeManager.Instance.TypeIconDictionary[type];
+        Icon.sprite = CellTypeManager.Instance.TypeIconDictionary[type];
+    }
+
+    public override bool HasEmptyType()
+    {
+        return Type == CellType.Empty;
     }
 
     public List<DirectionEnum> GetFreeNeighborDirections()
@@ -169,7 +100,7 @@ public class Cell : AbstractPlace<Cell>
         return Neighbors.List().Any(neighbor => neighbor.Type == type);
     }
 
-    public override void HandleNewObject(PlaceObject<Cell> placeObject)
+    public override void HandleNewObject()
     {
         
     }

@@ -1,7 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CellObject : PlaceObject<Cell>
+[RequireComponent(typeof(CellEnterResolver))]
+public class CellObject : PlaceObject<Cell, CellType>
 {
+    [SerializeField]
+    private CellEnterResolver _enterResolver;
+    
+    public override void ResolveEntering()
+    {
+        _enterResolver.Resolve(CurrentPlace);
+    }
 }

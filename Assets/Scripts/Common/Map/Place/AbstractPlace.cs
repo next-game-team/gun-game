@@ -2,29 +2,19 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class AbstractPlace<T> : MonoBehaviour where T : AbstractPlace<T>
+public abstract class AbstractPlace<T, TP> : MonoBehaviour where T : AbstractPlace<T, TP>
 {
+    [SerializeField, ReadOnly] private TP _type;
 
-    [SerializeField] private SidePoints _sidePoints;
+    [SerializeField, ReadOnly]
+    private PlaceObject<T, TP> _currentObject;
     
-    [SerializeField, ReadOnly]
-    private CollectableObject _collectableObject;
-    public CollectableObject CollectableObject
-    {
-        get { return _collectableObject; }
-        set { _collectableObject = value; }
-    }
+    [SerializeField]
+    private SpriteRenderer _icon;
+    
+    [SerializeField] private SidePoints _sidePoints;
 
-    public void SetCollectableObject(CollectableObject collectableObject)
-    {
-        _collectableObject = collectableObject;
-        _collectableObject.SetOnPlace(transform);
-    }
-
-    [SerializeField, ReadOnly]
-    private PlaceObject<T> _currentObject;
-
-    public PlaceObject<T> CurrentObject
+    public PlaceObject<T, TP> CurrentObject
     {
         get { return _currentObject; }
         set
@@ -39,14 +29,15 @@ public abstract class AbstractPlace<T> : MonoBehaviour where T : AbstractPlace<T
         }
     }
     
-    public void SetCurrentObject(PlaceObject<T> placeObject)
+    public void SetCurrentObject(PlaceObject<T, TP> placeObject)
     {
         // Set links on platform object and platform
         CurrentObject = placeObject;
-        HandleNewObject(placeObject);
+        if (!HasEmptyType()) CurrentObject.ResolveEntering();
+        HandleNewObject();
     }
 
-    public abstract void HandleNewObject(PlaceObject<T> placeObject);
+    public abstract void HandleNewObject();
 
     public SidePoints SidePoints => _sidePoints;
     
@@ -59,7 +50,19 @@ public abstract class AbstractPlace<T> : MonoBehaviour where T : AbstractPlace<T
         get { return _neighbors; }
         set { _neighbors = value; }
     }
-    
+
+    public TP Type
+    {
+        get { return _type; }
+        set { _type = value; }
+    }
+
+    public SpriteRenderer Icon => _icon;
+
+    public abstract void SetType(TP type);
+
+    public abstract bool HasEmptyType();
+
     public void Empty()
     {
         _currentObject = null;

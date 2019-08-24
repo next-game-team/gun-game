@@ -20,10 +20,10 @@ public static class DirectionUtils
             {DirectionEnum.DOWN, Vector2.down}
         }; 
     
-    public static T FindNeighbor<T>(T place,
-                                    DirectionEnum direction,
-                                    float raycastLength,
-                                    LayerMask neighborLayerMask) where T : AbstractPlace<T>
+    public static T FindNeighbor<T, TP>(T place,
+                                        DirectionEnum direction,
+                                        float raycastLength,
+                                        LayerMask neighborLayerMask) where T : AbstractPlace<T, TP>
     {
         var sidePoint = place.SidePoints.DirectionDictionary[direction];
         var directionVector = vectorDirectionDictionary[direction];

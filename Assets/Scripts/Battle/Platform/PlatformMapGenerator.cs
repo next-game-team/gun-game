@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(PlatformMap))]
-public class PlatformMapGenerator : AbstractMapGenerator<Platform>
+public class PlatformMapGenerator : AbstractMapGenerator<Platform, PlatformType>
 {
     [SerializeField] private int _rowCount;
     [SerializeField] private int _columnCount;

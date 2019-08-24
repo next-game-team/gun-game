@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AbstractMapGenerator<T> : MonoBehaviour where T : AbstractPlace<T>
+public class AbstractMapGenerator<T, TP> : MonoBehaviour where T : AbstractPlace<T, TP>
 {
     [SerializeField] private float _distanceBetweenRows;
     [SerializeField] private float _distanceBetweenColumns;
