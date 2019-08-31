@@ -8,7 +8,7 @@ public class PlayerAttackWithEnergyManager : PlayerAttackManager
    [SerializeField] private int _maxEnergyCount;
    public int MaxEnergyCount => _maxEnergyCount;
    
-   public float CurrentEnergyCount { get; private set; }
+   public int CurrentEnergyCount { get; private set; }
 
    [NonSerialized] public OnEnergyChangeEvent OnEnergyIncrease;
    [NonSerialized] public OnEnergyChangeEvent OnEnergyDecrease;
@@ -16,7 +16,7 @@ public class PlayerAttackWithEnergyManager : PlayerAttackManager
    protected override void Awake()
    {
       base.Awake();
-      CurrentEnergyCount = MaxEnergyCount;
+      FullFillEnergy();
       OnEnergyIncrease = new OnEnergyChangeEvent();
       OnEnergyDecrease = new OnEnergyChangeEvent();
    }
@@ -36,6 +36,11 @@ public class PlayerAttackWithEnergyManager : PlayerAttackManager
    {
       CurrentEnergyCount += energyCount;
       OnEnergyIncrease?.Invoke(energyCount);
+   }
+
+   public void FullFillEnergy()
+   {
+      AddEnergy(MaxEnergyCount - CurrentEnergyCount);
    }
 }
 

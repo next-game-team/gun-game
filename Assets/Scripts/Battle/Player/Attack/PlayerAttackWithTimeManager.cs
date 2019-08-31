@@ -18,7 +18,7 @@ public class PlayerAttackWithTimeManager : PlayerAttackManager
 
    private void Update()
    {
-      if (IsInAttack && !GameManager.Instance.IsPause)
+      if (IsInAttack && !BattleGameManager.Instance.IsPause)
       {
          if (CurrentTimeEnergy <= 0)
          {

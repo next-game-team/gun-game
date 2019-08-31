@@ -16,7 +16,7 @@ public class PlayerStartPositionController : MonoBehaviour
             return;
         }
 
-        _startPlatform.SetCurrentObject(_player);
         _player.SetPlace(_startPlatform);
+        _startPlatform.SetCurrentObject(_player);
     }
 }

@@ -109,4 +109,21 @@ public class Cell : AbstractPlace<Cell, CellType>
     {
         
     }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        LineNeighbors.List().ForEach(line => line.gameObject.SetActive(false));
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        LineNeighbors.List()
+            .FindAll(line => line.gameObject.activeSelf != true)
+            .ForEach(line => line.gameObject.SetActive(true));
+        Neighbors.List()
+            .FindAll(neighbor => neighbor.gameObject.activeSelf != true)
+            .ForEach(neighbor => neighbor.gameObject.SetActive(true));
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class PlaceObject<T, TP> : MonoBehaviour, Moveble where T : AbstractPlace<T, TP>
 {
@@ -22,6 +23,7 @@ public abstract class PlaceObject<T, TP> : MonoBehaviour, Moveble where T : Abst
     }
 
     public bool IsInMove { get; private set; }
+    public UnityEvent OnMoveEndEvent { get; } = new UnityEvent();
 
     public void SetPlace(T place)
     {
@@ -47,6 +49,7 @@ public abstract class PlaceObject<T, TP> : MonoBehaviour, Moveble where T : Abst
 
     private void OnMoveEnd()
     {
+        OnMoveEndEvent.Invoke();
         IsInMove = false;
     }
 

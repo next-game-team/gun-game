@@ -64,11 +64,11 @@ GameObject:
   - component: {fileID: 446459012531325785}
   - component: {fileID: 1680675086929370669}
   - component: {fileID: 909860360941013378}
-  - component: {fileID: 2183457385670861312}
   - component: {fileID: 6664790449550621876}
   - component: {fileID: 6444596194099964945}
   - component: {fileID: 1327327536002297220}
   - component: {fileID: -3438395260324523054}
+  - component: {fileID: 2967006747719209308}
   m_Layer: 12
   m_Name: CircleEnemy
   m_TagString: Enemy
@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e71fa470c84989be253e33191b45cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _betweenPlatformMoveDuration: 0.5
-  _currentPlatform: {fileID: 0}
+  _moveDuration: 0.5
+  _currentPlace: {fileID: 0}
+  _enterResolver: {fileID: 2967006747719209308}
 --- !u!114 &7505134929819923226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,18 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd25bfbcb5ca4b04bc01c63992a809a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2183457385670861312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561095504269246100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2dbc7746b943fca502ba0b61c8a200, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6664790449550621876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +276,18 @@ MonoBehaviour:
   _damageColor: {r: 0.8396226, g: 0.25743148, b: 0.25743148, a: 1}
   _damageDuration: 0.2
   _window: {fileID: 8958410538858329328}
+--- !u!114 &2967006747719209308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561095504269246100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcb11391489407bbc42eb73a2675da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3790738108782029641
 GameObject:
   m_ObjectHideFlags: 0

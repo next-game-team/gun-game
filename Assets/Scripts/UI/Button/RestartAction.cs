@@ -6,6 +6,6 @@ public class RestartAction : ButtonAction
     
     public override void Action()
     {
-        GameManager.Instance.RestartGame(_sceneIndex);
+        BattleGameManager.Instance.RestartGame(_sceneIndex);
     }
 }

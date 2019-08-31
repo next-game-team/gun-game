@@ -33,7 +33,7 @@ public abstract class AbstractPlace<T, TP> : MonoBehaviour where T : AbstractPla
     {
         // Set links on platform object and platform
         CurrentObject = placeObject;
-        if (!HasEmptyType()) CurrentObject.ResolveEntering();
+        CurrentObject.ResolveEntering();
         HandleNewObject();
     }
 

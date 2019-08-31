@@ -2,6 +2,6 @@ public class ExitAction : ButtonAction
 {
     public override void Action()
     {
-        GameManager.Instance.ExitGame();
+        BattleGameManager.Instance.ExitGame();
     }
 }

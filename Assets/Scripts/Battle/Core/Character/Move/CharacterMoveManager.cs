@@ -31,7 +31,7 @@ public class CharacterMoveManager : MonoBehaviour
 
     private void OnMoveCallEvent(DirectionEnum directionEnum)
     {
-        if(_isMoveCooldown) return;
+        if(_isMoveCooldown || _movebleObject.IsInMove) return;
 
         var moveResult = _movebleObject.MoveToDirection(directionEnum);
         if (moveResult == false) return;

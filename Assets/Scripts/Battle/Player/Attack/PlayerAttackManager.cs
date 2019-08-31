@@ -36,7 +36,7 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
    {
       if (Gun.IsInCooldown) return false;
 
-      GameManager.Instance.SetTimeScale(_aimConfig.AimTimeScale);
+      BattleGameManager.Instance.SetTimeScale(_aimConfig.AimTimeScale);
       IsInAttack = true;
       _gunRayController.TurnOn();
       return true;
@@ -50,7 +50,7 @@ public class PlayerAttackManager : AttackManager<PlayerAttackController>
 
    private void ReturnToNormalState()
    {
-      GameManager.Instance.SetTimeScale(1);
+      BattleGameManager.Instance.SetTimeScale(1);
       IsInAttack = false;
    }
 }

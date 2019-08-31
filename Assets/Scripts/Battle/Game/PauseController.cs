@@ -6,13 +6,13 @@ public class PauseController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameManager.Instance.IsPause)
+            if (BattleGameManager.Instance.IsPause)
             {
-                GameManager.Instance.ResumeGame();
+                BattleGameManager.Instance.ResumeGame();
             }
             else
             {
-                GameManager.Instance.PauseGame();
+                BattleGameManager.Instance.PauseGame();
             }
         }
     }

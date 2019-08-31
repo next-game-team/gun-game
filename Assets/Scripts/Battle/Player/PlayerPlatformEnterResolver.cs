@@ -16,6 +16,7 @@ public class PlayerPlatformEnterResolver : PlatformEnterResolver
             case PlatformType.Start:
                 LevelManager.Instance.GenerateNextLevel();
                 LevelManager.Instance.CurrentLevel.StartLevel();
+                _attackManager.FullFillEnergy();
                 break;
             case PlatformType.Energy:
                 CollectEnergy();
